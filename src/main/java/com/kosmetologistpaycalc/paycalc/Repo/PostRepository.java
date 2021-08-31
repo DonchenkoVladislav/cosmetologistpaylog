@@ -8,6 +8,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public interface PostRepository extends CrudRepository<Post, Long> {
-    @Query(value = "SELECT * FROM post u LIMIT 10", nativeQuery = true)
-    Collection<Post> findtenlastid(Post posts);
+//    @Query(value = "SELECT * FROM post u LIMIT 10", nativeQuery = true)
+//    Collection<Post> findtenlastid(Post posts);
 }
