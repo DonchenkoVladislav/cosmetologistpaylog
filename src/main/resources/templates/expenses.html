@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Мои доходы</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Title</title>    
+
+    <style>
+        .button {
+            display: block;
+            height: 180px;
+            width: 180px;
+            background-color: #f885d2; /* Green */
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 26px;
+            margin: 200px 20px 10px 20px;
+            cursor: pointer;
+            border-radius: 90px;
+            text-align: center;
+            border: solid;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .button:hover{
+            color: #f885d2;
+            background-color: white;
+        }
+        .okbutton{
+            display: block;
+            height: 100px;
+            width: 200px;
+            background-color: #f885d2; /* Green */
+            border: none;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 26px;
+            cursor: pointer;
+            border-radius: 20px;
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            margin: 0 auto;
+            margin-top: 50px;
+            border: solid;
+        }
+        .okbutton:hover{
+            color: #f885d2;
+            background-color: white;
+        }
+        .delbutton{
+            height: 80px;
+            width: 80px;
+            border: none;
+            padding: 30px 10px;
+            text-align: center;
+            text-decoration: none;
+            background: transparent;
+            margin: 10px;
+            cursor: pointer;
+            margin-left: 70px;
+            transform: scale(0.82);
+        }
+        .middle{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 100px;
+        }
+        .inputenumberlement{
+            width: 400px;
+            height: 50px;
+            resize: vertical;
+            padding:15px;
+            border-radius:25px;
+            border:0;
+            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 38px;
+            text-align: center;
+            opacity: 0.5;
+            margin-top: 10px;
+            margin-top: 20px;
+        }
+        .inputenumberlement:hover{
+            opacity: 1;
+            transition: opacity 1s;
+            box-shadow:0px 0px 10px rgba(0,0,0,0.8);
+        }
+        .pelement{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 28px;
+            margin: 10px 0px 0px 10px;
+            padding: 20px;
+        }
+        .calcelement{
+            width: 95%;
+            height: 100px;
+            margin: 20px 20px;
+            border: black;
+        }
+        div.calcelement span{
+            display: flex;
+            justify-content: center;
+            width: 800px;
+            height: 120px;
+            margin: 50px auto;
+            background: rgb(255, 255, 255);
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            border-radius: 20px;
+        }
+        div.calcelement span:hover{
+            background: #f885d2;
+        }
+        .pspan{
+            display: block;
+            width: 230px;
+            height: 50px;
+            padding-top: 28px;
+            color: white;
+            background: #f885d2;
+            background: linear-gradient(90deg, #f885d2 0%, #ffa8e2d7 40%, rgba(254, 254, 254, 0.315) 95%);    
+            border-radius: 20px;
+        }
+        .foot{
+            display: block;
+            height: 80px;            
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <span class="middle">
+            <button class="button" onclick="addElement()">Препарат 1</button>
+            <button class="button" onclick="addElementBotoks()">Препарат 2</button>
+            <button class="button" onclick="addElementChistka()">Препарат3</button>
+            <button class="button" onclick="addElementPredoplata()">Расходники</button>
+        </span>
+    </div>
+    <form></form>
+    <form id="expensesinfo" action="/expenses" method="post">
+        <button method="postexpenses" type="submit" class="okbutton">Готово</button>
+    </form>
+    <div class="foot">        
+    </div>
+
+     <script>
+         var idNamePrep1 = 0;
+         var idNamePrep2 = 0;
+         var idNamePrep3 = 0;
+         var idNamePrePayment = 0;
+         function addElement(){
+            var lipsElement = document.getElementById('expensesinfo');
+            var lipsDiv = document.createElement('div');
+            lipsDiv.className = 'calcelement';
+            lipsDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan" id="calcElemLips" name="procedures">Губы</p><input type="number" name="prep1' + idNamePrep1 + '" placeholder="Введите сумму" min="0" max="100000" step="500" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
+            lipsElement.prepend(lipsDiv);
+            idNamePrep1++;
+            }
+
+            function addElementBotoks(){
+            var botoksElement = document.getElementById('expensesinfo');
+            var botoksDiv = document.createElement('div');
+            botoksDiv.className = 'calcelement';
+            botoksDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Ботокс</p><input type="number" name="prep2' + idNamePrep2 + '" placeholder="Введите сумму" min="0" max="100000" step="500" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
+            botoksElement.prepend(botoksDiv);
+            idNamePrep2++;
+            }
+
+            function addElementChistka(){
+            var chistkaElement = document.getElementById('expensesinfo');
+            var chistkaDiv = document.createElement('div');
+            chistkaDiv.className = 'calcelement';
+            chistkaDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Чистка</p><input type="number" name="prep3' + idNamePrep3 + '" placeholder="Введите сумму" min="0" max="100000" step="500" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            chistkaElement.prepend(chistkaDiv);
+            idNamePrep3++;
+            }
+
+            function addElementPredoplata(){
+            var predoplataElement = document.getElementById('expensesinfo');
+            var predoplataDiv = document.createElement('div');
+            predoplataDiv.className = 'calcelement';
+            predoplataDiv.innerHTML ='<span id="' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Предоплата</p><input type="prepayment' + idNamePrePayment + '" name="prepayment" placeholder="Введите сумму" min="0" max="100000" step="500" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            predoplataElement.prepend(predoplataDiv);
+            idNamePrePayment++;
+            }
+
+        function deleteElement(button){
+            button.parentNode.parentNode.remove();
+            }
+     </script>
+</body>
+</html>

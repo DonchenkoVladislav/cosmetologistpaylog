@@ -149,46 +149,49 @@
     </div>
 
      <script>
-         var idNumber = 0;
+         var idNumberLips = 0;
+         var idNumberBotox = 0;
+         var idNumberClean = 0;
+         var idNumberPrepayment = 0;
          function addElement(){
             var lipsElement = document.getElementById('calcElemLips');
             var lipsDiv = document.createElement('div');
             lipsDiv.className = 'calcelement';
-            lipsDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan" id="calcElemLips" name="procedures">Губы</p><input type="number" name="lips" placeholder="Введите сумму" min="0" max="100000" step="500" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
+            lipsDiv.innerHTML = '<span id="l' + idNumber + '"><p class="pelement pspan" id="calcElemLips" name="procedures">Губы</p><input type="number" name="lips' + idNumberLips + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             lipsElement.prepend(lipsDiv);
-            idNumber++;
-            }
+            idNumberLips++;
+        }
 
-            function addElementBotoks(){
+        function addElementBotoks(){
             var botoksElement = document.getElementById('calcElemLips');
             var botoksDiv = document.createElement('div');
             botoksDiv.className = 'calcelement';
-            botoksDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Ботокс</p><input type="number" name="botox" placeholder="Введите сумму" min="0" max="100000" step="500" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
+            botoksDiv.innerHTML = '<span id="b' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Ботокс</p><input type="number" name="botox' + idNumberBotox + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             botoksElement.prepend(botoksDiv);
-            idNumber++;
-            }
+            idNumberBotox++;
+        }
 
-            function addElementChistka(){
+        function addElementChistka(){
             var chistkaElement = document.getElementById('calcElemLips');
             var chistkaDiv = document.createElement('div');
             chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Чистка</p><input type="number" name="clean" placeholder="Введите сумму" min="0" max="100000" step="500" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            chistkaDiv.innerHTML = '<span id="c' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Чистка</p><input type="number" name="clean' + idNumberClean + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             chistkaElement.prepend(chistkaDiv);
-            idNumber++;
-            }
+            idNumberClean++;
+        }
 
-            function addElementPredoplata(){
+        function addElementPredoplata(){
             var predoplataElement = document.getElementById('calcElemLips');
             var predoplataDiv = document.createElement('div');
             predoplataDiv.className = 'calcelement';
-            predoplataDiv.innerHTML ='<span id="' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Предоплата</p><input type="number" name="prepayment" placeholder="Введите сумму" min="0" max="100000" step="500" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            predoplataDiv.innerHTML ='<span id="p' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Предоплата</p><input type="number" name="prepayment' + idNumberPrepayment + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             predoplataElement.prepend(predoplataDiv);
-            idNumber++;
-            }
+            idNumberPrepayment++;
+         }
 
         function deleteElement(button){
             button.parentNode.parentNode.remove();
-            }
+        }
      </script>
 </body>
 </html>

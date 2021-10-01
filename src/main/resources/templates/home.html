@@ -120,7 +120,7 @@
             </div>
             <p class="Ops fonts">Здесь нужно написать то, что сегодня потратила.</p>
         </div>
-        <div class="conclusion calcelement fonts" th:each="el : ${posts}">
+        <div class="conclusion calcelement fonts" th:each="el : ${postWeeks}">
             <h4 class="leftmiddle blockmain vertcenter green" th:text="${el.summary_type}"></h4>
             <p class="smallmiddle block vertcenter" th:text="${el.procedures}"></p>
             <p class="rightmiddle" th:text="${el.summary}">₽</p>
