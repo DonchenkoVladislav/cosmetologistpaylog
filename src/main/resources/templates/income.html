@@ -6,51 +6,49 @@
     <title>Title</title>    
 
     <style>
-        .button {
-            display: block;
-            height: 180px;
-            width: 180px;
-            background-color: #f885d2; /* Green */
-            border: none;
-            color: white;
-            padding: 20px;
-            text-align: center;
+        .margin-top-30{
+            margin-top: 30%;
+        }
+        .margin-top-5{
+            margin-top: 5%;
+        }
+        .margin-side-10{
+            margin: 0px 10px;
+        }
+        .buttonform{
             text-decoration: none;
             display: inline-block;
-            font-size: 26px;
-            margin: 200px 20px 10px 20px;
-            cursor: pointer;
-            border-radius: 90px;
+            width: 190px;
+            height: 60px;
+            line-height: 45px;
+            border-radius: 45px;
+            text-transform: uppercase;
             text-align: center;
-            border: solid;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            letter-spacing: 3px;
+            font-weight: 600;
+            color: #524f4e;
+            background: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+            transition: .3s;
         }
-        .button:hover{
-            color: #f885d2;
-            background-color: white;
+        .padding-15{
+            padding-top: 5px;
         }
-        .okbutton{
-            display: block;
-            height: 100px;
-            width: 200px;
-            background-color: #f885d2; /* Green */
+        .font-20{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+        }
+        .flex{
+            display: flex;
+            flex-direction: row;
+        }
+        .nonborder{
             border: none;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 26px;
-            cursor: pointer;
-            border-radius: 20px;
-            text-align: center;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            margin: 0 auto;
-            margin-top: 50px;
-            border: solid;
         }
-        .okbutton:hover{
-            color: #f885d2;
-            background-color: white;
+        .middle{
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0%);
         }
         .delbutton{
             height: 80px;
@@ -60,7 +58,7 @@
             text-align: center;
             text-decoration: none;
             background: transparent;
-            margin: 10px;
+            margin: 10px 30px;
             cursor: pointer;
             margin-left: 70px;
             transform: scale(0.82);
@@ -68,14 +66,13 @@
         .middle{
             display: flex;
             justify-content: center;
-            margin-bottom: 100px;
         }
         .inputenumberlement{
             width: 400px;
-            height: 50px;
+            height: 40px;
             resize: vertical;
             padding:15px;
-            border-radius:25px;
+            border-radius:40px;
             border:0;
             box-shadow:0px 0px 10px rgba(0,0,0,0.2);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -91,39 +88,34 @@
             box-shadow:0px 0px 10px rgba(0,0,0,0.8);
         }
         .pelement{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 28px;
-            margin: 10px 0px 0px 10px;
-            padding: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: 50px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            color: #524f4e;
         }
         .calcelement{
             width: 95%;
             height: 100px;
-            margin: 20px 20px;
-            border: black;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0%);
         }
         div.calcelement span{
             display: flex;
             justify-content: center;
             width: 800px;
-            height: 120px;
+            height: 110px;
             margin: 50px auto;
             background: rgb(255, 255, 255);
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
-            border-radius: 20px;
-        }
-        div.calcelement span:hover{
-            background: #f885d2;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+            border-radius: 60px;
         }
         .pspan{
-            display: block;
             width: 230px;
-            height: 50px;
-            padding-top: 28px;
-            color: white;
-            background: #f885d2;
-            background: linear-gradient(90deg, #f885d2 0%, #ffa8e2d7 40%, rgba(254, 254, 254, 0.315) 95%);    
-            border-radius: 20px;
         }
         .foot{
             display: block;
@@ -133,22 +125,23 @@
 
 </head>
 <body>
-    <div>
+    <div class="margin-top-30 flex">
         <span class="middle">
-            <button class="button" onclick="addElement()">Губы</button>
-            <button class="button" onclick="addElementBotoks()">Ботокс</button>
-            <button class="button" onclick="addElementChistka()">Чистка</button>
-            <button class="button" onclick="addElementPredoplata()">Предоплата</button>
+            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElement()">Губы</button>
+            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementBotoks()">Ботокс</button>
+            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementChistka()">Чистка</button>
+            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementPredoplata()">Предоплата</button>
         </span>
     </div>
     <form></form>
     <form id="calcElemLips" action="/income" method="post">
-        <button method="post" type="submit" class="okbutton">Готово</button>
+        <button method="post" type="submit" class="buttonform font-20 padding-15 nonborder margin-top-5 middle">Готово</button>
     </form>
     <div class="foot">        
     </div>
 
      <script>
+         var idNumber = 0;
          var idNumberLips = 0;
          var idNumberBotox = 0;
          var idNumberClean = 0;
@@ -157,36 +150,40 @@
             var lipsElement = document.getElementById('calcElemLips');
             var lipsDiv = document.createElement('div');
             lipsDiv.className = 'calcelement';
-            lipsDiv.innerHTML = '<span id="l' + idNumber + '"><p class="pelement pspan" id="calcElemLips" name="procedures">Губы</p><input type="number" name="lips' + idNumberLips + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            lipsDiv.innerHTML = '<span id="l' + idNumber + '"><p class="pelement pspan font-20" id="calcElemLips" name="procedures">Губы</p><input type="number" name="lips' + idNumberLips + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             lipsElement.prepend(lipsDiv);
             idNumberLips++;
+            idNumber++;
         }
 
         function addElementBotoks(){
             var botoksElement = document.getElementById('calcElemLips');
             var botoksDiv = document.createElement('div');
             botoksDiv.className = 'calcelement';
-            botoksDiv.innerHTML = '<span id="b' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Ботокс</p><input type="number" name="botox' + idNumberBotox + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            botoksDiv.innerHTML = '<span id="b' + idNumber + '"><p class="pelement pspan font-20" id="calcElemLips">Ботокс</p><input type="number" name="botox' + idNumberBotox + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             botoksElement.prepend(botoksDiv);
             idNumberBotox++;
+            idNumber++;
         }
 
         function addElementChistka(){
             var chistkaElement = document.getElementById('calcElemLips');
             var chistkaDiv = document.createElement('div');
             chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span id="c' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Чистка</p><input type="number" name="clean' + idNumberClean + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            chistkaDiv.innerHTML = '<span id="c' + idNumber + '"><p class="pelement pspan font-20" id="calcElemLips">Чистка</p><input type="number" name="clean' + idNumberClean + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             chistkaElement.prepend(chistkaDiv);
             idNumberClean++;
+            idNumber++;
         }
 
         function addElementPredoplata(){
             var predoplataElement = document.getElementById('calcElemLips');
             var predoplataDiv = document.createElement('div');
             predoplataDiv.className = 'calcelement';
-            predoplataDiv.innerHTML ='<span id="p' + idNumber + '"><p class="pelement pspan" id="calcElemLips">Предоплата</p><input type="number" name="prepayment' + idNumberPrepayment + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            predoplataDiv.innerHTML ='<span id="p' + idNumber + '"><p class="pelement pspan font-20" id="calcElemLips">Предоплата</p><input type="number" name="prepayment' + idNumberPrepayment + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             predoplataElement.prepend(predoplataDiv);
             idNumberPrepayment++;
+            idNumber++;
          }
 
         function deleteElement(button){
