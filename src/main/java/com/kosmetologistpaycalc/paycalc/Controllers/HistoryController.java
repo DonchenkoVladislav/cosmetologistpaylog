@@ -1,6 +1,7 @@
 package com.kosmetologistpaycalc.paycalc.Controllers;
 
 import com.kosmetologistpaycalc.paycalc.Datecalendar;
+import com.kosmetologistpaycalc.paycalc.Models.Daypost;
 import com.kosmetologistpaycalc.paycalc.Models.Post;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,10 @@ public class HistoryController extends Datecalendar {
         model.addAttribute("posts", posts);
         Iterable<String> datePosts = ListToIterable(getListPostsDate(iterableToArrayListDay(postRepository.findAll())));
         model.addAttribute("datePosts", datePosts);
-
+        Iterable<Daypost> summPosts = ListToIterableInt(getListPostDateSumm(
+                iterableToArrayListSumm(posts),
+                getListPostsDate(iterableToArrayListDay(posts))));
+        model.addAttribute("summPosts", summPosts);
         return "history.html";
     }
 }

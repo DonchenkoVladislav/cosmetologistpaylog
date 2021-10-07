@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
         .margin-top-30{
-            margin-top: 30%;
+            margin-top: 30vw;
         }
         .margin-side-20{
             margin: 10px 20px;
@@ -42,9 +42,21 @@
             left: 50%;
             transform: translate(-50%, 0%);
         }
+        .whitecolour{
+            color: white;
+        }
+        .bigfont{
+            font-size: 100px;
+            font-weight: bold;
+        }
         .fonts{
             font-family: 'Montserrat', sans-serif;
             font-size: 30px;
+        }
+        .font-20{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            letter-spacing: 1px;
         }
         .padding-15{
             padding-top: 15px;
@@ -122,10 +134,80 @@
             display: flex;
             flex-direction: row;
         }
+        .bacgroundimagebox{
+            background-image: url(https://sun9-67.userapi.com/impg/m8QeZAj4YHwoqo7SxGmyewjF0bnSsO-7f_oGSw/UbzZ8arGW0M.jpg?size=2560x1440&quality=96&sign=b7c2705acce7615fc3a076b0f10b33b1&type=album);
+            background-size: 100% 170%;
+            width: 100%;
+            height: 35vw;
+            background-repeat: no-repeat;
+        }
+        .previeelement{
+            display: block;
+            width: 100%;
+            height: 30vw;
+            
+        }
+        .gorisontalcolumn{
+            display: flex;
+            flex-direction: row;
+            color: white;
+            justify-content: space-between;
+            margin: auto auto 20px auto;
+            position: relative;
+            top: 20%;
+        }
+        .gorisontalcolumnbanner{
+            display: flex;
+            flex-direction: row;
+            color: white;
+            justify-content: space-between;
+            width: 800px;
+            margin: auto auto 20px auto;
+            position: relative;
+            top: 20%;
+        }
+        .prevblock{
+            display: block;
+            width: 400px;
+        }
+        ul.gorisontalcolumn li{
+            align-items: flex-start;
+        }
+        li {
+            list-style-type: none; /* Убираем маркеры */
+        }
+        ul {
+            margin-left: 0; /* Отступ слева в браузере IE и Opera */
+            padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+        }
+        body{
+            margin: 0%;
+        }
     </style>
 </head>
-<body>            
-        <div class="margin-top-30 flex">
+<body>
+    <div class="bacgroundimagebox">
+        <div class="previeelement">
+            <ul class="fonts gorisontalcolumnbanner">
+                <li class="prevblock">
+                    <ul class="fonts gorisontalcolumn">
+                        <li>Прибыль</li>
+                        <li>00000 Р</li>
+                    </ul>
+                    <ul class="fonts gorisontalcolumn">
+                        <li>Расходы</li>
+                        <li>00000 Р</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="fonts">
+                        <li class="whitecolour">Итого</li>
+                        <li class="bigfont whitecolour">00000 Р</li>
+                    </ul>
+                </li>
+            </ul>   
+        </div>
+        <div class="flex">
             <span class="middle">
                 <a class = "buttonform fonts padding-15 margin-side-20" href='/income'>Доходы</a>
                 <a class = "buttonform fonts padding-15 margin-side-20" href='/expenses'>Расходы</a>
@@ -144,5 +226,6 @@
             <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
             <p class="midmiddle vertbottom smallfonts" th:text="${el.day}"></p>
         </div>
+    </div>
 </body>
 </html>

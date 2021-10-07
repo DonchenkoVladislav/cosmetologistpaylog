@@ -4,6 +4,9 @@
     <title th:text="${title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
+        .margin-0{
+            margin: 0%;
+        }
         .base{
             margin-top: 8%;
         }
@@ -41,13 +44,15 @@
             font-size: 30px;
         }
         .calcelement{
-            display: flex;
             width: 800px;
             margin: 30px auto;
-            background: rgb(255, 255, 255);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+            box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
             border-radius: 50px;
-            position: relative;
+        }
+        .dayelement{
+            display: flex;
+            width: 800px;
+            border-radius: 50px;
         }
         .leftmiddle{
             line-height: 70px;
@@ -55,20 +60,16 @@
             top: 20px;
             left: 30px;
         }
-        .vertcenter{
-            vertical-align: middle;
-        }
         .vertbottom{
             vertical-align:bottom;
         }
         .rightmiddle{
             position: relative;
-            left: 240px;
+            left: 250px;
         }
         .blockmain{
             height: 80px;
             width: 180px;
-            border-radius: 20px;
             margin: 0px;
         }
         .block{
@@ -78,11 +79,9 @@
             margin: 0px;
         }
         .smallmiddle{
-            text-align: center;
             line-height: 70px;
             position: relative;
-            top: 0px;
-            left: 30px;
+            top: 15px;
         }
         .green{
             color: white;
@@ -108,17 +107,54 @@
             display: flex;
             flex-direction: column-reverse;
         }
+        .calcmargin{
+            margin-top: 20px;
+            margin-left: 30px;
+        }
+        .daymargin{
+            margin-top: 50px;
+            margin-bottom: 25px;
+        }
+        .summanddate{
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            color: rgb(110, 110, 110);
+            font-weight: bold;
+        }
+        .historybody{
+            background: linear-gradient(35deg, #6B8719, #384D26, #97A5BF);
+            height: 100%;
+        }
+        .bodycalendar{
+            background-color: white;
+        }
+        li {
+            list-style-type: none; /* Убираем маркеры */
+        }
+        ul {
+            margin-left: 0; /* Отступ слева в браузере IE и Opera */
+            padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+        }
+        
+        body{
+            margin: 0%;
+        }
+
     </style>
 </head>
-<body>
+<body class="historybody margin-0">
         <ul class="columnreverse">
-            <li class="fonts" th:each="string : ${datePosts}">
-                <p class="smallmiddle block vertcenter" th:text="${string}"></p>
-                <ul>
-                    <li class="calcelement" th:each="el : ${posts}" th:if="${el.day == string}">
-                        <h4 class="leftmiddle blockmain vertcenter" th:if="${el.summary_type == 'Расход'}"><img src="https://img.icons8.com/pastel-glyph/50/000000/negative-dynamic.png"/></h4>
-                        <h4 class="leftmiddle blockmain vertcenter" th:if="${el.summary_type == 'Доход'}"><img src="https://img.icons8.com/pastel-glyph/50/000000/positive-dynamic--v2.png"/></h4>
-                        <p class="smallmiddle block vertcenter" th:text="${el.procedures}"></p>
+            <li class="fonts calcelement bodycalendar" th:each="current : ${summPosts}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.day}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+                <ul class="daymargin">
+                    <li class="dayelement" th:each="el : ${posts}" th:if="${el.day == current.day}">
+                        <h4 class="leftmiddle blockmain" th:if="${el.summary_type == 'Расход'}"><img src="https://img.icons8.com/pastel-glyph/50/000000/negative-dynamic.png"/></h4>
+                        <h4 class="leftmiddle blockmain" th:if="${el.summary_type == 'Доход'}"><img src="https://img.icons8.com/pastel-glyph/50/000000/positive-dynamic--v2.png"/></h4>
+                        <p class="smallmiddle block" th:text="${el.procedures}"></p>
                         <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
                     </li>
                 </ul>
