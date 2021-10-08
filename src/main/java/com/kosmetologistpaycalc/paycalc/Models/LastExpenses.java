@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 public class LastExpenses {
@@ -13,12 +15,14 @@ public class LastExpenses {
 
     private String procedures, summary_type, day;
     private Integer summary;
+    private Date date;
 
-    public LastExpenses(Integer summary, String procedures, String summary_type, String day) {
+    public LastExpenses(Integer summary, String procedures, String summary_type, String day, Date date) {
         this.procedures = procedures;
         this.summary_type = summary_type;
         this.summary = summary;
         this.day = day;
+        this.date = date;
     }
 
     public String getSummary_type() {
@@ -62,5 +66,13 @@ public class LastExpenses {
 
     public void setDay(String day) {
         this.day = day;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

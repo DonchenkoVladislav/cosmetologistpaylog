@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class Post {
@@ -13,12 +14,14 @@ public class Post {
 
     private String procedures, summary_type, day;
     private Integer summary;
+    private Date date;
 
-    public Post(Integer summary, String procedures, String summary_type, String day) {
+    public Post(Integer summary, String procedures, String summary_type, String day, Date date) {
         this.procedures = procedures;
         this.summary_type = summary_type;
         this.summary = summary;
         this.day = day;
+        this.date = date;
     }
 
     public String getSummary_type() {
@@ -62,5 +65,13 @@ public class Post {
 
     public void setDay(String day) {
         this.day = day;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

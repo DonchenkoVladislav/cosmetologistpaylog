@@ -123,8 +123,9 @@
             font-weight: bold;
         }
         .historybody{
-            background: linear-gradient(35deg, #6B8719, #384D26, #97A5BF);
-            height: 100%;
+            background: linear-gradient(35deg, #6C881A, #6B8719, #384D26, #495C2E, #8FAB32, #868E76, #97A5BF);
+            background-attachment: fixed;
+
         }
         .bodycalendar{
             background-color: white;
@@ -151,7 +152,7 @@
                     <li class="smallmiddle block calcmargin" th:text="${current.summary}">
                 </ul>
                 <ul class="daymargin">
-                    <li class="dayelement" th:each="el : ${posts}" th:if="${el.day == current.day}">
+                    <li class="dayelement" th:each="el : ${posts}" th:if="${el.date == current.day}">
                         <h4 class="leftmiddle blockmain" th:if="${el.summary_type == 'Расход'}"><img src="https://img.icons8.com/pastel-glyph/50/000000/negative-dynamic.png"/></h4>
                         <h4 class="leftmiddle blockmain" th:if="${el.summary_type == 'Доход'}"><img src="https://img.icons8.com/pastel-glyph/50/000000/positive-dynamic--v2.png"/></h4>
                         <p class="smallmiddle block" th:text="${el.procedures}"></p>

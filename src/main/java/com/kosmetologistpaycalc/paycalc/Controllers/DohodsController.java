@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 @Controller
 public class DohodsController {
@@ -56,10 +57,11 @@ public class DohodsController {
                 String summary_type = "Доход";
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = sortmassive[i];
-                Post post = new Post(summary, procedures, summary_type, day);
+                Date date = Calendar.getInstance().getTime();
+                Post post = new Post(summary, procedures, summary_type, day, date);
                 postRepository.save(post);
 
-                LastIncome postWeek = new LastIncome(summary, procedures, summary_type, day);
+                LastIncome postWeek = new LastIncome(summary, procedures, summary_type, day, date);
                 countRecords[i] = postWeek;
             }
             if ((i == 1 | i == 5 | i == 9 | i == 13 | i == 17 | i == 21) & sortmassive[i] > 0) {
@@ -67,10 +69,11 @@ public class DohodsController {
                 String summary_type = "Доход";
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = sortmassive[i];
-                Post post = new Post(summary, procedures, summary_type, day);
+                Date date = Calendar.getInstance().getTime();
+                Post post = new Post(summary, procedures, summary_type, day, date);
                 postRepository.save(post);
 
-                LastIncome postWeek = new LastIncome(summary, procedures, summary_type, day);
+                LastIncome postWeek = new LastIncome(summary, procedures, summary_type, day, date);
                     countRecords[i] = postWeek;
             }
             if ((i == 2 | i == 6 | i == 10 | i == 14 | i == 18 | i == 22) & sortmassive[i] > 0) {
@@ -78,10 +81,11 @@ public class DohodsController {
                 String summary_type = "Доход";
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = sortmassive[i];
-                Post post = new Post(summary, procedures, summary_type, day);
+                Date date = Calendar.getInstance().getTime();
+                Post post = new Post(summary, procedures, summary_type, day, date);
                 postRepository.save(post);
 
-                LastIncome postWeek = new LastIncome(summary, procedures, summary_type, day);
+                LastIncome postWeek = new LastIncome(summary, procedures, summary_type, day, date);
                     countRecords[i] = postWeek;
             }
             if ((i == 3 | i == 7 | i == 11 | i == 15 | i == 19 | i == 23) & sortmassive[i] > 0) {
@@ -89,10 +93,11 @@ public class DohodsController {
                 String summary_type = "Доход";
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = sortmassive[i];
-                Post post = new Post(summary, procedures, summary_type, day);
+                Date date = Calendar.getInstance().getTime();
+                Post post = new Post(summary, procedures, summary_type, day, date);
                 postRepository.save(post);
 
-                LastIncome postWeek = new LastIncome(summary, procedures, summary_type, day);
+                LastIncome postWeek = new LastIncome(summary, procedures, summary_type, day, date);
                     countRecords[i] = postWeek;
             }
         }

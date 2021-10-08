@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Date;
+
 @Controller
 public class HistoryController extends Datecalendar {
     @Autowired
@@ -19,7 +21,7 @@ public class HistoryController extends Datecalendar {
         model.addAttribute("title", "Kosmetologist calc");
         Iterable<Post> posts = postRepository.findAll();
         model.addAttribute("posts", posts);
-        Iterable<String> datePosts = ListToIterable(getListPostsDate(iterableToArrayListDay(postRepository.findAll())));
+        Iterable<Date> datePosts = ListToIterable(getListPostsDate(iterableToArrayListDay(postRepository.findAll())));
         model.addAttribute("datePosts", datePosts);
         Iterable<Daypost> summPosts = ListToIterableInt(getListPostDateSumm(
                 iterableToArrayListSumm(posts),
