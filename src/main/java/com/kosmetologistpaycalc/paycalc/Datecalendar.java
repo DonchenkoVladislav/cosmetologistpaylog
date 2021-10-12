@@ -1,18 +1,33 @@
 package com.kosmetologistpaycalc.paycalc;
 
-import com.kosmetologistpaycalc.paycalc.Models.Daypost;
+import com.kosmetologistpaycalc.paycalc.Models.DateAndSummDate;
 import com.kosmetologistpaycalc.paycalc.Models.Post;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Datecalendar {
-    public Daypost daypost = new Daypost();
 
+    //Конвертирует ArrayList<String> в Iterable
+    public Iterable<String> ListToIterable (List<String> list){
+        Iterable<String> iterableCurrentElement = list;
+        return iterableCurrentElement;
+    }
+
+    //Конвертирует ArrayList<DateAndSummDate> в Iterable
+    public Iterable<DateAndSummDate> ListToIterableInt (List<DateAndSummDate> list){
+        Iterable<DateAndSummDate> iterableCurrentElement = list;
+        return iterableCurrentElement;
+    }
+
+    //Выводит список дат из всех записей в базе данных
     public ArrayList<String> iterableToArrayListDay (Iterable<Post> posts){
         ArrayList<String> arrayListCurrentElement = new ArrayList<>();
         for (Post currentElement:posts) {
@@ -21,17 +36,23 @@ public class Datecalendar {
         return arrayListCurrentElement;
     }
 
-    public List<String> getListPostsDate (ArrayList<String> list){
-        Set<String> set = new HashSet<String>(list);
-        List<String> listPostsDate = new ArrayList<String>(set);
+    //Делает все даты из списка уникальными и сортирует их в порядке возрастания
+    public List<String> getListPostsDate (ArrayList<String> list) throws ParseException {
+        Set<String> set = new HashSet<>(list);
+        List<String> listPostsDate = new ArrayList<>(set);
+        List<Date> dateList = new ArrayList<>();
+        for (String lists:listPostsDate){
+            dateList.add(new SimpleDateFormat("dd.MM.yyyy").parse(lists));
+        }
+        Collections.sort(dateList);
+        listPostsDate = new ArrayList<>();
+        for (Date lists:dateList){
+            listPostsDate.add(new SimpleDateFormat("dd.MM.yyyy").format(lists));
+        }
         return listPostsDate;
     }
 
-    public Iterable<String> ListToIterable (List<String> list){
-        Iterable<String> iterableCurrentElement = list;
-        return iterableCurrentElement;
-    }
-
+    //Выводит список всех записей из базы данных
     public ArrayList<Post> iterableToArrayListSumm (Iterable<Post> posts){
         ArrayList<Post> allPosts = new ArrayList<>();
         for (Post currentElement:posts) {
@@ -40,9 +61,10 @@ public class Datecalendar {
         return allPosts;
     }
 
-    public List<Daypost> getListPostDateSumm (ArrayList<Post> allPosts, List<String> listPostsDate){
+    //Считает сумму прибыли всех записей за каждый день и помещает в массив объектов включающих Дату дня и Сумму за день
+    public List<DateAndSummDate> getListPostDateSumm (ArrayList<Post> allPosts, List<String> listPostsDate) throws ParseException {
         Integer summ = 0;
-        List<Daypost> listDaypost = new ArrayList<>();
+        List<DateAndSummDate> listDaypost = new ArrayList<>();
         List<Integer> listPostDateSumm = new ArrayList<>();
         for (String date:listPostsDate) {
             summ = 0;
@@ -54,14 +76,104 @@ public class Datecalendar {
             listPostDateSumm.add(summ);
         }
         for (int i = 0; i < listPostsDate.size(); i++){
-            Daypost daypost = new Daypost(listPostDateSumm.get(i), listPostsDate.get(i));
+            DateAndSummDate daypost = new DateAndSummDate(listPostDateSumm.get(i), listPostsDate.get(i));
             listDaypost.add(daypost);
         }
         return listDaypost;
     }
 
-    public Iterable<Daypost> ListToIterableInt (List<Daypost> list){
-        Iterable<Daypost> iterableCurrentElement = list;
-        return iterableCurrentElement;
+    //Выводит чистую прибыль за текущий месяц
+    public String getCurrentMounthSummary(ArrayList<Post> allPosts) throws ParseException {
+        Integer currentMounthSummary = 0;
+        String currentMounthSummaryStr;
+        for (Post day:allPosts){
+            if (new SimpleDateFormat("MM.yyyy").format(new SimpleDateFormat("dd.MM.yyyy").parse(day.getDay())).equals(
+                    new SimpleDateFormat("MM.yyyy").format(Calendar.getInstance().getTime()))){
+                currentMounthSummary = currentMounthSummary + day.getSummary();
+            }
+        }
+        currentMounthSummaryStr = currentMounthSummary.toString() + " ₽";
+        return currentMounthSummaryStr;
+    }
+
+    //Выводит грязную прибыль за текущий месяц
+    public String getCurrentMounthSummaryPlus (ArrayList<Post> allPosts) throws ParseException {
+        Integer currentMounthSummary = 0;
+        String currentMounthSummaryStr;
+        for (Post day:allPosts){
+            if (new SimpleDateFormat("MM.yyyy").format(new SimpleDateFormat("dd.MM.yyyy").parse(day.getDay())).equals(
+                    new SimpleDateFormat("MM.yyyy").format(Calendar.getInstance().getTime()))){
+                if (day.getSummary() > 0){
+                    currentMounthSummary = currentMounthSummary + day.getSummary();
+                }
+            }
+        }
+        currentMounthSummaryStr = currentMounthSummary.toString() + " ₽";
+        return currentMounthSummaryStr;
+    }
+
+    //Выводит убыток за текущий месяц
+    public String getCurrentMounthSummaryMinus (ArrayList<Post> allPosts) throws ParseException {
+        Integer currentMounthSummary = 0;
+        String currentMounthSummaryStr;
+        for (Post day:allPosts){
+            if (new SimpleDateFormat("MM.yyyy").format(new SimpleDateFormat("dd.MM.yyyy").parse(day.getDay())).equals(
+                    new SimpleDateFormat("MM.yyyy").format(Calendar.getInstance().getTime()))){
+                if (day.getSummary() < 0){
+                    currentMounthSummary = currentMounthSummary + day.getSummary();
+                }
+            }
+        }
+        currentMounthSummaryStr = currentMounthSummary.toString() + " ₽";
+        return currentMounthSummaryStr;
+    }
+
+    //Выводит список месяцев из всех записей в базе данных
+    public ArrayList<String> iterableToArrayListMouth (Iterable<Post> posts) throws ParseException {
+        ArrayList<String> arrayListCurrentElementMouth = new ArrayList<>();
+        for (Post currentElement:posts) {
+            arrayListCurrentElementMouth.add(new SimpleDateFormat("MM.yyyy").format(
+                    new SimpleDateFormat("dd.MM.yyyy").parse(currentElement.getDay())));
+        }
+        return arrayListCurrentElementMouth;
+    }
+
+    //Делает все даты из списка уникальными и сортирует их в порядке возрастания
+    public List<String> getListPostsDateMouth (ArrayList<String> list) throws ParseException {
+        Set<String> set = new HashSet<>(list);
+        List<String> listPostsDate = new ArrayList<>(set);
+        List<Date> dateList = new ArrayList<>();
+        for (String lists:listPostsDate){
+            dateList.add(new SimpleDateFormat("MM.yyyy").parse(lists));
+        }
+        Collections.sort(dateList);
+        listPostsDate = new ArrayList<>();
+        for (Date lists:dateList){
+            listPostsDate.add(new SimpleDateFormat("MM.yyyy").format(lists));
+        }
+        return listPostsDate;
+    }
+
+    //Считает сумму прибыли всех записей за каждый месяц и помещает в массив объектов включающих номер месяца и Сумму за месяц
+    public List<DateAndSummDate> getHomeCalendar (ArrayList<Post> allPosts, List<String> list)
+            throws ParseException {
+        Integer summ = 0;
+        List<DateAndSummDate> listDaypost = new ArrayList<>();
+        List<Integer> listPostDateSumm = new ArrayList<>();
+        for (String date:list) {
+            summ = 0;
+            for (Post post:allPosts) {
+                if (new SimpleDateFormat("MM.yyyy").format(
+                        new SimpleDateFormat("dd.MM.yyyy").parse(post.getDay())).equals(date)){
+                    summ = summ + post.getSummary();
+                }
+            }
+            listPostDateSumm.add(summ);
+        }
+        for (int i = 0; i < listPostDateSumm.size(); i++){
+            DateAndSummDate daypost = new DateAndSummDate(listPostDateSumm.get(i), list.get(i));
+            listDaypost.add(daypost);
+        }
+        return listDaypost;
     }
 }

@@ -66,14 +66,13 @@
             background-color: white;
             box-shadow: 15px 15px 15px #f885d2(0, 0, 0, .6);
         }
-        .calcelement{
+        .calcelementhome{
             display: flex;
-            width: 800px;
+            width: 760px;
             margin: 30px auto;
-            background: rgb(255, 255, 255);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-            border-radius: 50px;
             position: relative;
+            border-top: solid;
+            border-color: #f6f6f7;
         }
         .leftmiddle{
             line-height: 70px;
@@ -135,17 +134,17 @@
             flex-direction: row;
         }
         .bacgroundimagebox{
-            background-image: url(https://sun9-67.userapi.com/impg/m8QeZAj4YHwoqo7SxGmyewjF0bnSsO-7f_oGSw/UbzZ8arGW0M.jpg?size=2560x1440&quality=96&sign=b7c2705acce7615fc3a076b0f10b33b1&type=album);
+            background-color: #6C6C78;
             background-size: 100% 170%;
             width: 100%;
-            height: 35vw;
+            height: 350px;
             background-repeat: no-repeat;
         }
         .previeelement{
             display: block;
             width: 100%;
-            height: 30vw;
-            
+            height: 305px;
+
         }
         .gorisontalcolumn{
             display: flex;
@@ -159,19 +158,91 @@
         .gorisontalcolumnbanner{
             display: flex;
             flex-direction: row;
-            color: white;
+            color: #FBFBFC;
             justify-content: space-between;
             width: 800px;
             margin: auto auto 20px auto;
             position: relative;
-            top: 20%;
+            top: 30%;
+        }
+        .centertext{
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            color: #514f4e;
         }
         .prevblock{
             display: block;
             width: 400px;
         }
+        .columnreverse{
+            display: flex;
+            flex-direction: column-reverse;
+        }
+        .calcelementul{
+            margin: 30px auto;
+            width: 800px;
+            box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+            border-radius: 50px;
+            padding: 5px 0px;
+            background-color: white;
+        }
+        .calcelementCalendar{
+            width: 800px;
+            height: 400px;
+            margin: 30px auto;
+            box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+            border-radius: 50px;
+        }
+        .backJanvary{
+            background-image: url(https://i.pinimg.com/564x/22/3b/02/223b029e32a545b064a976c6e81b623f.jpg);
+        }
+        .backFebrary{
+            background-image: url(https://i.pinimg.com/564x/3a/c6/f8/3ac6f8b15d6a68f15f740fe3c76ae76b.jpg);
+        }
+        .backMarch{
+            background-image: url(https://i.pinimg.com/564x/9e/67/4f/9e674f48984fbd29ddcc50cca87f3d0b.jpg);
+        }
+        .backApril{
+            background-image: url(https://i.pinimg.com/564x/79/da/12/79da12c262f0744b42e9652f9c1ad12d.jpg);
+        }
+        .backMay{
+            background-image: url(https://i.pinimg.com/750x/41/4b/c2/414bc2af46729e270e79d02f7ae8921b.jpg);
+        }
+        .backJune{
+            background-image: url(https://i.pinimg.com/564x/2c/30/5f/2c305f61f2e26f1ce35bbb52a0132020.jpg);
+        }
+        .backJule{
+            background-image: url(https://i.pinimg.com/564x/cb/12/f2/cb12f20f7ff1c53cee946e29b0f3ee47.jpg);
+        }
+        .backAugust{
+            background-image: url(https://ic.pics.livejournal.com/irenpo/34918746/9513/9513_900.jpg);
+        }
+        .backSeptember{
+            background-image: url(https://ic.pics.livejournal.com/irenpo/34918746/11388/11388_900.jpg);
+        }
+        .backOctober{
+            background-image: url(https://ic.pics.livejournal.com/irenpo/34918746/10208/10208_900.jpg);
+        }
+        .backNovember{
+            background-image: url(https://i.pinimg.com/564x/72/8c/6e/728c6ee0e0abe8c154f1511c41febee4.jpg);
+        }
+        .backDecember{
+            background-image: url(https://i.pinimg.com/564x/27/5e/c3/275ec3c3039d577b37e2b95766082b6a.jpg);
+        }
+        .graybackground{
+            background: rgb(228, 228, 228);
+        }
+        .whitebackground{
+            background: #FBFBFC;
+        }
+        .body{
+            background-color: #f9f9f9;
+        }
         ul.gorisontalcolumn li{
-            align-items: flex-start;
+            justify-content: space-between;
+            color: #FBFBFC;
         }
         li {
             list-style-type: none; /* Убираем маркеры */
@@ -185,27 +256,27 @@
         }
     </style>
 </head>
-<body>
+<body class="body">
     <div class="bacgroundimagebox">
         <div class="previeelement">
             <ul class="fonts gorisontalcolumnbanner">
                 <li class="prevblock">
                     <ul class="fonts gorisontalcolumn">
                         <li>Прибыль</li>
-                        <li>00000 Р</li>
+                        <li th:text="${curentMouthSummPlus}"></li>
                     </ul>
                     <ul class="fonts gorisontalcolumn">
                         <li>Расходы</li>
-                        <li>00000 Р</li>
+                        <li th:text="${curentMouthSummMinus}"></li>
                     </ul>
                 </li>
                 <li>
                     <ul class="fonts">
-                        <li class="whitecolour">Итого</li>
-                        <li class="bigfont whitecolour">00000 Р</li>
+                        <li>Итого</li>
+                        <li class="bigfont whitecolour" th:text="${curentMouthSumm}"></li>
                     </ul>
                 </li>
-            </ul>   
+            </ul>
         </div>
         <div class="flex">
             <span class="middle">
@@ -214,18 +285,95 @@
                 <a class = "buttonform fonts padding-15 margin-side-20" href='/history'>История</a>
             </span>
         </div>
-        <div class="calcelement fonts" th:each="el : ${lastIncomes}">
-            <h4 class="leftmiddle blockmain vertcenter"><img src="https://img.icons8.com/pastel-glyph/50/000000/positive-dynamic--v2.png"/></h4>
-            <p class="smallmiddle block vertcenter" th:text="${el.procedures}"></p>
-            <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
-            <p class="midmiddle vertbottom smallfonts" th:text="${el.day}"></p>
-        </div>
-        <div class="calcelement fonts" th:each="el : ${lastExpenses}">
-            <h4 class="leftmiddle blockmain vertcenter"><img src="https://img.icons8.com/pastel-glyph/50/000000/negative-dynamic.png"/></h4>
-            <p class="smallmiddle block vertcenter" th:text="${el.procedures}"></p>
-            <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
-            <p class="midmiddle vertbottom smallfonts" th:text="${el.day}"></p>
-        </div>
+        <ul class="calcelementul">
+            <p class="centertext fonts">Последние изменения</p>
+            <li class="calcelementhome fonts" th:each="el : ${lastIncomes}">
+                <h4 class="leftmiddle blockmain vertcenter"><img src="https://img.icons8.com/cotton/64/000000/deposit--v1.png"/></h4>
+                <p class="smallmiddle block vertcenter" th:text="${el.procedures}"></p>
+                <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
+                <p class="midmiddle vertbottom smallfonts" th:text="${el.day}"></p>
+            </li>
+            <li class="calcelementhome fonts" th:each="el : ${lastExpenses}">
+                <h4 class="leftmiddle blockmain vertcenter"><img src="https://img.icons8.com/cotton/64/000000/withdrawal--v1.png"/></h4>
+                <p class="smallmiddle block vertcenter" th:text="${el.procedures}"></p>
+                <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
+                <p class="midmiddle vertbottom smallfonts" th:text="${el.day}"></p>
+            </li>
+        </ul>
+        <ul class="columnreverse">
+            <li class="fonts calcelementCalendar bodycalendar backJanvary" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Январь'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backFebrary" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Февраль'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backMarch" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Март'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backApril" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Апрель'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backMay" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Май'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backJule" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Июнь'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backJune" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Июль'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backAugust" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Август'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backSeptember" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Сентябрь'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backOctober" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Октябрь'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backNovember" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Ноябрь'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+            <li class="fonts calcelementCalendar bodycalendar backDecember" th:each="current : ${mouthCalendar}" th:if="${current.mounth == 'Декабрь'}">
+                <ul class = summanddate>
+                    <li class="smallmiddle block calcmargin" th:text="${current.mounthYear}">
+                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+                </ul>
+            </li>
+        </ul>
     </div>
 </body>
 </html>
