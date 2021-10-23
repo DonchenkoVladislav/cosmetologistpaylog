@@ -3,7 +3,6 @@ package com.kosmetologistpaycalc.paycalc.Controllers;
 import com.kosmetologistpaycalc.paycalc.Datecalendar;
 import com.kosmetologistpaycalc.paycalc.Models.DateAndSummDate;
 import com.kosmetologistpaycalc.paycalc.Models.LastExpenses;
-import com.kosmetologistpaycalc.paycalc.Models.Post;
 import com.kosmetologistpaycalc.paycalc.Models.LastIncome;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepository;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepositoryLastExpenses;
