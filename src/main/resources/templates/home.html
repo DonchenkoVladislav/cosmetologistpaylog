@@ -4,6 +4,9 @@
     <title th:text="${title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
+        .margin-0{
+            margin: 0%;
+        }
         .margin-top-30{
             margin-top: 30vw;
         }
@@ -16,6 +19,12 @@
         .margin-top-10{
             margin-top: 10px;
         }
+        .margin-top-40{
+            margin-top: 40px;
+        }
+        .font-size-20{
+            font-size: 20px;
+        }
         .buttonform{
             text-decoration: none;
             display: inline-block;
@@ -26,6 +35,20 @@
             text-transform: uppercase;
             text-align: center;
             letter-spacing: 3px;
+            font-weight: 600;
+            color: #524f4e;
+            background: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+            transition: .3s;
+        }
+        .a_buttonform-3{
+            text-decoration: none;
+            display: inline-block;
+            padding: 0 20px 14px;
+            border-radius: 45px;
+            border: none;
+            text-transform: uppercase;
+            text-align: center;
             font-weight: 600;
             color: #524f4e;
             background: white;
@@ -51,11 +74,15 @@
         .whitecolour{
             color: white;
         }
+        .nicecolor{
+            color: #524f4e;
+        }
         .middlefont{
             font-size: 55px;
             font-weight: bold;
         }
         .bigfont{
+            font-family: 'Montserrat', sans-serif;
             font-size: 100px;
             font-weight: bold;
         }
@@ -141,14 +168,19 @@
         .flex{
             display: flex;
             margin-top: -270px;
-            position: sticky;
+            position: relative;
             top: 0;
             padding-top: 14em;
             margin-bottom: -6em;
             z-index: 2;
         }
+        .flexname{
+            display: flex;
+            position: relative;
+            z-index: 2;
+        }
         .bacgroundimagebox{
-            position: sticky;
+            position: relative;
         }
         .previeelement{
             display: block;
@@ -159,25 +191,26 @@
         .gorisontalcolumn{
             display: flex;
             flex-direction: row;
-            color: white;
             justify-content: space-between;
             margin: auto auto 20px auto;
             position: relative;
             top: 20%;
         }
+        .gorisontalcolumn-akk{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
         .gorisontalcolumnbanner{
             display: flex;
             flex-direction: row;
-            color: #FBFBFC;
             justify-content: space-between;
-            width: 100%;
+            width: 800px;
             margin: auto auto 0px auto;
-            position: sticky;
+            position: relative;
             top: 0%;
-            background-color: #514f4e;
-            /* height: 40px; */
-            padding-top: 80px;
-            padding-bottom: 100px;
+            padding-top: 0px;
+            padding-bottom: 80px;
             z-index: 1;
         }
         .z-index-2{
@@ -241,7 +274,6 @@
         }
         ul.gorisontalcolumn li{
             justify-content: space-between;
-            color: #FBFBFC;
         }
         li {
             list-style-type: none; /* Убираем маркеры */
@@ -256,9 +288,17 @@
     </style>
 </head>
 <body class="body">
-    <div class="bacgroundimagebox">
-        <div class="previeelement">
-            <ul class="fonts gorisontalcolumnbanner">
+    <form th:action="@{/logout}" method="post">
+        <ul class="flexname gorisontalcolumn-akk font-20 nicecolor margin-top-40">
+            <li>
+                <h1 class="margin-0" th:inline="text">[[${#httpServletRequest.remoteUser}]]</h1>
+            </li>
+            <li>
+                <button class="a_buttonform-3 padding-15 font-size-20" type="submit">Выйти из аккаунта</button>
+            </li>
+        </ul>
+    </form>
+    <ul class="fonts gorisontalcolumnbanner nicecolor">
                 <li class="prevblock">
                     <ul class="fonts gorisontalcolumn">
                         <li>Прибыль</li>
@@ -272,7 +312,7 @@
                 <li>
                     <ul class="fonts">
                         <li>Итого</li>
-                        <li class="bigfont whitecolour" th:text="${curentMouthSumm}"></li>
+                        <li class="bigfont" th:text="${curentMouthSumm}"></li>
                     </ul>
                 </li>
             </ul>
@@ -293,8 +333,6 @@
                     <p class="midmiddle vertbottom smallfonts" th:text="${el.day}"></p>
                 </li>
             </ul>
-        </div>
-    </div>
         <ul class="columnreverse">
             <li class="fonts calcelementCalendar bodycalendar backmouth" th:each="current : ${mouthCalendar}">
                 <ul class = summanddate>
@@ -303,9 +341,5 @@
                 </ul>
             </li>
         </ul>
-    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
 </body>
 </html>
