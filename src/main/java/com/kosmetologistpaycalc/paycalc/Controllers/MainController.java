@@ -2,8 +2,7 @@ package com.kosmetologistpaycalc.paycalc.Controllers;
 
 import com.kosmetologistpaycalc.paycalc.Datecalendar;
 import com.kosmetologistpaycalc.paycalc.Models.DateAndSummDate;
-import com.kosmetologistpaycalc.paycalc.Models.LastExpenses;
-import com.kosmetologistpaycalc.paycalc.Models.LastIncome;
+import com.kosmetologistpaycalc.paycalc.Models.Post;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepository;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepositoryLastExpenses;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepositoryLastIncome;
@@ -13,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController extends Datecalendar {
@@ -20,26 +21,22 @@ public class MainController extends Datecalendar {
     @Autowired
     private PostRepository postRepository;
 
-    @Autowired
-    private PostRepositoryLastIncome postRepositoryCount;
-
-    @Autowired
-    private PostRepositoryLastExpenses expenses;
-
-    @GetMapping("/")
+    @GetMapping("/home")
     public String home (Model model) throws ParseException {
-        Iterable<LastIncome> lastIncomes = postRepositoryCount.findAll();
-        Iterable<LastExpenses> lastExpenses = expenses.findAll();
-        String curentMouthSumm = getCurrentMounthSummary(iterableToArrayListSumm(postRepository.findAll()));
-        String curentMouthSummPlus = getCurrentMounthSummaryPlus(iterableToArrayListSumm(postRepository.findAll()));
-        String curentMouthSummMinus = getCurrentMounthSummaryMinus(iterableToArrayListSumm(postRepository.findAll()));
-        Iterable<DateAndSummDate> mouthCalendar = ListToIterableInt(getHomeCalendar(
-                iterableToArrayListSumm(postRepository.findAll()),
-                getListPostsDateMouth(iterableToArrayListMouth(postRepository.findAll()))));
+
+        Iterable<Post> usersPost = filterUser(iterableToArrayList(postRepository.findAll()));
+        ArrayList<Post> usersPostList = iterableToArrayList(filterUser(iterableToArrayList(postRepository.findAll())));
+        List<String> uniqueDate = getListPostsDateMouth(iterableToArrayListMouth(usersPost));
+
+        Iterable<Post> lastPosts = getLastPosts(usersPost);
+        String curentMouthSumm = getCurrentMounthSummary(usersPostList);
+        String curentMouthSummPlus = getCurrentMounthSummaryPlus(usersPostList);
+        String curentMouthSummMinus = getCurrentMounthSummaryMinus(usersPostList);
+        Iterable<DateAndSummDate> mouthCalendar = ListToIterableInt(
+                getHomeCalendar(usersPostList, uniqueDate));
 
         model.addAttribute("title", "Kosmetologist calc");
-        model.addAttribute("lastIncomes", lastIncomes);
-        model.addAttribute("lastExpenses", lastExpenses);
+        model.addAttribute("lastPosts", lastPosts);
         model.addAttribute("curentMouthSumm", curentMouthSumm);
         model.addAttribute("curentMouthSummPlus", curentMouthSummPlus);
         model.addAttribute("curentMouthSummMinus", curentMouthSummMinus);

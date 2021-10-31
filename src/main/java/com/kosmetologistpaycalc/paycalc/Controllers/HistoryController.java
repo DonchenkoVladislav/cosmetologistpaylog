@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.security.Principal;
 import java.text.ParseException;
 
 @Controller
@@ -17,15 +18,16 @@ public class HistoryController extends Datecalendar {
     private PostRepository postRepository;
 
     @GetMapping("/history")
-    public String home (Model model) throws ParseException {
-        model.addAttribute("title", "Kosmetologist calc");
-        Iterable<Post> posts = postRepository.findAll();
-        model.addAttribute("posts", posts);
+    public String home (Principal principal, Model model) throws ParseException {
+
+        Iterable<Post> posts = filterUser(iterableToArrayList(postRepository.findAll()));
         Iterable<String> datePosts = ListToIterable(getListPostsDate(iterableToArrayListDay(postRepository.findAll())));
-        model.addAttribute("datePosts", datePosts);
         Iterable<DateAndSummDate> summPosts = ListToIterableInt(getListPostDateSumm(
-                iterableToArrayListSumm(posts),
+                iterableToArrayList(posts),
                 getListPostsDate(iterableToArrayListDay(posts))));
+
+        model.addAttribute("posts", posts);
+        model.addAttribute("datePosts", datePosts);
         model.addAttribute("summPosts", summPosts);
         return "history.html";
     }

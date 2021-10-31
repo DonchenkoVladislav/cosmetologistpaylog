@@ -1,8 +1,13 @@
 package com.kosmetologistpaycalc.paycalc;
 
+import com.kosmetologistpaycalc.paycalc.Configs.WebSecurityConfig;
 import com.kosmetologistpaycalc.paycalc.Models.DateAndSummDate;
 import com.kosmetologistpaycalc.paycalc.Models.Post;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,6 +15,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -53,12 +59,49 @@ public class Datecalendar {
     }
 
     //Выводит список всех записей из базы данных
-    public ArrayList<Post> iterableToArrayListSumm (Iterable<Post> posts){
+    public ArrayList<Post> iterableToArrayList(Iterable<Post> posts){
         ArrayList<Post> allPosts = new ArrayList<>();
         for (Post currentElement:posts) {
             allPosts.add(currentElement);
         }
         return allPosts;
+    }
+
+    //Проверяет принадлежит ли запись текущему пользователю
+    public Iterable<Post> filterUser(ArrayList<Post> allPosts){
+        ArrayList<Post> currentUserList = new ArrayList<>();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        for (Post post : allPosts) {
+            try{
+                if(post.getUsername().equals(auth.getName())) {
+                    currentUserList.add(post);
+                }
+            }
+            catch (NullPointerException nullPointerException){
+            }
+        }
+        Iterable<Post> postCurrentUser = currentUserList;
+        return postCurrentUser;
+    }
+    //Выводит список последних операций (максимум 5)
+    public Iterable<Post> getLastPosts (Iterable<Post> postCurrentUser){
+        ArrayList<Post> lastPostsList = new ArrayList<>();
+        ArrayList<Post> lastPostsListFive = new ArrayList<>();
+
+        try {
+            for (Post post : postCurrentUser) {
+                lastPostsList.add(post);
+            }
+            for (int i = lastPostsList.size() - 1; i > lastPostsList.size() - 6; i--) {
+                lastPostsListFive.add(lastPostsList.get(i));
+            }
+            Iterable<Post> lastPosts = lastPostsListFive;
+            return lastPosts;
+        }
+        catch (IndexOutOfBoundsException exception){
+            Iterable<Post> lastPosts = lastPostsListFive;
+            return lastPosts;
+        }
     }
 
     //Считает сумму прибыли всех записей за каждый день и помещает в массив объектов включающих Дату дня и Сумму за день

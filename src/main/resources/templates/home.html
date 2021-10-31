@@ -285,14 +285,9 @@
             </div>
             <ul class="calcelementul">
                 <p class="centertext fonts">Последние изменения</p>
-                <li class="calcelementhome fonts" th:each="el : ${lastIncomes}">
-                    <h4 class="leftmiddle blockmain vertcenter"><img src="https://img.icons8.com/cotton/64/000000/deposit--v1.png"/></h4>
-                    <p class="smallmiddle block vertcenter" th:text="${el.procedures}"></p>
-                    <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
-                    <p class="midmiddle vertbottom smallfonts" th:text="${el.day}"></p>
-                </li>
-                <li class="calcelementhome fonts" th:each="el : ${lastExpenses}">
-                    <h4 class="leftmiddle blockmain vertcenter"><img src="https://img.icons8.com/cotton/64/000000/withdrawal--v1.png"/></h4>
+                <li class="calcelementhome fonts" th:each="el : ${lastPosts}">
+                    <h4 class="leftmiddle blockmain vertcenter" th:if="${el.summary_type == 'Доход'}"><img src="https://img.icons8.com/cotton/64/000000/deposit--v1.png"/></h4>
+                    <h4 class="leftmiddle blockmain vertcenter" th:if="${el.summary_type == 'Расход'}"><img src="https://img.icons8.com/cotton/64/000000/withdrawal--v1.png"/></h4>
                     <p class="smallmiddle block vertcenter" th:text="${el.procedures}"></p>
                     <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
                     <p class="midmiddle vertbottom smallfonts" th:text="${el.day}"></p>
@@ -308,5 +303,9 @@
                 </ul>
             </li>
         </ul>
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </body>
 </html>

@@ -190,7 +190,7 @@
             var predoplataElement = document.getElementById('expensesinfo');
             var predoplataDiv = document.createElement('div');
             predoplataDiv.className = 'calcelement';
-            predoplataDiv.innerHTML ='<span id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Расходники</p><input type="prepayment' + idNamePrePayment + '" name="prepayment" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            predoplataDiv.innerHTML ='<span id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Расходники</p><input type="prepayment" name="prepayment' + idNamePrePayment + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             predoplataElement.prepend(predoplataDiv);
             idNamePrePayment++;
             idNumber++;

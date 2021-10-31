@@ -11,14 +11,31 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String procedures, summary_type, day;
+    private String procedures;
+    private String summary_type;
+    private String day;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setSummary(Integer summary) {
+        this.summary = summary;
+    }
+
+    private String username;
     private Integer summary;
 
-    public Post(Integer summary, String procedures, String summary_type, String day) {
+    public Post(Integer summary, String procedures, String summary_type, String day, String username) {
         this.procedures = procedures;
         this.summary_type = summary_type;
         this.summary = summary;
         this.day = day;
+        this.username = username;
     }
 
     public String getSummary_type() {
