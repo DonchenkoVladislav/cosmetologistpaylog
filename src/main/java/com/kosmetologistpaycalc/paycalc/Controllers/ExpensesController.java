@@ -57,7 +57,7 @@ public class ExpensesController {
         LastExpenses[] countRecords = new LastExpenses[24];
         for (int i = 0; i < sortmassive.length; i++) {
             if ((i == 0 | i == 4 | i == 8 | i == 12 | i == 16 | i == 20) & sortmassive[i] > 0) {
-                String procedures = "Препарат 1";
+                String procedures = "Stylage L";
                 String summary_type = typeOfSummary;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
@@ -69,7 +69,7 @@ public class ExpensesController {
                 countRecords[i] = postWeek;
             }
             if ((i == 1 | i == 5 | i == 9 | i == 13 | i == 17 | i == 21) & sortmassive[i] > 0) {
-                String procedures = "Препарат 2";
+                String procedures = "Hyafilia";
                 String summary_type = typeOfSummary;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
@@ -81,7 +81,7 @@ public class ExpensesController {
                 countRecords[i] = postWeek;
             }
             if ((i == 2 | i == 6 | i == 10 | i == 14 | i == 18 | i == 22) & sortmassive[i] > 0) {
-                String procedures = "Препарат 3";
+                String procedures = "Juvederm 4";
                 String summary_type = typeOfSummary;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];

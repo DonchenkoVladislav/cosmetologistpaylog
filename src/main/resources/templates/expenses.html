@@ -137,9 +137,9 @@
     </div>
     <div class="margin-top-5 flex">
         <span class="middle">
-            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementPrep1()">Препарат 1</button>
-            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementPrep2()">Препарат 2</button>
-            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementPrep3()">Препарат3</button>
+            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementPrep1()">Stylage L</button>
+            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementPrep2()">Hyafilia</button>
+            <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementPrep3()">Juvederm 4</button>
             <button class="buttonform font-20 padding-15 nonborder margin-side-10" onclick="addElementRash()">Расходники</button>
         </span>
     </div>
@@ -160,7 +160,7 @@
             var lipsElement = document.getElementById('expensesinfo');
             var lipsDiv = document.createElement('div');
             lipsDiv.className = 'calcelement';
-            lipsDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo" name="procedures">Препарат1</p><input type="number" name="prep1' + idNamePrep1 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
+            lipsDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo" name="procedures">Stylage L</p><input type="number" name="prep1' + idNamePrep1 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
             lipsElement.prepend(lipsDiv);
             idNamePrep1++;
             idNumber++;
@@ -170,7 +170,7 @@
             var botoksElement = document.getElementById('expensesinfo');
             var botoksDiv = document.createElement('div');
             botoksDiv.className = 'calcelement';
-            botoksDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Препарат 2</p><input type="number" name="prep2' + idNamePrep2 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
+            botoksDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Hyafilia</p><input type="number" name="prep2' + idNamePrep2 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
             botoksElement.prepend(botoksDiv);
             idNamePrep2++;
             idNumber++;
@@ -180,7 +180,7 @@
             var chistkaElement = document.getElementById('expensesinfo');
             var chistkaDiv = document.createElement('div');
             chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Препарат 3</p><input type="number" name="prep3' + idNamePrep3 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            chistkaDiv.innerHTML = '<span id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Juvederm 4</p><input type="number" name="prep3' + idNamePrep3 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             chistkaElement.prepend(chistkaDiv);
             idNamePrep3++;
             idNumber++;
