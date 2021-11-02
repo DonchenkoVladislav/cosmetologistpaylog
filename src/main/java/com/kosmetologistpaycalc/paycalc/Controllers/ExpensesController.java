@@ -97,9 +97,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 6 & i <= 11 & sortmassive[i] > 0) {
                 String procedures = "Stylage M";
@@ -109,9 +106,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 12 & i <= 17 & sortmassive[i] > 0) {
                 String procedures = "Hyafilia";
@@ -121,9 +115,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 18 & i <= 23 & sortmassive[i] > 0) {
                 String procedures = "Princess Filler";
@@ -134,8 +125,6 @@ public class ExpensesController {
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
 
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 24 & i <= 29 & sortmassive[i] > 0) {
                 String procedures = "Princess Volume";
@@ -145,9 +134,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 30 & i <= 35 & sortmassive[i] > 0) {
                 String procedures = "Juvederm 3";
@@ -157,9 +143,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 36 & i <= 41 & sortmassive[i] > 0) {
                 String procedures = "Juvederm 4";
@@ -169,9 +152,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 42 & i <= 47 & sortmassive[i] > 0) {
                 String procedures = "Juvederm Ultra Smile";
@@ -181,9 +161,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 48 & i <= 53 & sortmassive[i] > 0) {
                 String procedures = "Belotero Balance";
@@ -193,9 +170,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 54 & i <= 59 & sortmassive[i] > 0) {
                 String procedures = "Аренда";
@@ -205,9 +179,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
             if (i >= 60 & i <= 65 & sortmassive[i] > 0) {
                 String procedures = "Расходники";
@@ -217,9 +188,6 @@ public class ExpensesController {
                 String username = currentUsername;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
-
-                LastExpenses postWeek = new LastExpenses(summary, procedures, summary_type, day);
-                countRecords[i] = postWeek;
             }
         }
         return "redirect:/home";
