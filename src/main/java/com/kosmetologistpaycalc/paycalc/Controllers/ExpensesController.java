@@ -2,6 +2,7 @@ package com.kosmetologistpaycalc.paycalc.Controllers;
 
 import com.kosmetologistpaycalc.paycalc.Models.LastExpenses;
 import com.kosmetologistpaycalc.paycalc.Models.Post;
+import com.kosmetologistpaycalc.paycalc.Models.SelfNotes;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepository;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepositoryLastExpenses;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,10 +71,28 @@ public class ExpensesController {
                                  @RequestParam(defaultValue = "0") Integer prep11_0, @RequestParam(defaultValue = "0") Integer prep11_1,
                                  @RequestParam(defaultValue = "0") Integer prep11_2, @RequestParam(defaultValue = "0") Integer prep11_3,
                                  @RequestParam(defaultValue = "0") Integer prep11_4, @RequestParam(defaultValue = "0") Integer prep11_5,
+
+                                 @RequestParam(defaultValue = "Процедура") String selfProcedure0,
+                                 @RequestParam(defaultValue = "0") Integer selfIncome0,
+
+                                 @RequestParam(defaultValue = "Процедура") String selfProcedure1,
+                                 @RequestParam(defaultValue = "0") Integer selfIncome1,
+
+                                 @RequestParam(defaultValue = "Процедура") String selfProcedure2,
+                                 @RequestParam(defaultValue = "0") Integer selfIncome2,
+
+                                 @RequestParam(defaultValue = "Процедура") String selfProcedure3,
+                                 @RequestParam(defaultValue = "0") Integer selfIncome3,
+
+                                 @RequestParam(defaultValue = "Процедура") String selfProcedure4,
+                                 @RequestParam(defaultValue = "0") Integer selfIncome4,
+
+                                 @RequestParam(defaultValue = "Процедура") String selfProcedure5,
+                                 @RequestParam(defaultValue = "0") Integer selfIncome5,
                                  Principal principal, Model model) {
 
-        String currentUsername = principal.getName();
-        String typeOfSummary = "Расход";
+        String CURRENT_USER = principal.getName();
+        String EXPENSES = "Расход";
 
         Integer[] sortmassive = {prep1_0, prep1_1, prep1_2, prep1_3, prep1_4, prep1_5,
                                 prep2_0, prep2_1, prep2_2, prep2_3, prep2_4, prep2_5,
@@ -87,109 +106,131 @@ public class ExpensesController {
                                 prep10_0, prep10_1, prep10_2, prep10_3, prep10_4, prep10_5,
                                 prep11_0, prep11_1, prep11_2, prep11_3, prep11_4, prep11_5,
                                 };
+
+        SelfNotes[] notes = {new SelfNotes(selfProcedure0, selfIncome0),
+                            new SelfNotes(selfProcedure1, selfIncome1),
+                            new SelfNotes(selfProcedure2, selfIncome2),
+                            new SelfNotes(selfProcedure3, selfIncome3),
+                            new SelfNotes(selfProcedure4, selfIncome4),
+                            new SelfNotes(selfProcedure5, selfIncome5),
+                            };
+
         LastExpenses[] countRecords = new LastExpenses[24];
         for (int i = 0; i < sortmassive.length; i++) {
             if (i >= 0 & i <= 5 & sortmassive[i] > 0) {
                 String procedures = "Stylage L";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 6 & i <= 11 & sortmassive[i] > 0) {
                 String procedures = "Stylage M";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 12 & i <= 17 & sortmassive[i] > 0) {
                 String procedures = "Hyafilia";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 18 & i <= 23 & sortmassive[i] > 0) {
                 String procedures = "Princess Filler";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
 
             }
             if (i >= 24 & i <= 29 & sortmassive[i] > 0) {
                 String procedures = "Princess Volume";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 30 & i <= 35 & sortmassive[i] > 0) {
                 String procedures = "Juvederm 3";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 36 & i <= 41 & sortmassive[i] > 0) {
                 String procedures = "Juvederm 4";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 42 & i <= 47 & sortmassive[i] > 0) {
                 String procedures = "Juvederm Ultra Smile";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 48 & i <= 53 & sortmassive[i] > 0) {
                 String procedures = "Belotero Balance";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 54 & i <= 59 & sortmassive[i] > 0) {
                 String procedures = "Аренда";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
             if (i >= 60 & i <= 65 & sortmassive[i] > 0) {
                 String procedures = "Расходники";
-                String summary_type = typeOfSummary;
+                String summary_type = EXPENSES;
                 String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
                 Integer summary = -sortmassive[i];
-                String username = currentUsername;
+                String username = CURRENT_USER;
                 Post post = new Post(summary, procedures, summary_type, day, username);
                 postRepository.save(post);
             }
         }
+
+        for (SelfNotes note : notes){
+            if (note.getSumm() > 0){
+                String procedures = note.getName();
+                String summary_type = EXPENSES;
+                String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
+                Integer summary = -note.getSumm();
+                String username = CURRENT_USER;
+                Post post = new Post(summary, procedures, summary_type, day, username);
+                postRepository.save(post);
+            }
+        }
+
         return "redirect:/home";
     }
 }

@@ -63,6 +63,25 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
             transition: .3s;
         }
+        .buttonformcircle{
+            text-decoration: none;
+            display: inline-block;
+            width: 110px;
+            height: 110px;
+            line-height: 53px;
+            border-radius: 55px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 3px;
+            color: #524f4e;
+            background: white;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+            transition: .3s;
+        }
+        .padding-8{
+            padding-bottom: 8px;
+            padding-left: 8px;
+        }
         .padding-15{
             padding-top: 5px;
         }
@@ -76,6 +95,10 @@
         .font-30{
             font-family: 'Montserrat', sans-serif;
             font-size: 30px;
+        }
+        .font-80{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 80px;
         }
         .flex{
             display: flex;
@@ -132,6 +155,16 @@
             text-align: center;
             text-transform: uppercase;
             margin-top: 45px;
+            letter-spacing: 3px;
+            font-weight: 600;
+            color: #524f4e;
+        }
+        .selfelement{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            margin: 20px;
             letter-spacing: 3px;
             font-weight: 600;
             color: #524f4e;
@@ -356,7 +389,8 @@
                     
                     <div class="margin-top-5 flex">
                         <span class="middle">
-                            <button class="buttonformmiddle font-30 padding-15 nonborder margin-side-25" onclick="addElementPredoplata()">Расходники</button>
+                            <button class="buttonformmiddle font-30 padding-15 nonborder margin-side-25" onclick="addElementPredoplata()">Предоплата</button>
+                            <button class="buttonformcircle font-80 padding-8 nonborder margin-side-25" onclick="addElementSelf()">+</button>
                         </span>
                     </div>
                   <!-- Контент 2 слайда -->
@@ -387,6 +421,9 @@
          var idNumberBotox = 0;
          var idNumberClean = 0;
          var idNumberPrepayment = 0;
+         var idselfProcedure = 0;
+         var idselfIncome = 0;
+         
          function addElement(){
             var lipsElement = document.getElementById('calcElemLips');
             var lipsDiv = document.createElement('div');
@@ -424,6 +461,17 @@
             predoplataDiv.innerHTML ='<span class="slide-in-blurred-top"  id="p' + idNumber + '"><p class="pelement pspan font-20" id="calcElemLips">Предоплата</p><input type="number" name="prepayment' + idNumberPrepayment + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
             predoplataElement.prepend(predoplataDiv);
             idNumberPrepayment++;
+            idNumber++;
+         }
+
+         function addElementSelf(){
+            var predoplataElement = document.getElementById('calcElemLips');
+            var predoplataDiv = document.createElement('div');
+            predoplataDiv.className = 'calcelement';
+            predoplataDiv.innerHTML ='<span class="slide-in-blurred-top"  id="p' + idNumber + '"><input type="text" name="selfProcedure' + idselfProcedure + '" placeholder="Моя процедура" class="inputenumberlement selfelement pspan font-20"><input type="number" name="selfIncome' + idselfIncome + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+            predoplataElement.prepend(predoplataDiv);
+            idselfProcedure++;
+            idselfIncome++
             idNumber++;
          }
 

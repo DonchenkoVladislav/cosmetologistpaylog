@@ -4,8 +4,6 @@ import com.kosmetologistpaycalc.paycalc.Datecalendar;
 import com.kosmetologistpaycalc.paycalc.Models.DateAndSummDate;
 import com.kosmetologistpaycalc.paycalc.Models.Post;
 import com.kosmetologistpaycalc.paycalc.Repo.PostRepository;
-import com.kosmetologistpaycalc.paycalc.Repo.PostRepositoryLastExpenses;
-import com.kosmetologistpaycalc.paycalc.Repo.PostRepositoryLastIncome;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class MainController extends Datecalendar {
@@ -43,5 +42,23 @@ public class MainController extends Datecalendar {
         model.addAttribute("mouthCalendar", mouthCalendar);
 
         return "home.html";
+    }
+
+    @PostMapping("/home")
+    public String homeEdit (@RequestParam(defaultValue = "1") Long editeId, @RequestParam(defaultValue = "0") int editeSummary,
+                            Model model) {
+        Post oldPost = postRepository.findById(editeId).get();
+        if (oldPost.getSummary() != editeSummary){
+            Post editPost = new Post(editeSummary, oldPost.getProcedures(), oldPost.getSummary_type(), oldPost.getDay(), oldPost.getUsername());
+            postRepository.save(editPost);
+            postRepository.deleteById(editeId);
+        }
+    return "redirect:/home";
+    }
+
+    @DeleteMapping("/home")
+    public  String homeDelete (Post post, Model model) {
+        postRepository.deleteById(post.getId());
+        return "redirect:/home";
     }
 }
