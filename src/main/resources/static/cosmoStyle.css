@@ -1,0 +1,601 @@
+.margin-0 {
+    margin: 0%;
+}
+
+.margin-top-bottom-1-5 {
+    margin-top: 1.5vw;
+    margin-bottom: 1.5vw;
+}
+
+.margin-bottom-3{
+    margin-bottom: 3vw;
+}
+
+.margin-top-5{
+    margin-top: 5vw;
+}
+
+.margin-top-30 {
+    margin-top: 30vw;
+}
+
+.font-80 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 80px;
+}
+
+.buttonform {
+    padding-top: 1%;
+    text-decoration: none;
+    display: inline-block;
+    width: 240px;
+    height: 60px;
+    line-height: 45px;
+    border-radius: 45px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: white;
+    background: #524f4e;;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+}
+
+.buttonformResult {
+    padding-top: 2%;
+    text-decoration: none;
+    display: inline-block;
+    width: 290px;
+    height: 60px;
+    line-height: 45px;
+    border-radius: 45px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: white;
+    background: #524f4e;;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+}
+
+.timebuttonform {
+    padding-top: 1%;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 65px;
+    line-height: 45px;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: white;
+    box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
+    transition: .3s;
+}
+
+.timeForm{
+    width: 25%;
+    display: inline-block;
+}
+
+.homeInpun {
+    margin: 20px;
+    background: #f9f9f9;
+    opacity: inherit;
+    width: 60%;
+}
+
+.homeButton {
+    border-radius: 50px;
+    padding: 5px 0;
+    position: relative;
+    background-color: #524f4e;
+    color: #f9f9f9;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    box-shadow: none;
+}
+
+.homeInvertButton {
+    width: 30%;
+    border-radius: 50px;
+    padding: 5px 0;
+    position: relative;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #524f4e;
+    border: 0;
+}
+
+.homeInvertBlock {
+    width: 800px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+    border-radius: 50px;
+    padding: 5px 0;
+    position: relative;
+    margin: 0 auto 5%;
+    background-color: #524f4e;
+}
+
+.a_buttonform-3 {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 20px 14px;
+    border-radius: 45px;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    color: #524f4e;
+    background: white;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    transition: .3s;
+}
+
+.datecolor {
+    color: rgb(112, 112, 112);
+}
+
+.middle {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.pbtn {
+    text-align: center;
+    margin-top: 37%;
+}
+
+.Ops {
+    text-align: center;
+    width: 600px; /* Ширина блока */
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+.whitecolour {
+    color: white;
+}
+
+.nicecolor {
+    color: #524f4e;
+}
+
+.middlefont {
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.bigfont {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.fonts {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+}
+
+.dateFonts {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #514f4e;
+}
+
+.countNoteFonts {
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: gray;
+}
+
+.dateTime {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    font-size: xx-large;
+    letter-spacing: 1px;
+    color: #514f4e;
+    margin: 10px 10px 10px 0px;
+}
+
+.font-20 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.font-40{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    letter-spacing: 1px;
+}
+
+.padding-15 {
+    padding-top: 15px;
+}
+
+a:hover {
+    color: #f885d2;
+    background-color: white;
+    box-shadow: 15px 15px 15px #f885d2;
+}
+
+.calcelementhome {
+    display: flex;
+    width: 760px;
+    margin: 30px auto;
+    position: relative;
+    border-top: solid;
+    border-color: #f6f6f7;
+}
+
+.inputenumberlement {
+    width: 60%;
+    height: 60px;
+    resize: vertical;
+    padding: 15px;
+    border-radius: 40px;
+    border: 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 38px;
+    text-align: center;
+}
+
+.inputenumberlement80 {
+    width: 80%;
+    height: 60px;
+    resize: vertical;
+    padding: 15px;
+    border-radius: 40px;
+    border: 0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 38px;
+    text-align: center;
+}
+
+.inputenumberlement:hover {
+    opacity: 1;
+    transition: opacity 1s;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+
+.backgroundincomeimg{
+    width: 100%;
+    height: 20vw;
+    background-repeat: no-repeat;
+}
+
+.leftmiddle {
+    line-height: 70px;
+    position: relative;
+    top: 20px;
+    left: 30px;
+}
+
+.vertcenter {
+    vertical-align: middle;
+}
+
+.vertbottom {
+    vertical-align: bottom;
+}
+
+.rightmiddle {
+    position: relative;
+    left: 95px;
+}
+
+.blockmain {
+    height: 80px;
+    width: 180px;
+    border-radius: 20px;
+    margin: 0px;
+}
+
+.block {
+    height: 50px;
+    width: 340px;
+    border-radius: 20px;
+    margin: 0px;
+}
+
+.blockV2 {
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin: 10px 10px 10px 60px;
+    width: 60%;
+}
+
+.niceFont {
+    font-weight: 500;
+    color: #514f4e;
+}
+
+.smallmiddle {
+    line-height: 70px;
+    position: relative;
+    top: 0px;
+    left: 30px;
+}
+
+.green {
+    color: white;
+    background-color: rgb(124, 196, 124);
+}
+
+.furple {
+    color: white;
+    background-color: rgb(157, 105, 182);
+}
+
+.midmiddle {
+    text-align: center;
+    line-height: 70px;
+    position: absolute;
+    top: 20px;
+    left: 215px;
+}
+
+.notesData {
+    text-align: center;
+    line-height: 70px;
+}
+
+.smallfonts {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 26px;
+    color: gray;
+}
+
+.flex {
+    display: flex;
+    z-index: 2;
+}
+
+.widgetRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.widgetEvent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.widgetCenter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.widgetRowTogether {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 3%;
+}
+
+.flexname {
+    display: flex;
+    position: relative;
+    z-index: 2;
+}
+
+.bacgroundimagebox {
+    position: relative;
+}
+
+.previeelement {
+    display: block;
+    width: 100%;
+    top: 0;
+    min-height: 2em;
+}
+
+.gorisontalcolumn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto auto 20px auto;
+    position: relative;
+    top: 20%;
+}
+
+.gorisontalcolumn-akk {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.gorisontalcolumnbanner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 800px;
+    margin: auto auto 0px auto;
+    position: relative;
+    top: 0%;
+    padding-top: 0px;
+    padding-bottom: 80px;
+    z-index: 1;
+}
+
+.z-index-2 {
+    z-index: 2;
+}
+
+.z-index-1 {
+    z-index: 1;
+}
+
+.z-index-0 {
+    z-index: 0;
+}
+
+.centertext {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #514f4e;
+}
+
+.prevblock {
+    display: block;
+    width: 400px;
+}
+
+.columnreverse {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.backmouth {
+    background-color: white;
+}
+
+.calcelementul {
+    margin: 5% auto;
+    width: 800px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+    border-radius: 50px;
+    padding: 5px 0px;
+    background-color: white;
+    position: relative;
+}
+
+.calcelementulInvert {
+    margin: 5% auto;
+    width: 800px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+    border-radius: 50px;
+    padding: 5px 0px;
+    background-color: #524f4e;
+    position: relative;
+}
+
+.calcelementCalendar {
+    width: 800px;
+    height: 400px;
+    margin: 30px auto;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+    border-radius: 50px;
+}
+
+.airdateclicker {
+    width: 800px;
+    height: 440px;
+    margin: 30px auto;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+    border-radius: 50px;
+    font-size: medium;
+    font-size: xx-large;
+}
+
+.nondisplay {
+    display: none;
+}
+
+.graybackground {
+    background: rgb(228, 228, 228);
+}
+
+.whitebackground {
+    background: #FBFBFC;
+}
+
+.blockmouth {
+    height: 100px;
+    width: 520px;
+    border-radius: 20px;
+    margin: 30px;
+    color: #6C6C78;
+}
+
+.body {
+    background-color: #f9f9f9;
+}
+
+ul.gorisontalcolumn li {
+    justify-content: space-between;
+}
+
+li {
+    list-style-type: none; /* Убираем маркеры */
+}
+
+ul {
+    margin-left: 0; /* Отступ слева в браузере IE и Opera */
+    padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
+
+body {
+    margin: 0%;
+}
+
+.fixedblock {
+    display: block;
+    background-color: #34363d;
+    color: white;
+    margin: 0;
+    position: static;
+}
+
+.header {
+    text-align: center;
+    margin: 0;
+}
+
+.newNoteFonts {
+    padding: 3.5% 0 0 3.5%;
+}
+
+.newNoteButton {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    box-shadow: none;
+    background: white;
+}
+
+.fontXxxLarge {
+    font-size: 2.3em;
+}
+
+.fontXxLarge {
+    font-size: 2em;
+}
+
+.blockV3 {
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin: 10px 30px;
+}
+
+.transparentButton {
+    outline: none;
+    border: 0;
+    background: transparent;
+    margin-bottom: 20px;
+}
+
+.widgetRowEvently {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

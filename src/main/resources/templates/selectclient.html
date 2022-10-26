@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Новая запись</title>
+    <title>Title</title>
+    <link rel="stylesheet" href="/cosmoStyle.css">
+</head>
+<body class="body">
+<div class="fixedblock"><H3 class="font-80 header">Новая запись</H3></div>
+
+<form id="form" action="/newnote" method="post">
+    <div id="selectclient" style="display: block">
+        <div class="widgetCenter margin-top-5">
+            <img src="https://img.icons8.com/officexs/300/making-notes.png"/>
+        </div>
+        <input hidden name="date" th:value="${date}">
+        <input hidden name="time" th:value="${time}">
+        <div class="calcelementul">
+            <div class="noteInfo margin-bottom-3">
+                <p class="dateTime newNoteFonts fontXxxLarge fonts">
+                    Выберите клиента</p>
+            </div>
+            <div class="widgetCenter">
+                <input id="clientName" list="clientsList" type="text" name="data" placeholder="Данные"
+                       class="inputenumberlement80 margin-top-bottom-1-5">
+                <input hidden id="clientId" type="text" name="clientId" placeholder="Id"
+                       class="inputenumberlement80 margin-top-bottom-1-5">
+                <datalist id="clientsList"></datalist>
+            </div>
+            <div id="middlePlase" class="widgetCenter">
+                <input id="phone" type="tel" name="phone" placeholder="Телефон" min="0"
+                       class="inputenumberlement80 margin-top-bottom-1-5">
+                <p id="clientAlert" style="display: none"
+                   class="dateTime newNoteFonts fontXxLarge fonts margin-bottom-3">
+                    Выбран постоянный клиент
+                </p>
+            </div>
+            <div class="widgetCenter">
+                <input id="comment" type="text" name="comment" placeholder="Комментарий"
+                       class="inputenumberlement80 margin-top-bottom-1-5 margin-bottom-3">
+            </div>
+        </div>
+        <div class="widgetRow calcelementul">
+            <button type="button" class="buttonform fonts homeInvertButton newNoteButton" onclick="selectOperation()">
+                Назначить процедуру
+            </button>
+        </div>
+    </div>
+    <div id="selectoperation" style="display: none">
+        <div class="widgetCenter margin-top-5">
+            <img srcset="https://img.icons8.com/cotton/344/syringe--v2.png"/>
+        </div>
+        <input id="date" hidden name="date" th:value="${date}">
+        <input id="time" hidden name="time" th:value="${time}">
+        <div class="calcelementul">
+            <div class="noteInfo margin-bottom-3">
+                <p class="dateTime newNoteFonts fontXxxLarge fonts">
+                    Назначьте процедуру</p>
+            </div>
+            <div class="widgetCenter">
+                <input id="operationName" type="text" name="operation" required placeholder="Процедура" min="0"
+                       max="100000" step="1"
+                       class="inputenumberlement80 margin-top-bottom-1-5">
+            </div>
+            <div class="widgetCenter">
+                <input id="medicament" type="text" name="medicament" placeholder="Препарат" min="0" max="100000"
+                       step="1"
+                       class="inputenumberlement80 margin-top-bottom-1-5">
+            </div>
+            <div class="widgetCenter">
+                <input id="cost" type="tel" name="cost" placeholder="Стоимость"
+                       class="inputenumberlement80 margin-top-bottom-1-5 margin-bottom-3">
+            </div>
+        </div>
+        <div class="widgetRow calcelementulInvert">
+            <button type="button" class="buttonform fonts homeButton" onclick="sendInfo()">Подтвердить
+            </button>
+        </div>
+    </div>
+    <div id="result" style="display: none">
+        <div class="calcelementul">
+            <div class="widgetCenter">
+                <p class="dateTime newNoteFonts fontXxxLarge fonts">Запись добавлена!</p>
+            </div>
+            <div class="widgetRowEvently">
+                <a href="/home" class="buttonformResult fonts margin-top-bottom-1-5">На главную</a>
+                <a href="/newnote" class="buttonformResult fonts margin-top-bottom-1-5">К записям</a>
+            </div>
+        </div>
+        <div id="appruve" class="widgetRow calcelementulInvert">
+            <button type="button" class="buttonform fonts homeButton" onclick="sendInfo()">Подтвердить
+            </button>
+        </div>
+    </div>
+</form>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+    var client = document.getElementById('selectclient');
+    var operation = document.getElementById('selectoperation');
+    var result = document.getElementById('result');
+
+    function selectOperation() {
+        client.style = "display: none";
+        operation.style = "display: block";
+    }
+
+    var responseBody;
+
+    var clientFromBdIsSelected = false;
+    var clientId = null;
+
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: '/newnote/create/select-client/all_my_clients',
+            dataType: 'json',
+            success: function (all_my_clients) {
+                responseBody = all_my_clients;
+
+                all_my_clients.forEach((item) => {
+                    var option = document.createElement('option');
+                    option.innerHTML = item.client.data;
+                    document.getElementById('clientsList').prepend(option)
+                })
+            }
+        });
+    });
+
+    setInterval(addClientDataInDb, 1000);
+
+    function sendInfo() {
+        operation.style = "display: none";
+        result.style = "display: block";
+        document.getElementById('appruve').remove();
+
+        $.ajax({
+            type: 'POST',
+            url: '/add_note',
+            dataType: 'json',
+            processData: false,
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({
+                "clientName": $('#clientName').val(),
+                "phone": $('#phone').val(),
+                "comment": $('#comment').val(),
+                "operationName": $('#operationName').val(),
+                "medicament": $('#medicament').val(),
+                "cost": $('#cost').val(),
+                "date": $('#date').val(),
+                "time": $('#time').val(),
+                "clientId": $('#clientId').val()
+            })
+        })
+    }
+
+    function addClientDataInDb() {
+        var clientName = document.getElementById('clientName').value;
+
+        responseBody.forEach((item) => {
+            if (item.client.data === clientName) {
+                clientFromBdIsSelected = true;
+                clientId = item.client.id;
+            }
+        })
+
+        if (clientFromBdIsSelected === true) {
+            document.getElementById('phone').style = "display: none";
+            document.getElementById('comment').style = "display: none";
+            document.getElementById('clientAlert').style = "display: block";
+            document.getElementById('clientId').value = clientId;
+
+        }
+        if (clientFromBdIsSelected === false) {
+            document.getElementById('phone').style = "display: block";
+            document.getElementById('comment').style = "display: block";
+            document.getElementById('clientAlert').style = "display: none";
+            document.getElementById('clientId').value = null;
+        }
+
+        clientFromBdIsSelected = false;
+        clientId = null;
+    }
+</script>
+</html>

@@ -54,6 +54,18 @@
             width: 800px;
             border-radius: 50px;
         }
+        .font-20{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+        }
+        .font-30{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 30px;
+        }
+        .font-80{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 80px;
+        }
         .leftmiddle{
             line-height: 70px;
             position: relative;
@@ -139,10 +151,22 @@
         body{
             margin: 0%;
         }
+        .fixedblock{
+            display: block;
+            background-color: #34363d;
+            color: white;
+            margin: 0;
+            position: static;
+        }
+        .header{
+            text-align: center;
+            margin: 0;
+        }
 
     </style>
 </head>
-<body class="historybody margin-0">
+<body class="historybody">
+    <div class="fixedblock"><H3 class="font-80 header">История</H3></div>
         <ul class="columnreverse">
             <li class="fonts calcelement bodycalendar" th:each="current : ${summPosts}">
                 <ul class = summanddate>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Новая запись</title>
+    <title>Title</title>
+    <link rel="stylesheet" href="/cosmoStyle.css">
+</head>
+<body class="body">
+<div class="fixedblock"><H3 class="font-80 header">Клиент</H3></div>
+
+<div id="selectclient" style="display: block">
+    <div class="widgetCenter margin-top-5">
+        <img src="https://img.icons8.com/officexs/300/making-notes.png"/>
+    </div>
+    <div class="calcelementul">
+        <div class="noteInfo margin-bottom-3">
+            <input hidden id="clientId" th:value="${clientId}">
+            <p id="name" class="dateTime newNoteFonts fontXxxLarge fonts"></p>
+        </div>
+        <div class="widgetCenter">
+            <p id="phone" class="dateTime newNoteFonts fontXxLarge fonts"></p>
+        </div>
+        <div class="widgetCenter margin-bottom-3">
+            <p id="comment" class="newNoteFonts fontXxLarge fonts"></p>
+        </div>
+    </div>
+</div>
+
+<!--Место для записей-->
+<div id="notesPlace">
+    <div id="fill"></div>
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        getNotesOfCurrentDay();
+    });
+
+    function getNotesOfCurrentDay() {
+        $.ajax({
+            type: 'GET',
+            url: '/client',
+            data: "id=" + document.getElementById('clientId').value,
+            dataType: 'json',
+            success: function (client) {
+                console.log(client.data)
+                document.getElementById('name').innerHTML = client.client.data
+                document.getElementById('phone').innerHTML = client.client.phoneNumber
+                document.getElementById('comment').innerHTML = client.client.comment
+
+                var filler = document.getElementById('fill');
+
+                client.operations.slice().reverse().forEach((note) => {
+                    createOneNote(note, filler);
+                })
+            }
+        });
+    }
+
+    function createOneNote(item, prepear) {
+
+        var note = document.createElement('div');
+        note.className = "calcelementul";
+
+        var operatopnsData = document.createElement('div');
+        operatopnsData.className = "widgetRow";
+
+        var header = document.createElement('div');
+        header.className = "widgetRow";
+
+        var secondText = document.createElement('div');
+        secondText.className = "widgetRow";
+
+        var thirdText = document.createElement('div');
+        thirdText.className = "widgetRowTogether";
+
+        var date = document.createElement('p');
+        date.className = "dateTime newNoteFonts fontXxxLarge fonts";
+        date.innerHTML = item.date.split("T")[0];
+
+        var name = document.createElement('p');
+        name.className = "blockV3 fontXxxLarge newNoteFonts fonts";
+        name.innerHTML = item.name;
+
+        var time = document.createElement('p');
+        time.className = "blockV3 niceFont fontXxLarge fonts";
+        time.innerHTML = item.date.split("T")[1].split(":")[0] + ":" + item.date.split("T")[1].split(":")[1];
+
+        var medicamentJs = document.createElement('p');
+        medicamentJs.className = "blockV3 niceFont fontXxLarge fonts";
+        medicamentJs.innerHTML = item.medicament;
+
+        var summuryJs = document.createElement('p');
+        summuryJs.className = "blockV3 niceFont fontXxLarge fonts";
+        summuryJs.innerHTML = item.summury + " ₽";
+
+        header.prepend(date, name);
+        secondText.prepend(time, medicamentJs);
+        thirdText.prepend(summuryJs);
+
+        note.prepend(header, secondText, thirdText);
+        prepear.prepend(note);
+    }
+</script>
+</html>

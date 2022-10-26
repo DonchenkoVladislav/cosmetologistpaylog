@@ -84,7 +84,7 @@ public class Datecalendar {
         return postCurrentUser;
     }
     //Выводит список последних операций (максимум 5)
-    public Iterable<Post> getLastPosts (Iterable<Post> postCurrentUser){
+    public Iterable<Post> getLastPosts (Iterable<Post> postCurrentUser, int countPosts){
         ArrayList<Post> lastPostsList = new ArrayList<>();
         ArrayList<Post> lastPostsListFive = new ArrayList<>();
 
@@ -92,7 +92,7 @@ public class Datecalendar {
             for (Post post : postCurrentUser) {
                 lastPostsList.add(post);
             }
-            for (int i = lastPostsList.size() - 1; i > lastPostsList.size() - 6; i--) {
+            for (int i = lastPostsList.size() - 1; i > lastPostsList.size() - countPosts; i--) {
                 lastPostsListFive.add(lastPostsList.get(i));
             }
             Iterable<Post> lastPosts = lastPostsListFive;

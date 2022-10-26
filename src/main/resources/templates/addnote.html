@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="/airdatepicker/air_datepicker.css">
+    <link rel="stylesheet" href="/cosmoStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body class="body">
+
+<div class="fixedblock"><H3 class="font-80 header">Записи</H3></div>
+
+<!--Аналитика-->
+<!--<div class="homeInvertBlock" style="margin-top: 2vh;">-->
+<!--    <div class="widgetRow" style="height: 350px;">-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--Календарь-->
+<div id="calendar">
+    <div class="fill"></div>
+</div>
+
+<!--Кнопка Новая запись-->
+<div class="widgetRow calcelementul">
+    <button type="submit" class="buttonform fonts homeInvertButton newNoteButton" onclick="getTimeForNote()">Добавить
+        запись
+    </button>
+</div>
+
+<!--Место для  времени-->
+<div id="timePlace">
+    <div id="timeFill"></div>
+</div>
+
+<!--Место для записей-->
+<div id="notesPlace">
+    <div id="fill"></div>
+</div>
+
+</body>
+<script type="text/javascript" src="/airdatepicker/air-datepicker.js"></script>
+<script>
+
+    let timeList = ["07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"];
+
+    var responseBody;
+    var isDaySelected = false;
+    var jsDay;
+    var timeButtonProcessing = false;
+    var selectDate = null;
+
+    $(document).ready(function () {
+        getNotesOfCurrentDay();
+    });
+
+    function removeElementById(id) {
+        document.getElementById(id).remove();
+    }
+
+    new AirDatepicker('#calendar', {
+        inline: true,
+        classes: 'airdateclicker',
+        // isMobile: true,
+        autoClose: true,
+        dateFormat: 'yyyy-MM-dd',
+        onSelect({date}) {
+            if (document.getElementById('timeFill')) {
+                removeElementById("timeFill");
+            }
+            var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+            massiveDate = String(myDate).split("-");
+
+            var mounth;
+            var dayNumber;
+
+            if (massiveDate[1].length === 1) {
+                mounth = "0" + massiveDate[1]
+            } else {
+                mounth = massiveDate[1]
+            }
+
+            if (massiveDate[2].length === 1) {
+                dayNumber = "0" + massiveDate[2]
+            } else {
+                dayNumber = massiveDate[2]
+            }
+
+            selectDate = massiveDate[0] + "-" + mounth + "-" + dayNumber;
+            jsDay = selectDate;
+
+            removeElementById("fill");
+
+            var notesPlace = document.getElementById("notesPlace");
+
+            responseBody.forEach((day) => {
+                if (day.date === selectDate) {
+                    isDaySelected = true;
+                    jsDay = day.date;
+                }
+            })
+
+            if (isDaySelected === true) {
+
+                var filler = document.createElement('div');
+                filler.id = "fill";
+
+                responseBody.filter(function (item) {
+                    return item.date === jsDay;
+                })[0].operationNotes.forEach((note) => {
+                    createOneNote(note, filler);
+                })
+
+                notesPlace.prepend(filler);
+
+                isDaySelected = false;
+            } else {
+                var filler = document.createElement('div');
+                filler.id = "fill";
+
+                var row = document.createElement('div');
+                row.className = "widgetCenter";
+
+                var p = document.createElement('p');
+                p.className = "dateTime fonts";
+
+                p.innerHTML = "На " + selectDate + " записей не запланировано";
+
+                row.prepend(p);
+                filler.prepend(row);
+                notesPlace.prepend(filler);
+            }
+
+            // document.getElementById("fill").remove()
+            // getNotesOfCurrentDay(selectDate);
+        }
+    });
+
+    function getNotesOfCurrentDay() {
+        $.ajax({
+            type: 'GET',
+            url: '/newnote/currentday',
+            dataType: 'json',
+            success: function (currentday) {
+                responseBody = currentday;
+            }
+        });
+    }
+
+    function createOneNote(day, prepear) {
+
+        var note = document.createElement('div');
+        note.className = "calcelementul";
+
+        var operatopnsData = document.createElement('div');
+        operatopnsData.className = "widgetRow";
+
+        var header = document.createElement('div');
+        header.className = "widgetRow";
+
+        var secondText = document.createElement('div');
+        secondText.className = "widgetRow";
+
+        var thirdText = document.createElement('div');
+        thirdText.className = "widgetRowTogether";
+
+        var time = document.createElement('p');
+        time.className = "dateTime newNoteFonts fontXxxLarge fonts";
+        time.innerHTML = day.time;
+
+        var name = document.createElement('p');
+        name.className = "blockV3 fontXxxLarge newNoteFonts fonts";
+        name.innerHTML = day.name;
+
+        var clientNameJs = document.createElement('p');
+        clientNameJs.className = "blockV3 niceFont fontXxLarge fonts";
+        clientNameJs.innerHTML = day.clientName;
+
+        var medicamentJs = document.createElement('p');
+        medicamentJs.className = "blockV3 niceFont fontXxLarge fonts";
+        medicamentJs.innerHTML = day.medicament;
+
+        var summuryJs = document.createElement('p');
+        summuryJs.className = "blockV3 niceFont fontXxLarge fonts";
+        summuryJs.innerHTML = day.summury + " ₽";
+
+        header.prepend(time, name);
+        secondText.prepend(clientNameJs, medicamentJs);
+        thirdText.prepend(summuryJs);
+
+        note.prepend(header, secondText, thirdText);
+        prepear.prepend(note);
+    }
+
+    function getTimeForNote() {
+        if (document.getElementById('timeFill')) {
+            removeElementById("timeFill");
+        }
+
+
+        if (selectDate === null) {
+            selectDateAlertMessege();
+            return;
+        }
+        ;
+
+        var timePlace = document.getElementById("timePlace");
+        var timeFiller = document.createElement('div');
+        timeFiller.id = "timeFill";
+        timePlace.prepend(timeFiller);
+
+        timeList.slice().reverse().forEach((time) => {
+            var timeCoincidence = false;
+            var backgroundColor;
+            var textColor;
+
+            if(responseBody.filter(function (item) {
+                return item.date === jsDay;
+            })[0] != null) {
+                responseBody.filter(function (item) {
+                    return item.date === jsDay;
+                })[0].operationNotes.forEach((operation) => {
+                    if (time === operation.time) {
+                        timeCoincidence = true
+                    }
+                })
+
+                if (timeCoincidence === true) {
+                    backgroundColor = "#f9f9f9";
+                    textColor = "#b2b2b2";
+                    timeCoincidence = false;
+                } else {
+                    textColor = "white"
+                    backgroundColor = "#524f4e"
+                }
+                timeButtonProcessing = false;
+            } else {
+                textColor = "white"
+                backgroundColor = "#524f4e"
+            }
+            createTimeButton(time, timeFiller, backgroundColor, textColor);
+
+
+        })
+    }
+
+    function createTimeButton(time, prepear, backgroundColor, textColor) {
+
+
+        var timeForm = document.createElement('form')
+
+        var timeInput = document.createElement('input')
+        var dateInput = document.createElement('input')
+
+        var timeButton = document.createElement('button');
+
+        timeButton.className = 'timebuttonform fontXxLarge fonts';
+        timeButton.style = "background-color: " + backgroundColor + "; color: " + textColor;
+        timeButton.innerHTML = time;
+
+        timeForm.className = "timeForm";
+
+        if(backgroundColor != "#f9f9f9") {
+            timeButton.type = "submit";
+            timeForm.action = "/newnote/create/select-client?date=" + selectDate + "&time=" + time;
+            timeForm.method = "GET";
+        } else {
+            timeButton.type = "button";
+        }
+
+
+        timeInput.value = time;
+        timeInput.type = "hidden";
+        timeInput.name = "time";
+
+        dateInput.value = selectDate;
+        dateInput.type = "hidden";
+        dateInput.name = "date";
+
+        timeForm.prepend(timeInput, dateInput, timeButton);
+        prepear.prepend(timeForm);
+    }
+
+    function selectDateAlertMessege() {
+        alert("Сначала выберете дату для записи")
+    }
+
+</script>
+
+</html>

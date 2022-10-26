@@ -1,0 +1,56 @@
+[
+  {
+    "date": "2022-10-20",
+    "countNotes": "4 записей",
+    "operationNotes": [
+      {
+        "day": "2022-10-20",
+        "time": "00:00",
+        "name": "testOperation",
+        "phone": null,
+        "medicament": "pred",
+        "summury": 5000,
+        "clientName": "test2"
+      },
+      {
+        "day": "2022-10-20",
+        "time": "12:30",
+        "name": "ee",
+        "phone": null,
+        "medicament": "rr",
+        "summury": 33,
+        "clientName": "qq"
+      }
+    ]
+  },
+  {
+    "date": "2022-10-21",
+    "countNotes": "4 записей",
+    "operationNotes": [
+      {
+        "day": "2022-10-21",
+        "time": "13:00",
+        "name": "qwqw",
+        "phone": null,
+        "medicament": "asdasd",
+        "summury": 3232,
+        "clientName": "aa1"
+      }
+    ]
+  },
+  {
+    "date": "2022-10-27",
+    "countNotes": "4 записей",
+    "operationNotes": [
+      {
+        "day": "2022-10-27",
+        "time": "12:00",
+        "name": "фффф",
+        "phone": null,
+        "medicament": "ячячя",
+        "summury": 121,
+        "clientName": "пробная запись"
+      }
+    ]
+  }
+]

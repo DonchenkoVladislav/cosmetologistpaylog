@@ -19,6 +19,8 @@ import java.util.Calendar;
 @Controller
 public class DohodsController {
 
+    private static final String ELEMENT_NAME = "Доход";
+
     @Autowired
     private PostRepository postRepository;
 
@@ -31,89 +33,59 @@ public class DohodsController {
     }
 
     @PostMapping("/income")
-    public String postIncomeLips(@RequestParam(defaultValue = "0") Integer lips0, @RequestParam(defaultValue = "0") Integer botox0,
-                                 @RequestParam(defaultValue = "0") Integer clean0, @RequestParam(defaultValue = "0") Integer prepayment0,
-                                 @RequestParam(defaultValue = "0") Integer lips1, @RequestParam(defaultValue = "0") Integer botox1,
-                                 @RequestParam(defaultValue = "0") Integer clean1, @RequestParam(defaultValue = "0") Integer prepayment1,
-                                 @RequestParam(defaultValue = "0") Integer lips2, @RequestParam(defaultValue = "0") Integer botox2,
-                                 @RequestParam(defaultValue = "0") Integer clean2, @RequestParam(defaultValue = "0") Integer prepayment2,
-                                 @RequestParam(defaultValue = "0") Integer lips3, @RequestParam(defaultValue = "0") Integer botox3,
-                                 @RequestParam(defaultValue = "0") Integer clean3, @RequestParam(defaultValue = "0") Integer prepayment3,
-                                 @RequestParam(defaultValue = "0") Integer lips4, @RequestParam(defaultValue = "0") Integer botox4,
-                                 @RequestParam(defaultValue = "0") Integer clean4, @RequestParam(defaultValue = "0") Integer prepayment4,
-                                 @RequestParam(defaultValue = "0") Integer lips5, @RequestParam(defaultValue = "0") Integer botox5,
-                                 @RequestParam(defaultValue = "0") Integer clean5, @RequestParam(defaultValue = "0") Integer prepayment5,
-                                 @RequestParam(defaultValue = "Процедура") String selfProcedure0,
+    public String postIncomeLips(@RequestParam(defaultValue = ELEMENT_NAME) String elementName0,
+                                 @RequestParam(defaultValue = "0") Integer element0,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName1,
+                                 @RequestParam(defaultValue = "0") Integer element1,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName2,
+                                 @RequestParam(defaultValue = "0") Integer element2,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName3,
+                                 @RequestParam(defaultValue = "0") Integer element3,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName4,
+                                 @RequestParam(defaultValue = "0") Integer element4,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName5,
+                                 @RequestParam(defaultValue = "0") Integer element5,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName6,
+                                 @RequestParam(defaultValue = "0") Integer element6,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName7,
+                                 @RequestParam(defaultValue = "0") Integer element7,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName8,
+                                 @RequestParam(defaultValue = "0") Integer element8,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String elementName9,
+                                 @RequestParam(defaultValue = "0") Integer element9,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String selfProcedure0,
                                  @RequestParam(defaultValue = "0") Integer selfIncome0,
-                                 @RequestParam(defaultValue = "Процедура") String selfProcedure1,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String selfProcedure1,
                                  @RequestParam(defaultValue = "0") Integer selfIncome1,
-                                 @RequestParam(defaultValue = "Процедура") String selfProcedure2,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String selfProcedure2,
                                  @RequestParam(defaultValue = "0") Integer selfIncome2,
-                                 @RequestParam(defaultValue = "Процедура") String selfProcedure3,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String selfProcedure3,
                                  @RequestParam(defaultValue = "0") Integer selfIncome3,
-                                 @RequestParam(defaultValue = "Процедура") String selfProcedure4,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String selfProcedure4,
                                  @RequestParam(defaultValue = "0") Integer selfIncome4,
-                                 @RequestParam(defaultValue = "Процедура") String selfProcedure5,
+                                 @RequestParam(defaultValue = ELEMENT_NAME) String selfProcedure5,
                                  @RequestParam(defaultValue = "0") Integer selfIncome5,
                                  Principal principal, Model model) {
 
         String CURRENT_USER = principal.getName();
         String INCOME = "Доход";
-
-        Integer[] sortmassive = {lips0, botox0, clean0, prepayment0,
-                                lips1, botox1, clean1, prepayment1,
-                                lips2, botox2, clean2, prepayment2,
-                                lips3, botox3, clean3, prepayment3,
-                                lips4, botox4, clean4, prepayment4,
-                                lips5, botox5, clean5, prepayment5,
-                                };
-        SelfNotes[] notes = {new SelfNotes(selfProcedure0, selfIncome0),
-                            new SelfNotes(selfProcedure1, selfIncome1),
-                            new SelfNotes(selfProcedure2, selfIncome2),
-                            new SelfNotes(selfProcedure3, selfIncome3),
-                            new SelfNotes(selfProcedure4, selfIncome4),
-                            new SelfNotes(selfProcedure5, selfIncome5),
+        SelfNotes[] notes = {new SelfNotes(elementName0, element0),
+                new SelfNotes(elementName1, element1),
+                new SelfNotes(elementName2, element2),
+                new SelfNotes(elementName3, element3),
+                new SelfNotes(elementName4, element4),
+                new SelfNotes(elementName5, element5),
+                new SelfNotes(elementName6, element6),
+                new SelfNotes(elementName7, element7),
+                new SelfNotes(elementName8, element8),
+                new SelfNotes(elementName9, element9),
+                new SelfNotes(selfProcedure0, selfIncome0),
+                new SelfNotes(selfProcedure1, selfIncome1),
+                new SelfNotes(selfProcedure2, selfIncome2),
+                new SelfNotes(selfProcedure3, selfIncome3),
+                new SelfNotes(selfProcedure4, selfIncome4),
+                new SelfNotes(selfProcedure5, selfIncome5),
                             };
-
-        LastIncome[] countRecords = new LastIncome[24];
-        for (int i = 0; i < sortmassive.length; i++) {
-            if ((i == 0 | i == 4 | i == 8 | i == 12 | i == 16 | i == 20) & sortmassive[i] > 0) {
-                String procedures = "Губы";
-                String summary_type = INCOME;
-                String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
-                Integer summary = sortmassive[i];
-                String username = CURRENT_USER;
-                Post post = new Post(summary, procedures, summary_type, day, username);
-                postRepository.save(post);
-            }
-            if ((i == 1 | i == 5 | i == 9 | i == 13 | i == 17 | i == 21) & sortmassive[i] > 0) {
-                String procedures = "Ботокс";
-                String summary_type = INCOME;
-                String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
-                Integer summary = sortmassive[i];
-                String username = CURRENT_USER;
-                Post post = new Post(summary, procedures, summary_type, day, username);
-                postRepository.save(post);
-            }
-            if ((i == 2 | i == 6 | i == 10 | i == 14 | i == 18 | i == 22) & sortmassive[i] > 0) {
-                String procedures = "Чистка";
-                String summary_type = INCOME;
-                String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
-                Integer summary = sortmassive[i];
-                String username = CURRENT_USER;
-                Post post = new Post(summary, procedures, summary_type, day, username);
-                postRepository.save(post);
-            }
-            if ((i == 3 | i == 7 | i == 11 | i == 15 | i == 19 | i == 23) & sortmassive[i] > 0) {
-                String procedures = "Предоплата";
-                String summary_type = INCOME;
-                String day = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
-                Integer summary = sortmassive[i];
-                String username = CURRENT_USER;
-                Post post = new Post(summary, procedures, summary_type, day, username);
-                postRepository.save(post);
-            }
-        }
 
         for (SelfNotes note : notes){
             if (note.getSumm() > 0){
