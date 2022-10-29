@@ -51,9 +51,12 @@
     var jsDay;
     var timeButtonProcessing = false;
     var selectDate = null;
+    let startDate;
+    var param;
 
     $(document).ready(function () {
         getNotesOfCurrentDay();
+        startDate = param;
     });
 
     function removeElementById(id) {
@@ -64,79 +67,90 @@
         inline: true,
         classes: 'airdateclicker',
         // isMobile: true,
-        autoClose: true,
+        // autoClose: true,
         dateFormat: 'yyyy-MM-dd',
         onSelect({date}) {
             if (document.getElementById('timeFill')) {
                 removeElementById("timeFill");
             }
-            var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-            massiveDate = String(myDate).split("-");
 
-            var mounth;
-            var dayNumber;
-
-            if (massiveDate[1].length === 1) {
-                mounth = "0" + massiveDate[1]
-            } else {
-                mounth = massiveDate[1]
-            }
-
-            if (massiveDate[2].length === 1) {
-                dayNumber = "0" + massiveDate[2]
-            } else {
-                dayNumber = massiveDate[2]
-            }
-
-            selectDate = massiveDate[0] + "-" + mounth + "-" + dayNumber;
+            selectDate = parseDate(date)
             jsDay = selectDate;
 
             removeElementById("fill");
-
-            var notesPlace = document.getElementById("notesPlace");
-
-            responseBody.forEach((day) => {
-                if (day.date === selectDate) {
-                    isDaySelected = true;
-                    jsDay = day.date;
-                }
-            })
-
-            if (isDaySelected === true) {
-
-                var filler = document.createElement('div');
-                filler.id = "fill";
-
-                responseBody.filter(function (item) {
-                    return item.date === jsDay;
-                })[0].operationNotes.forEach((note) => {
-                    createOneNote(note, filler);
-                })
-
-                notesPlace.prepend(filler);
-
-                isDaySelected = false;
-            } else {
-                var filler = document.createElement('div');
-                filler.id = "fill";
-
-                var row = document.createElement('div');
-                row.className = "widgetCenter";
-
-                var p = document.createElement('p');
-                p.className = "dateTime fonts";
-
-                p.innerHTML = "На " + selectDate + " записей не запланировано";
-
-                row.prepend(p);
-                filler.prepend(row);
-                notesPlace.prepend(filler);
-            }
+            getAllNotesOfDay(responseBody, selectDate);
 
             // document.getElementById("fill").remove()
             // getNotesOfCurrentDay(selectDate);
-        }
+        },
+        selectedDates: [startDate],
+        startDate: startDate
     });
+
+    function parseDate(date) {
+        var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        massiveDate = String(myDate).split("-");
+
+        var mounth;
+        var dayNumber;
+
+        if (massiveDate[1].length === 1) {
+            mounth = "0" + massiveDate[1]
+        } else {
+            mounth = massiveDate[1]
+        }
+
+        if (massiveDate[2].length === 1) {
+            dayNumber = "0" + massiveDate[2]
+        } else {
+            dayNumber = massiveDate[2]
+        }
+
+        return massiveDate[0] + "-" + mounth + "-" + dayNumber;
+    }
+
+    function getAllNotesOfDay(response, select){
+        var myDate;
+        var notesPlace = document.getElementById("notesPlace");
+
+        response.forEach((day) => {
+            if (day.date === select) {
+                isDaySelected = true;
+                myDate = day.date;
+            }
+        })
+
+        if (isDaySelected === true) {
+
+            var filler = document.createElement('div');
+            filler.id = "fill";
+
+            response.filter(function (item) {
+                return item.date === myDate;
+            })[0].operationNotes.forEach((note) => {
+                createOneNote(note, filler);
+            })
+
+            notesPlace.prepend(filler);
+
+            isDaySelected = false;
+        } else {
+            var filler = document.createElement('div');
+            filler.id = "fill";
+
+            var row = document.createElement('div');
+            row.className = "widgetCenter";
+
+            var p = document.createElement('p');
+            p.className = "dateTime fonts";
+
+            p.innerHTML = "На " + select + " записей не запланировано";
+
+            row.prepend(p);
+            filler.prepend(row);
+            notesPlace.prepend(filler);
+        }
+    }
 
     function getNotesOfCurrentDay() {
         $.ajax({
@@ -145,6 +159,14 @@
             dataType: 'json',
             success: function (currentday) {
                 responseBody = currentday;
+                if (location.search.length != 0) {
+                    param = location.search.split('?')[1]
+                } else {
+                    var d = new Date
+                    var dToString = d.toISOString().split('-')
+                    param = dToString[0] + '-' + dToString[1] + '-' + dToString[2].split('T')[0]
+                }
+                getAllNotesOfDay(responseBody, param)
             }
         });
     }

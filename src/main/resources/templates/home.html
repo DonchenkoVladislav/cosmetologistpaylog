@@ -38,6 +38,11 @@
     </li>
 </ul>
 
+<!--Календарь-->
+<div id="calendar">
+    <div class="fill"></div>
+</div>
+
 <!--Поиск по клиентам-->
 <div class="homeInvertBlock">
         <div class="widgetRow">
@@ -88,14 +93,16 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
+                    <br>
                 </li>
 
             </ul>
 
         </div>
     </li>
-    <a href="/newnote" class="buttonform fonts" style="margin: 25px 25px 25px 425px; width: 340px;">Все записи</a>
+    <div class="widgetRowTogether">
+        <a href="/newnote" class="buttonform fonts" style="margin: 25px 25px 25px 425px; width: 340px;">Все записи</a>
+    </div>
 </ul>
 
 <!--История-->
@@ -143,11 +150,32 @@
 <script type="text/javascript" src="/airdatepicker/air-datepicker.js"></script>
 <script>
     new AirDatepicker('#calendar', {
-        // inline: true,
+        inline: true,
         classes: 'airdateclicker',
-        isMobile: true,
-        autoClose: true,
-        dateFormat: 'yyyy-MM-dd'
+        // isMobile: true,
+        // autoClose: true,
+        dateFormat: 'yyyy-MM-dd',
+        onSelect({date}) {
+            var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+            massiveDate = String(myDate).split("-");
+
+            var mounth;
+            var dayNumber;
+
+            if (massiveDate[1].length === 1) {
+                mounth = "0" + massiveDate[1]
+            } else {
+                mounth = massiveDate[1]
+            }
+
+            if (massiveDate[2].length === 1) {
+                dayNumber = "0" + massiveDate[2]
+            } else {
+                dayNumber = massiveDate[2]
+            }
+            selectDate = massiveDate[0] + "-" + mounth + "-" + dayNumber;
+            window.location.replace('/newnote?' + selectDate)
+        }
     });
 </script>
 <script>

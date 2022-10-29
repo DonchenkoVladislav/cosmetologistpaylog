@@ -9,6 +9,6 @@ public class LandingController {
 
     @GetMapping("/")
     public String getLending (Model model){
-        return "/landing.html";
+        return "landing.html";
     }
 }

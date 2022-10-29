@@ -38,7 +38,7 @@
     font-weight: 600;
     color: white;
     background: #524f4e;;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .3);
     transition: .3s;
 }
 
@@ -113,7 +113,7 @@
 }
 
 .homeInvertBlock {
-    width: 800px;
+    width: 93vmin;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
     border-radius: 50px;
     padding: 5px 0;
@@ -234,7 +234,7 @@ a:hover {
 
 .calcelementhome {
     display: flex;
-    width: 760px;
+    width: 85vmin;
     margin: 30px auto;
     position: relative;
     border-top: solid;
@@ -417,16 +417,17 @@ a:hover {
 }
 
 .gorisontalcolumn-akk {
+    margin-top: 2vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
 .gorisontalcolumnbanner {
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: space-between;
-    width: 800px;
+    width: 93vmin;
     margin: auto auto 0px auto;
     position: relative;
     top: 0%;
@@ -471,7 +472,7 @@ a:hover {
 
 .calcelementul {
     margin: 5% auto;
-    width: 800px;
+    width: 93vmin;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
     border-radius: 50px;
     padding: 5px 0px;
@@ -481,7 +482,7 @@ a:hover {
 
 .calcelementulInvert {
     margin: 5% auto;
-    width: 800px;
+    width: 93vmin;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
     border-radius: 50px;
     padding: 5px 0px;
@@ -490,7 +491,7 @@ a:hover {
 }
 
 .calcelementCalendar {
-    width: 800px;
+    width: 93vmin;
     height: 400px;
     margin: 30px auto;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
@@ -498,7 +499,7 @@ a:hover {
 }
 
 .airdateclicker {
-    width: 800px;
+    width: 93vmin;
     height: 440px;
     margin: 30px auto;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
@@ -567,7 +568,7 @@ body {
 
 .newNoteButton {
     width: 100%;
-    height: 100%;
+    height: 3vmax;
     margin: 0;
     box-shadow: none;
     background: white;

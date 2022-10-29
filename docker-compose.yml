@@ -4,12 +4,17 @@ services:
   app:
     build: .
     restart: on-failure
+    container_name: kosmo
+    logging:
+      driver: none
     ports:
       - 8081:8081
 
   db:
     image: mysql
     restart: always
+    logging:
+      driver: none
     ports:
       - 3306:3306
     command: --default-authentication-plugin=mysql_native_password
@@ -20,6 +25,8 @@ services:
   phpmyadmin:
     image: phpmyadmin
     restart: always
+    logging:
+      driver: none
     ports:
       - 8889:80
     environment:

@@ -561,8 +561,8 @@
 }
 
 .air-datepicker {
-    background: var(--adp-background-color);
-    border: 1px solid var(--adp-border-color);
+    /*background: var(--adp-background-color);*/
+    /*border: 1px solid var(--adp-border-color);*/
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-radius: var(--adp-border-radius);
     box-sizing: content-box;
