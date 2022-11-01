@@ -7,11 +7,11 @@
     margin-bottom: 1.5vw;
 }
 
-.margin-bottom-3{
+.margin-bottom-3 {
     margin-bottom: 3vw;
 }
 
-.margin-top-5{
+.margin-top-5 {
     margin-top: 5vw;
 }
 
@@ -25,11 +25,11 @@
 }
 
 .buttonform {
-    padding-top: 1%;
+    padding-top: 1vh;
     text-decoration: none;
     display: inline-block;
     width: 240px;
-    height: 60px;
+    height: 4vh;
     line-height: 45px;
     border-radius: 45px;
     text-transform: uppercase;
@@ -76,7 +76,7 @@
     transition: .3s;
 }
 
-.timeForm{
+.timeForm {
     width: 25%;
     display: inline-block;
 }
@@ -216,7 +216,7 @@
     letter-spacing: 1px;
 }
 
-.font-40{
+.font-40 {
     font-family: 'Montserrat', sans-serif;
     font-size: 40px;
     letter-spacing: 1px;
@@ -229,7 +229,6 @@
 a:hover {
     color: #f885d2;
     background-color: white;
-    box-shadow: 15px 15px 15px #f885d2;
 }
 
 .calcelementhome {
@@ -243,7 +242,7 @@ a:hover {
 
 .inputenumberlement {
     width: 60%;
-    height: 60px;
+    height: 4vh;
     resize: vertical;
     padding: 15px;
     border-radius: 40px;
@@ -273,7 +272,7 @@ a:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
 }
 
-.backgroundincomeimg{
+.backgroundincomeimg {
     width: 100%;
     height: 20vw;
     background-repeat: no-repeat;
@@ -320,9 +319,32 @@ a:hover {
     width: 60%;
 }
 
+.dateBlock {
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 30%;
+    height: 60%;
+}
+
+.circle {
+    margin-top: 250%;
+    width: 20px;
+    height: 20px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
 .niceFont {
     font-weight: 500;
     color: #514f4e;
+}
+
+.operationOptions {
+    border: none;
+    background: none;
+    height: 100%;
+    margin-right: 5%;
 }
 
 .smallmiddle {
@@ -378,6 +400,12 @@ a:hover {
     justify-content: space-evenly;
 }
 
+.widgetBetween {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .widgetCenter {
     display: flex;
     flex-direction: row;
@@ -388,6 +416,12 @@ a:hover {
     display: flex;
     flex-direction: row-reverse;
     margin: 3%;
+}
+
+.widgetRowEnd {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: end;
 }
 
 .flexname {
@@ -471,6 +505,7 @@ a:hover {
 }
 
 .calcelementul {
+    z-index: 1;
     margin: 5% auto;
     width: 93vmin;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
@@ -484,6 +519,16 @@ a:hover {
     margin: 5% auto;
     width: 93vmin;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+    border-radius: 50px;
+    padding: 5px 0px;
+    background-color: #524f4e;
+    position: relative;
+}
+
+.calcelementulInvertMenu {
+    margin: 5% auto;
+    width: 93vmin;
+    box-shadow: none;
     border-radius: 50px;
     padding: 5px 0px;
     background-color: #524f4e;
@@ -550,7 +595,7 @@ body {
 }
 
 .fixedblock {
-    display: block;
+    /*display: block;*/
     background-color: #34363d;
     color: white;
     margin: 0;
@@ -583,6 +628,8 @@ body {
 }
 
 .blockV3 {
+    color: #524f4e;
+    text-align: end;
     margin-block-start: 1.33em;
     margin-block-end: 1.33em;
     margin: 10px 30px;

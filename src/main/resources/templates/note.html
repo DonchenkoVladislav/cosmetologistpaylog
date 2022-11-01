@@ -2,468 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Новая запись</title>
-    <title>Title</title>    
-
-    <style>
-        .margin-top-30{
-            margin-top: 30%;
-        }
-        .margin-top-5{
-            margin-top: 5%;
-        }
-        .margin-side-25{
-            margin: 0px 25px;
-        }
-        .buttonform_ok{
-            text-decoration: none;
-            display: inline-block;
-            width: 280px;
-            height: 60px;
-            line-height: 53px;
-            border-radius: 45px;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #524f4e;
-            background: white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-            transition: .3s;
-        }
-        .buttonform{
-            text-decoration: none;
-            display: inline-block;
-            width: 210px;
-            height: 110px;
-            line-height: 53px;
-            border-radius: 45px;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #524f4e;
-            background: white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-            transition: .3s;
-        }
-        .buttonformmiddle{
-            text-decoration: none;
-            display: inline-block;
-            width: 390px;
-            height: 110px;
-            line-height: 53px;
-            border-radius: 45px;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #524f4e;
-            background: white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-            transition: .3s;
-        }
-        .addbutton{
-            background: white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-            transition: .3s;
-            border-radius: 45px;
-        }
-        .padding-8{
-            padding-bottom: 8px;
-            padding-left: 8px;
-        }
-        .padding-15{
-            padding-top: 5px;
-        }
-        .padding-30{
-            padding-top: 30px;
-        }
-        .font-20{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-        }
-        .font-25{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 25px;
-        }
-        .font-30{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 30px;
-        }
-        .font-35{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 35px;
-        }
-        .font-80{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 80px;
-        }
-        .flex{
-            display: flex;
-            flex-direction: row;
-        }
-        .nonborder{
-            border: none;
-        }
-        .middle{
-            position: relative;
-            left: 50%;
-            transform: translate(-50%, 0%);
-        }
-        .delbuttonV2{
-            height: 80px;
-            width: 80px;
-            border: none;
-            padding: 30px 10px;
-            text-align: center;
-            text-decoration: none;
-            background: transparent;
-            margin: 0 5% 10px 12%;
-            cursor: pointer;
-            transform: scale(0.82);
-        }
-        .middle{
-            display: flex;
-            justify-content: center;
-        }
-        .inputenumberlement{
-            width: 400px;
-            height: 40px;
-            resize: vertical;
-            padding:15px;
-            border-radius:40px;
-            border:0;
-            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 38px;
-            text-align: center;
-            opacity: 0.5;
-            margin-top: 10px;
-            margin-top: 20px;
-        }
-        .inputenumberlement:hover{
-            opacity: 1;
-            transition: opacity 1s;
-            box-shadow:0px 0px 10px rgba(0,0,0,0.8);
-        }
-
-        .inputenumberlementV2{
-            width: 500px;
-            height: 40px;
-            resize: vertical;
-            padding:15px;
-            border-radius:40px;
-            border:0;
-            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 38px;
-            text-align: center;
-            opacity: 0.5;
-            margin-top: 10px;
-            margin-top: 20px;
-        }
-        .inputenumberlementV2:hover{
-            opacity: 1;
-            transition: opacity 1s;
-            box-shadow:0px 0px 10px rgba(0,0,0,0.8);
-        }
-
-        .pelement{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            text-align: center;
-            text-transform: uppercase;
-            margin-top: 45px;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #524f4e;
-        }
-        .selfelement{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            text-align: center;
-            text-transform: uppercase;
-            margin: 20px;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #524f4e;
-        }
-        .calcelement{
-            width: 95%;
-            height: 1040px;
-            position: relative;
-            left: 50%;
-            transform: translate(-50%, 0%);
-        }
-        div.calcelement span{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 800px;
-            height: 1040px;
-            margin: 50px auto;
-            background: rgb(255 255 255);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-            border-radius: 60px;
-        }
-        .pspan{
-            width: 230px;
-        }
-        .foot{
-            display: block;
-            height: 80px;            
-        }
-        .backgroundincomeimg{
-            width: 100%;
-            height: 20vw;
-            background-repeat: no-repeat;
-        }
-        .body{
-            background-color: #f9f9f9;
-            margin: 0%;
-        }
-        .fixedblock{
-            display: block;
-            background-color: #34363d;
-            color: white;
-            margin: 0;
-            position: static;
-        }
-        .header{
-            text-align: center;
-            margin: 0;
-        }
-
-        .container {
-      max-width: 100%;
-      margin: 0 auto;
-    }
-
-    .slider__container {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .slider__items {
-      counter-reset: slide;
-    }
-
-    .slider__item {
-      -webkit-box-flex: 0;
-      -ms-flex: 0 0 100%;
-      flex: 0 0 100%;
-      max-width: 100%;
-      counter-increment: slide;
-      height: 220px;
-      position: relative;
-    }
-    .slider {
-    position: relative;
-    }
-
-    .slider__container {
-    overflow: hidden;
-    }
-
-    .slider__wrapper {
-    /*overflow: hidden;*/
-    }
-
-    .slider__items {
-    display: flex;
-    transition: transform 0.5s ease;
-    }
-
-    .slider_disable-transition {
-    transition: none;
-    }
-
-    .slider__item {
-    flex: 0 0 100%;
-    max-width: 100%;
-    user-select: none;
-    }
-
-    /* кнопки влево и вправо */
-
-    .slider__control {
-    position: absolute;
-    top: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    color: #fff;
-    text-align: center;
-    height: 50px;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.2);
-    }
-
-    .slider__control_hide {
-    display: none;
-    }
-
-    .slider__control[data-slide='prev'] {
-    left: 0;
-    }
-
-    .slider__control[data-slide='next'] {
-    right: 0;
-    }
-
-    .slider__control:hover,
-    .slider__control:focus {
-    color: #fff;
-    text-decoration: none;
-    outline: 0;
-    background: rgba(0, 0, 0, 0.3);
-    }
-
-    .slider__control::before {
-    content: '';
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    background: transparent no-repeat center center;
-    background-size: 100% 100%;
-    }
-
-    .slider__control[data-slide='prev']::before {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
-    }
-
-    .slider__control[data-slide='next']::before {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-    }
-
-    /* индикаторы */
-
-    .slider__indicators {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 15;
-    display: flex;
-    justify-content: center;
-    padding-left: 0;
-    margin-right: 15%;
-    margin-left: 15%;
-    list-style: none;
-    margin-top: 0;
-    margin-bottom: 0;
-    }
-
-    .slider__indicators li {
-    box-sizing: content-box;
-    flex: 0 1 auto;
-    width: 30px;
-    height: 5px;
-    margin-right: 3px;
-    margin-left: 3px;
-    text-indent: -999px;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.5);
-    background-clip: padding-box;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    }
-    
-    .header{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
-
-    .data{
-        margin-bottom: 40px;
-        margin-left: 10%;
-    }
-    
-    .noteInfo{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-    }
-
-    .buttonsWrapper{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    .fonts-25{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 25px;
-        }
-
-    .buttonform_editV2{
-        margin: 30px 30px;
-        padding-top: 5px;
-        text-decoration: none;
-        display: inline-block;
-        width: 280px;
-        height: 60px;
-        line-height: 45px;
-        border-radius: 45px;
-        text-transform: uppercase;
-        text-align: center;
-        letter-spacing: 3px;
-        font-weight: 600;
-        color: white;
-        background: #524f4e;
-        box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
-        transition: .3s;
-        }
-
-    .proc{
-        margin: 30px 0;
-    }
-
-    .fontStyle{
-        padding-top: 20px;
-        text-transform: uppercase;
-        text-align: center;
-        letter-spacing: 3px;
-    }
-
-    .slider__indicators li.active {
-    background-color: rgba(255, 255, 255, 0.9);
-    }
-    .hidden{
-        visibility: hidden;
-    }
-
-        .slide-in-blurred-top{-webkit-animation:bounce-top .9s both;animation:bounce-top .9s both}
-        @-webkit-keyframes slide-in-blurred-top{0%{-webkit-transform:translateY(-1000px) scaleY(2.5) scaleX(.2);transform:translateY(-1000px) scaleY(2.5) scaleX(.2);-webkit-transform-origin:50% 0;transform-origin:50% 0;-webkit-filter:blur(40px);filter:blur(40px);opacity:0}100%{-webkit-transform:translateY(0) scaleY(1) scaleX(1);transform:translateY(0) scaleY(1) scaleX(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes slide-in-blurred-top{0%{-webkit-transform:translateY(-1000px) scaleY(2.5) scaleX(.2);transform:translateY(-1000px) scaleY(2.5) scaleX(.2);-webkit-transform-origin:50% 0;transform-origin:50% 0;-webkit-filter:blur(40px);filter:blur(40px);opacity:0}100%{-webkit-transform:translateY(0) scaleY(1) scaleX(1);transform:translateY(0) scaleY(1) scaleX(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-filter:blur(0);filter:blur(0);opacity:1}}
-        
-        @-webkit-keyframes bounce-top{0%{-webkit-transform:translateY(-45px);transform:translateY(-45px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{-webkit-transform:translateY(-24px);transform:translateY(-24px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}65%{-webkit-transform:translateY(-12px);transform:translateY(-12px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}82%{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}93%{-webkit-transform:translateY(-4px);transform:translateY(-4px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}25%,55%,75%,87%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}100%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}}@keyframes bounce-top{0%{-webkit-transform:translateY(-45px);transform:translateY(-45px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{-webkit-transform:translateY(-24px);transform:translateY(-24px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}65%{-webkit-transform:translateY(-12px);transform:translateY(-12px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}82%{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}93%{-webkit-transform:translateY(-4px);transform:translateY(-4px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}25%,55%,75%,87%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}100%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}}
-
-    </style>
-
-<script defer src="chief-slider.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const slider = new ChiefSlider('.slider', {
-      loop: false
-    });
-  });
-</script>
-
+    <title>Title</title>
+    <link rel="stylesheet" href="/cosmoStyle.css">
+    <link rel="stylesheet" href="/menu.css">
 </head>
 <body class="body">
-    <div class="fixedblock"><H3 class="font-80 header">Новая запись</H3></div>
 
-    <div class="backgroundincomeimg middle margin-top-5">
-        <img src="https://img.icons8.com/officexs/300/making-notes.png"/>
-    </div>
+<div class="fixedblock widgetBetween">
+    <a class="aHeader" href="/home"><img class="buttonHeader"
+                                         src="/images/back_arrow_5821.png"></a>
+    <H3 class="font-80 header">Новая запись</H3>
+    <a class="aHeader" href="/home"><img class="buttonHeader"
+                                         src="/images/Home_icon-icons.com_55890.png"></a>
+</div>
+
+<div class="backgroundincomeimg middle margin-top-5">
+    <img src="https://img.icons8.com/officexs/300/making-notes.png"/>
+</div>
+
 
 <form id="calcElemLips" action="/newnote" method="post">
     <div class="calcelement" id="calcelementId">
-        <span class="slide-in-blurred-top"  id="calcelementIdSpan">
+        <span class="slide-in-blurred-top" id="calcelementIdSpan">
             <div class="noteInfo">
-                <p class="font-35" style="margin-left: auto; text-transform: uppercase; text-align: center; letter-spacing: 3px; font-weight: 600;">Карточка записи</p>
+                <p class="font-35"
+                   style="margin-left: auto; text-transform: uppercase; text-align: center; letter-spacing: 3px; font-weight: 600;">Карточка записи</p>
                 <button class="delbuttonV2" onclick="deleteElement(this)">
                 <img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/>
                 </button>
@@ -473,26 +36,33 @@
                     <img style="margin-left: 30%;" src="https://img.icons8.com/cotton/200/pupil-male--v2.png"/>
                 </div>
                 <div class="data">
-                    <input type="text" name="noteData" required placeholder="Данные" min="0" max="100000" step="1" class="inputenumberlement">
-                    <input type="tel" name="notePhone" required placeholder="Телефон" min="0" max="100000" step="1" class="inputenumberlement">
+                    <input type="text" name="noteData" required placeholder="Данные" min="0" max="100000" step="1"
+                           class="inputenumberlement">
+                    <input type="tel" name="notePhone" required placeholder="Телефон" min="0" max="100000" step="1"
+                           class="inputenumberlement">
                 </div>
             </div>
 
             <div class="noteInfo" style="margin-bottom: 50px;">
-                <input type="text" name="noteComment" placeholder="Комментарий" class="inputenumberlement" style="width: 85%;">
+                <input type="text" name="noteComment" placeholder="Комментарий" class="inputenumberlement"
+                       style="width: 85%;">
             </div>
 
             <div name="nextVisit">
                 <div class="header">
-                    <p class="font-35" style="padding-top: 5px; text-transform: uppercase; text-align: center; letter-spacing: 3px; font-weight: 600;">Новый прием</p>
+                    <p class="font-35"
+                       style="padding-top: 5px; text-transform: uppercase; text-align: center; letter-spacing: 3px; font-weight: 600;">Новый прием</p>
                     <div class="buttonsWrapper">
-                        <button class="buttonform_editV2 fonts-25" type="button" onclick="addOperation()">+ Процедура</button>    
+                        <button class="buttonform_editV2 fonts-25" type="button"
+                                onclick="addOperation()">+ Процедура</button>
                     </div>
                 </div>
 
                 <div class="noteInfo">
-                    <input type="text" name="noteDate"step="1" class="inputenumberlement" style="width: 35%;" readonly th:value="${date}">
-                    <input type="text" name="noteTime" step="1" class="inputenumberlement" style="width: 35%;" readonly th:value="${time}">
+                    <input type="text" name="noteDate" step="1" class="inputenumberlement" style="width: 35%;" readonly
+                           th:value="${date}">
+                    <input type="text" name="noteTime" step="1" class="inputenumberlement" style="width: 35%;" readonly
+                           th:value="${time}">
                 </div><br><hr>
 
                 <div id="container">
@@ -501,11 +71,14 @@
 
                 <div class="noteInfo">
                     <p class="font-25 fontStyle">Процедура</p>
-                    <input type="text" name="noteOperation" required placeholder="Процедура" min="0" max="100000" step="1" class="inputenumberlement" style="width: 51%;">
+                    <input type="text" name="noteOperation" required placeholder="Процедура" min="0" max="100000"
+                           step="1" class="inputenumberlement" style="width: 51%;">
                 </div>
                 <div class="noteInfo">
-                    <input type="text" name="noteMedication" placeholder="Препарат" min="0" max="100000" step="1" class="inputenumberlement" style="width: 35%;">
-                    <input type="number" name="noteIncome" placeholder="Стоимость" min="0" max="100000" step="1" class="inputenumberlement" style="width: 35%;">
+                    <input type="text" name="noteMedication" placeholder="Препарат" min="0" max="100000" step="1"
+                           class="inputenumberlement" style="width: 35%;">
+                    <input type="number" name="noteIncome" placeholder="Стоимость" min="0" max="100000" step="1"
+                           class="inputenumberlement" style="width: 35%;">
                 </div>
                 
             </div>
@@ -518,63 +91,65 @@
     </div>
 
     <div class="margin-top-5 middle">
-        <button type="button" class="addbutton nonborder margin-side-25" onclick="addElementSelf()"><img src="https://img.icons8.com/wired/120/000000/add--v2.png"/></button>
-        <button method="post" type="submit" class="addbutton nonborder margin-side-25"><img src="https://img.icons8.com/fluency/120/000000/in-progress.png"/></button>
+        <button type="button" class="addbutton nonborder margin-side-25" onclick="addElementSelf()"><img
+                src="https://img.icons8.com/wired/120/000000/add--v2.png"/></button>
+        <button method="post" type="submit" class="addbutton nonborder margin-side-25"><img
+                src="https://img.icons8.com/fluency/120/000000/in-progress.png"/></button>
     </div>
 </form>
-    <div class="foot">        
-    </div>
+<div class="foot">
+</div>
 
-     <script>
-         var idNumber = 0;
-         var procInc = 1;
-         var idNumberName = 0;
-         var idselfProcedure = 0;
-         var idselfIncome = 0;
+<script>
+    var idNumber = 0;
+    var procInc = 1;
+    var idNumberName = 0;
+    var idselfProcedure = 0;
+    var idselfIncome = 0;
 
-         var id = 0;
-         var operationId = 0;
-         var medicationId = 0;
-         var incomeId = 0;
+    var id = 0;
+    var operationId = 0;
+    var medicationId = 0;
+    var incomeId = 0;
 
-         var heightContainer = 1040;
+    var heightContainer = 1040;
 
-         function addElementSelf(){
-            var predoplataElement = document.getElementById('calcElemLips');
-            var predoplataDiv = document.createElement('div');
-            predoplataDiv.className = 'calcelement';
-            predoplataDiv.innerHTML ='<span class="slide-in-blurred-top"  id="p' + idNumber + '"><input type="text" name="selfProcedure' + idselfProcedure + '" placeholder="Моя процедура" class="inputenumberlement selfelement pspan font-20"><input type="number" name="selfIncome' + idselfIncome + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            predoplataElement.prepend(predoplataDiv);
-            idselfProcedure++;
-            idselfIncome++
-            idNumber++;
-         }
+    function addElementSelf() {
+        var predoplataElement = document.getElementById('calcElemLips');
+        var predoplataDiv = document.createElement('div');
+        predoplataDiv.className = 'calcelement';
+        predoplataDiv.innerHTML = '<span class="slide-in-blurred-top"  id="p' + idNumber + '"><input type="text" name="selfProcedure' + idselfProcedure + '" placeholder="Моя процедура" class="inputenumberlement selfelement pspan font-20"><input type="number" name="selfIncome' + idselfIncome + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        predoplataElement.prepend(predoplataDiv);
+        idselfProcedure++;
+        idselfIncome++
+        idNumber++;
+    }
 
-        function deleteElement(button){
-            button.parentNode.parentNode.parentNode.remove();
-        }
+    function deleteElement(button) {
+        button.parentNode.parentNode.parentNode.remove();
+    }
 
-        function addOperation() {
-            procInc++;
-            operationId++;
-            medicationId++;
-            incomeId++;
+    function addOperation() {
+        procInc++;
+        operationId++;
+        medicationId++;
+        incomeId++;
 
-            var predoplataElement = document.getElementById('container');
-            var predoplataDiv = document.createElement('div');
+        var predoplataElement = document.getElementById('container');
+        var predoplataDiv = document.createElement('div');
 
-            var containerElement = document.getElementById('calcelementId');
-            var spanElement = document.getElementById('calcelementIdSpan');
-            heightContainer = heightContainer + 232.5 + 15;
-            containerElement.style.height = heightContainer + 'px';
-            spanElement.style.height = heightContainer + 'px';
+        var containerElement = document.getElementById('calcelementId');
+        var spanElement = document.getElementById('calcelementIdSpan');
+        heightContainer = heightContainer + 232.5 + 15;
+        containerElement.style.height = heightContainer + 'px';
+        spanElement.style.height = heightContainer + 'px';
 
-            predoplataDiv.className = 'proc';
-            predoplataDiv.innerHTML =
+        predoplataDiv.className = 'proc';
+        predoplataDiv.innerHTML =
             '<div class="noteInfo"><p class="font-25 fontStyle">Процедура ' + procInc + '</p><input type="text" name="noteOperation' + operationId + '" required placeholder="Процедура" min="0" max="100000" step="1" class="inputenumberlement" style="width: 47%;"></div><div class="noteInfo"><input type="text" name="noteMedication' + medicationId + '" placeholder="Препарат" min="0" max="100000" step="1" class="inputenumberlement" style="width: 35%;"><input type="number" name="noteIncome' + incomeId + '" placeholder="Стоимость" min="0" max="100000" step="1" class="inputenumberlement" style="width: 35%;"></div><br><hr>';
-            predoplataElement.prepend(predoplataDiv);
-        }
-     </script>
+        predoplataElement.prepend(predoplataDiv);
+    }
+</script>
 
 </body>
 </html>

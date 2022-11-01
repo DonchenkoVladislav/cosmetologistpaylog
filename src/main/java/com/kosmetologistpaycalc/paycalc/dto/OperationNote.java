@@ -14,4 +14,6 @@ public class OperationNote {
     private String medicament;
     private Integer summury;
     private String clientName;
+    private Long clientId;
+    private Long id;
 }

@@ -26,8 +26,8 @@ import java.util.stream.Collectors;
 public class OperationService {
 
     private static final String PATTERN_DATE = "yyyy-MM-dd HH:mm";
-    private static final String PATTERN_DAY = "yyyy-MM-dd";
-    private static final String PATTERN_TIME = "HH:mm";
+    public static final String PATTERN_DAY = "yyyy-MM-dd";
+    public static final String PATTERN_TIME = "HH:mm";
 
     @Autowired
     private OperationRepository operationRepository;
@@ -43,11 +43,11 @@ public class OperationService {
         date.setTime(sdf.parse(String.format("%s %s", body.getDate(), body.getTime())));
 
         operationRepository.save(new Operation(client.getId(),
-                date,
-                body.getOperationName(),
-                body.getMedicament(),
-                Integer.parseInt(body.getCost()),
-                principal.getName()));
+            date,
+            body.getOperationName(),
+            body.getMedicament(),
+            Integer.parseInt(body.getCost()),
+            principal.getName()));
     }
 
     public List<CurrentNote> createCurrentNoteList(Principal principal, long limit) {
@@ -58,11 +58,11 @@ public class OperationService {
             String countOperations = getCountOperationsOnDay(myAllActualOperations, date) + " записей";
 
             myCurrentNoteList.add(
-                    CurrentNote.builder()
-                            .day(date)
-                            .timeProperty("Пример")
-                            .countDaysNotes(countOperations)
-                            .build()
+                CurrentNote.builder()
+                    .day(date)
+                    .timeProperty("Пример")
+                    .countDaysNotes(countOperations)
+                    .build()
             );
         });
         return myCurrentNoteList;
@@ -76,20 +76,22 @@ public class OperationService {
 
         getAllMyActualOperations(principal).stream().forEach(currentOperation -> {
             operationsNotes.add(
-                    OperationNote.builder()
-                            .day(new SimpleDateFormat(PATTERN_DAY).format(currentOperation.getDate().getTime()))
-                            .time(new SimpleDateFormat(PATTERN_TIME).format(currentOperation.getDate().getTime()))
-                            .medicament(currentOperation.getMedicament())
-                            .summury(currentOperation.getSummury())
-                            .name(currentOperation.getName())
-                            .clientName(AllMyClients.stream()
-                                    .filter(client -> client.getId().equals(currentOperation.getClientId()))
-                                    .findFirst()
-                                    .orElseThrow(
-                                            () -> new NoSuchElementException("Не удалось найти клинета по id = "
-                                                    + currentOperation.getClientId()))
-                                    .getData())
-                            .build());
+                OperationNote.builder()
+                    .day(new SimpleDateFormat(PATTERN_DAY).format(currentOperation.getDate().getTime()))
+                    .time(new SimpleDateFormat(PATTERN_TIME).format(currentOperation.getDate().getTime()))
+                    .medicament(currentOperation.getMedicament())
+                    .summury(currentOperation.getSummury())
+                    .name(currentOperation.getName())
+                    .clientName(AllMyClients.stream()
+                        .filter(client -> client.getId().equals(currentOperation.getClientId()))
+                        .findFirst()
+                        .orElseThrow(
+                            () -> new NoSuchElementException("Не удалось найти клинета по id = "
+                                + currentOperation.getClientId()))
+                        .getData())
+                    .clientId(currentOperation.getClientId())
+                    .id(currentOperation.getId())
+                    .build());
         });
         return operationsNotes.stream().sorted(new Comparator<OperationNote>() {
             public int compare(OperationNote a1, OperationNote a2) {
@@ -103,16 +105,16 @@ public class OperationService {
 
         getAllDatesNotes(getAllMyActualOperations(principal), limit).forEach(date -> {
             dayInfoList.add(DayInfo.builder()
-                    .date(date)
-                    .countNotes(operationNoteList(principal, limit).stream().count() + " записей")
-                    .operationNotes(operationNoteList(principal, limit).stream()
-                            .filter(note -> note.getDay().equals(date)).sorted(new Comparator<OperationNote>() {
-                                public int compare(OperationNote a1, OperationNote a2) {
-                                    return a2.getTime().compareTo(a1.getTime());
-                                }
-                            })
-                            .collect(Collectors.toList()))
-                    .build());
+                .date(date)
+                .countNotes(operationNoteList(principal, limit).stream().count() + " записей")
+                .operationNotes(operationNoteList(principal, limit).stream()
+                    .filter(note -> note.getDay().equals(date)).sorted(new Comparator<OperationNote>() {
+                        public int compare(OperationNote a1, OperationNote a2) {
+                            return a2.getTime().compareTo(a1.getTime());
+                        }
+                    })
+                    .collect(Collectors.toList()))
+                .build());
         });
         return dayInfoList;
     }
@@ -121,38 +123,44 @@ public class OperationService {
         List<Operation> operations = new ArrayList<>();
         operationRepository.findAll().forEach(operation -> operations.add(operation));
         return operations.stream()
-                .filter(operation -> operation.getUserName().equals(principal.getName()))
-                .collect(Collectors.toList());
+            .filter(operation -> operation.getUserName().equals(principal.getName()))
+            .collect(Collectors.toList());
     }
 
-    private List<Operation> getAllMyActualOperations(Principal principal) {
+    public List<Operation> getAllMyActualOperations(Principal principal) {
         return getAllMyOperations(principal).stream()
-                .filter(operation -> operation.getDate().getTime().equals(Calendar.getInstance().getTime()) || operation.getDate().getTime().after(Calendar.getInstance().getTime()))
-                .collect(Collectors.toList());
+            .filter(operation -> operation.getDate().getTime().equals(Calendar.getInstance().getTime())
+                || operation.getDate().getTime().after(Calendar.getInstance().getTime()))
+            .sorted(new Comparator<Operation>() {
+                public int compare(Operation a1, Operation a2) {
+                    return a1.getDate().compareTo(a2.getDate());
+                }
+            })
+            .collect(Collectors.toList());
     }
 
     private List<Client> getAllMyClients(Principal principal) {
         List<Client> clients = new ArrayList<>();
         clientRepository.findAll().forEach(client -> clients.add(client));
         return clients.stream()
-                .filter(operation -> operation.getUserName().equals(principal.getName()))
-                .collect(Collectors.toList());
+            .filter(operation -> operation.getUserName().equals(principal.getName()))
+            .collect(Collectors.toList());
     }
 
     private int getCountOperationsOnDay(List<Operation> allMyOperations, String date) {
         return (int) allMyOperations.stream()
-                .filter(operation -> new SimpleDateFormat(PATTERN_DAY).format(operation.getDate().getTime()).equals(date))
-                .count();
+            .filter(operation -> new SimpleDateFormat(PATTERN_DAY).format(operation.getDate().getTime()).equals(date))
+            .count();
     }
 
     //Получить все даты записей
     private List<String> getAllDatesNotes(List<Operation> operations, long limit) {
         return operations.stream()
-                .map(Operation::getDate)
-                .map(date -> new SimpleDateFormat(PATTERN_DAY).format(date.getTime()))
-                .distinct()
-                .sorted(Comparator.naturalOrder())
-                .limit(limit)
-                .collect(Collectors.toList());
+            .map(Operation::getDate)
+            .map(date -> new SimpleDateFormat(PATTERN_DAY).format(date.getTime()))
+            .distinct()
+            .sorted(Comparator.naturalOrder())
+            .limit(limit)
+            .collect(Collectors.toList());
     }
 }

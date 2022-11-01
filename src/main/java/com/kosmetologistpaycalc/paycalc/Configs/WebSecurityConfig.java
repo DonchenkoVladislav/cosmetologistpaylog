@@ -37,7 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                         "/client_info",
                         "/client",
                         "/newnote/create/select-client/all_my_clients",
-                        "/newnote/create/select-client")
+                        "/newnote/create/select-client",
+                        "all_operations")
                 .authenticated()
                 .antMatchers("/", "/registration").permitAll()
                 .and()

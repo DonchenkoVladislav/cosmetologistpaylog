@@ -7,6 +7,7 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/airdatepicker/air_datepicker.css">
     <link rel="stylesheet" href="/cosmoStyle.css">
+    <link rel="stylesheet" href="/menu.css">
 </head>
 <body class="body">
 <form th:action="@{/logout}" method="post">
@@ -48,7 +49,7 @@
         <div class="widgetRow">
             <input hidden name="id" type="text" id="clientId" class="inputenumberlement homeInpun" readonly>
             <input type="text" id="clientData" list="clients" class="inputenumberlement homeInpun">
-            <button style="display: block" type="button" class="buttonform fonts homeInvertButton" onclick="getClientInfo()">Найти</button>
+            <button style="display: block" type="button" class="buttonform fonts homeInvertButton" onclick="getClientInfo('clientData')">Найти</button>
             <datalist id="clients"></datalist>
         </div>
 </div>
@@ -57,53 +58,12 @@
 <div class="widgetRowTogether" style="justify-content: space-evenly">
     <a href='/income' class="buttonform fonts" style="background-color: #f9f9f9; color: #514f4e">Доходы</a>
     <a href='/expenses' class="buttonform fonts" style="background-color: #f9f9f9; color: #514f4e">Расходы</a>
+    <a href="/all_operations" class="buttonform fonts" style="width: 340px;">Все записи</a>
 </div>
 
-<!--Мои записи-->
-<ul class="calcelementul">
-    <p class="centertext fonts">Мои записи</p>
-    <li class="calcelementhome fonts" th:each="note : ${lastNotes}">
-
-        <div style="display: flex; flex-direction: column; width: 100%;">
-            <div class="widgetRow">
-                <h3 class="fonts dateFonts" th:text="${note.day}"></h3>
-                <!--                            <h3 class="fonts dateFonts" th:text="${note.timeProperty}"></h3>-->
-                <h3 class="fonts countNoteFonts" th:text="${note.countDaysNotes}"></h3>
-            </div>
-            <ul>
-                <li th:each="op : ${operationsMainPage}" th:if="${op.day == note.day}">
-                    <div style="display: flex; flex-direction: row;">
-                        <h4 class="dateTime" th:text="${op.time}"></h4>
-
-                        <div style="display: flex; flex-direction: column; width: 100%;">
-                            <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                                <p class="blockV2 niceFont" th:text="${op.name}"></p>
-                                <img srcset="https://img.icons8.com/ios/420/more.png 2x"
-                                     style="width: 52px; height: 52px; filter: invert(0%) sepia(0%) saturate(7500%) hue-rotate(327deg) brightness(96%) contrast(104%);"
-                                     alt="подробнее">
-                            </div>
-                            <div style="display: flex; flex-direction: row; height: 50px;">
-                                <h5 class="blockV2 smallfonts niceFont"
-                                    style="color: gray; width: 50%; margin: 0 0 0 60px; text-transform: capitalize;"
-                                    th:text="${op.clientName}"></h5>
-                                <p class="blockV2 smallfonts niceFont"
-                                   style="color: gray; width: 60%; margin: 0 0 0 30px; text-transform: capitalize;"
-                                   th:text="${op.medicament}"></p>
-                                <!-- <p class="blockV2 smallfonts" style="color: gray; width: 60%; margin: 0 0 0 30px;">50000 ₽</p> -->
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                </li>
-
-            </ul>
-
-        </div>
-    </li>
-    <div class="widgetRowTogether">
-        <a href="/newnote" class="buttonform fonts" style="margin: 25px 25px 25px 425px; width: 340px;">Все записи</a>
-    </div>
-</ul>
+<!--Место для записей-->
+<div id="notesPlace">
+</div>
 
 <!--История-->
 <ul class="calcelementul">
@@ -144,10 +104,13 @@
         </ul>
     </li>
 </ul>
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="/airdatepicker/air-datepicker.js"></script>
+<script type="text/javascript" src="/buttom/buttom.js"></script>
+<script type="text/javascript" src="fastclick.js"></script>
 <script>
     new AirDatepicker('#calendar', {
         inline: true,
@@ -179,11 +142,131 @@
     });
 </script>
 <script>
+    function getNotesOfCurrentDay() {
+        $.ajax({
+            type: 'GET',
+            url: 'several_actual_operations',
+            dataType: 'json',
+            success: function (all_actual_operations) {
+                var notesPlace = document.getElementById("notesPlace");
+
+
+                var filler = document.createElement('div');
+                filler.id = "fill";
+                all_actual_operations.slice().reverse().forEach((note) => {
+                    createOneNote(note, filler);
+                })
+                notesPlace.prepend(filler);
+            }
+        });
+    }
+
+    function createOneNote(info, prepear) {
+
+        var note = document.createElement('ul');
+        note.className = "calcelementul topmenu";
+
+        var li = document.createElement('li');
+        li.style = 'width: 100%'
+
+
+        var menu = document.createElement('ul');
+        menu.innerHTML = '<ul class="submenu widgetRowEvently">\n' +
+            '                <li><button onclick="deleteOpeartion(' + info.id + ')" class="operationOptions"><img class="buttonSubMenu" src="https://cdn.icon-icons.com/icons2/1880/PNG/512/iconfinder-trash-4341321_120557.png"></button></li>\n' +
+            '                <li><button onclick="getClientRequest(' + info.clientId + ')" class="operationOptions"><img class="buttonSubMenu" src="https://cdn.icon-icons.com/icons2/2643/PNG/512/female_woman_person_people_avatar_icon_159366.png"></button></li>\n' +
+            '            </ul>'
+
+        var header = document.createElement('div');
+        header.className = "widgetRow";
+
+        var datePlace = document.createElement('div');
+        datePlace.className = 'dateBlock'
+
+        var infoPlace = document.createElement('button');
+        infoPlace.style = 'width: 53%;'
+        infoPlace.className = 'operationOptions'
+
+        // var circles = document.createElement('button');
+        // circles.className = 'operationOptions'
+        //
+        // var circle = document.createElement('div')
+        // circle.className = 'circle'
+        // circle.style = 'background: #' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase() + ';'
+        // var circle2 = document.createElement('div')
+        // circle2.style = 'background: #' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase() + ';'
+        // circle2.className = 'circle'
+
+        // circles.prepend(circle, circle2)
+
+        var time = document.createElement('p');
+        time.className = "dateTime newNoteFonts fontXxxLarge fonts";
+        time.innerHTML = info.time;
+
+        var date = document.createElement('p');
+        date.className = "dateTime newNoteFonts fontXxxLarge fonts";
+        date.style = 'color: #a9a9a9'
+        date.innerHTML = getParseDate(info.day);
+
+        var name = document.createElement('p');
+        name.className = "blockV3 fontXxxLarge fonts";
+        name.innerHTML = info.name;
+
+        var medicamentJs = document.createElement('p');
+        medicamentJs.className = "blockV3 niceFont fontXxLarge fonts";
+        medicamentJs.innerHTML = info.medicament;
+
+        var summuryJs = document.createElement('p');
+        summuryJs.className = "blockV3 niceFont fontXxLarge fonts";
+        summuryJs.innerHTML = info.summury + " ₽";
+
+        datePlace.prepend(date, time)
+        infoPlace.prepend(name, medicamentJs, summuryJs)
+        header.prepend(datePlace, infoPlace);
+
+        li.prepend(header, menu)
+        // secondText.prepend(clientNameJs, medicamentJs);
+        // thirdText.prepend(summuryJs);
+
+        note.prepend(li);
+        prepear.prepend(note);
+    }
+
+    function getParseDate(date) {
+        var arr=[
+            'Янв.',
+            'Фев.',
+            'Мар.',
+            'Апр.',
+            'Мая',
+            'Июн.',
+            'Июл.',
+            'Авг.',
+            'Сен.',
+            'Окт.',
+            'Ноя.',
+            'Дек.'
+        ];
+
+        var d = date.split('T')[0]
+        var day = d.split('-')[2]
+        var mouth = arr[d.split('-')[1] - 1]
+        console.log(date)
+        return day + ' ' + mouth
+    }
+
+    function getParseTime(date) {
+        return date.split('T')[1].split(':')[0] + ':' + date.split('T')[1].split(':')[1]
+    }
+</script>
+<script>
     var responseBody;
     var clientData;
     var clientId;
 
     $(document).ready(function () {
+        FastClick.attach(document.body);
+
+        getNotesOfCurrentDay();
         $.ajax({
             type: 'GET',
             url: '/newnote/create/select-client/all_my_clients',
@@ -199,11 +282,15 @@
         });
     });
 
-    function getClientInfo() {
-        clientData = document.getElementById('clientData').value;
+    function getClientInfo(elementId) {
+        clientData = document.getElementById(elementId).value;
         clientId = responseBody.filter(function (item) {
             return item.client.data === clientData
         })[0].client.id
+        getClientRequest(clientId)
+    }
+
+    function getClientRequest(clientId) {
         $.ajax({
             type: 'GET',
             url: '/client_info?id=' + clientId,
@@ -211,6 +298,24 @@
             data: clientId
         });
         window.location.href = "/client_info?id=" + clientId;
+    }
+
+    function deleteOpeartion(id) {
+        if (confirm('Удалить запись?')) {
+            $.ajax({
+                type: 'POST',
+                url: '/delete_operation',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify({id}),
+                success: function (delete_operation) {
+                    alert(delete_operation.request)
+                }
+            });
+            location.reload()
+        } else {
+            // Do nothing!
+        }
     }
 
 </script>
