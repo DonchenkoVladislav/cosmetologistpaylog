@@ -1,3 +1,8 @@
+a {
+    transition: .3s;
+    text-decoration: none;
+}
+
 .margin-0 {
     margin: 0%;
 }
@@ -226,10 +231,15 @@
     padding-top: 15px;
 }
 
-a:hover {
-    color: #f885d2;
-    background-color: white;
+.isNoteOne{
+    background-color: #f6e6d2;
 }
+
+/*a:hover {*/
+    /*transform: scale(1.1);*/
+    /*color: #f885d2;*/
+    /*background-color: white;*/
+/*}*/
 
 .calcelementhome {
     display: flex;
@@ -646,4 +656,41 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.circle {
+    width: 10px; /* поддерживаются любые единицы, в том числе проценты */
+    height: 10px; /* поддерживаются любые единицы, в том числе проценты */
+    margin: 0.7em 0.1em -.3em 0.4em;
+    background: silver;
+    border-radius: 50%;
+}
+
+.circleV2 {
+    width: 10px; /* поддерживаются любые единицы, в том числе проценты */
+    height: 10px; /* поддерживаются любые единицы, в том числе проценты */
+    margin: .85em 0.1em -.3em 0.4em;
+    background: silver;
+    border-radius: 50%;
+}
+
+.bigCircle{
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0.6em 0.1em 0 0.4em;
+    background: silver;
+    border-radius: 50%;
+}
+
+.bigCircleV2{
+    width: 1.2em;
+    height: 1.2em;
+    margin: 1em 0.1em 0 0.4em;
+    background: silver;
+    border-radius: 50%;
+}
+
+.textIntoCircle {
+    text-align: center;
+    font-size: smaller;
 }

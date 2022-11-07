@@ -46,12 +46,14 @@
 
 <!--Поиск по клиентам-->
 <div class="homeInvertBlock">
-        <div class="widgetRow">
-            <input hidden name="id" type="text" id="clientId" class="inputenumberlement homeInpun" readonly>
-            <input type="text" id="clientData" list="clients" class="inputenumberlement homeInpun">
-            <button style="display: block" type="button" class="buttonform fonts homeInvertButton" onclick="getClientInfo('clientData')">Найти</button>
-            <datalist id="clients"></datalist>
-        </div>
+    <div class="widgetRow">
+        <input hidden name="id" type="text" id="clientId" class="inputenumberlement homeInpun" readonly>
+        <input type="text" id="clientData" list="clients" class="inputenumberlement homeInpun">
+        <button style="display: block" type="button" class="buttonform fonts homeInvertButton"
+                onclick="getClientInfo('clientData')">Найти
+        </button>
+        <datalist id="clients"></datalist>
+    </div>
 </div>
 
 <!--Доходы и расходы-->
@@ -112,36 +114,6 @@
 <script type="text/javascript" src="/buttom/buttom.js"></script>
 <script type="text/javascript" src="fastclick.js"></script>
 <script>
-    new AirDatepicker('#calendar', {
-        inline: true,
-        classes: 'airdateclicker',
-        // isMobile: true,
-        // autoClose: true,
-        dateFormat: 'yyyy-MM-dd',
-        onSelect({date}) {
-            var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-            massiveDate = String(myDate).split("-");
-
-            var mounth;
-            var dayNumber;
-
-            if (massiveDate[1].length === 1) {
-                mounth = "0" + massiveDate[1]
-            } else {
-                mounth = massiveDate[1]
-            }
-
-            if (massiveDate[2].length === 1) {
-                dayNumber = "0" + massiveDate[2]
-            } else {
-                dayNumber = massiveDate[2]
-            }
-            selectDate = massiveDate[0] + "-" + mounth + "-" + dayNumber;
-            window.location.replace('/newnote?' + selectDate)
-        }
-    });
-</script>
-<script>
     function getNotesOfCurrentDay() {
         $.ajax({
             type: 'GET',
@@ -172,8 +144,8 @@
 
         var menu = document.createElement('ul');
         menu.innerHTML = '<ul class="submenu widgetRowEvently">\n' +
-            '                <li><button onclick="deleteOpeartion(' + info.id + ')" class="operationOptions"><img class="buttonSubMenu" src="https://cdn.icon-icons.com/icons2/1880/PNG/512/iconfinder-trash-4341321_120557.png"></button></li>\n' +
-            '                <li><button onclick="getClientRequest(' + info.clientId + ')" class="operationOptions"><img class="buttonSubMenu" src="https://cdn.icon-icons.com/icons2/2643/PNG/512/female_woman_person_people_avatar_icon_159366.png"></button></li>\n' +
+            '                <li><button onclick="deleteOpeartion(' + info.id + ')" class="operationOptions"><img class="buttonSubMenu" src="images/iconfinder-trash.png"></button></li>\n' +
+            '                <li><button onclick="getClientRequest(' + info.clientId + ')" class="operationOptions"><img class="buttonSubMenu" src="images/female.png"></button></li>\n' +
             '            </ul>'
 
         var header = document.createElement('div');
@@ -185,18 +157,6 @@
         var infoPlace = document.createElement('button');
         infoPlace.style = 'width: 53%;'
         infoPlace.className = 'operationOptions'
-
-        // var circles = document.createElement('button');
-        // circles.className = 'operationOptions'
-        //
-        // var circle = document.createElement('div')
-        // circle.className = 'circle'
-        // circle.style = 'background: #' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase() + ';'
-        // var circle2 = document.createElement('div')
-        // circle2.style = 'background: #' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase() + ';'
-        // circle2.className = 'circle'
-
-        // circles.prepend(circle, circle2)
 
         var time = document.createElement('p');
         time.className = "dateTime newNoteFonts fontXxxLarge fonts";
@@ -232,7 +192,7 @@
     }
 
     function getParseDate(date) {
-        var arr=[
+        var arr = [
             'Янв.',
             'Фев.',
             'Мар.',
@@ -250,15 +210,12 @@
         var d = date.split('T')[0]
         var day = d.split('-')[2]
         var mouth = arr[d.split('-')[1] - 1]
-        console.log(date)
         return day + ' ' + mouth
     }
 
-    function getParseTime(date) {
-        return date.split('T')[1].split(':')[0] + ':' + date.split('T')[1].split(':')[1]
-    }
 </script>
 <script>
+    var calendarData;
     var responseBody;
     var clientData;
     var clientId;
@@ -280,7 +237,127 @@
                 })
             }
         });
+        $.ajax({
+            type: 'GET',
+            url: '/all_actual_operations',
+            dataType: 'json',
+            success: function (all_actual_operations) {
+                calendarData = all_actual_operations.flatMap(item => item.day)
+
+                new AirDatepicker('#calendar', {
+                    inline: true,
+                    classes: 'airdateclicker',
+                    // isMobile: true,
+                    // autoClose: true,
+                    dateFormat: 'yyyy-MM-dd',
+                    onRenderCell({date, cellType}) {
+                            if (cellType === 'day') {
+                                var dd = parseDate(date);
+
+                                if (calendarData.filter(item => item === dd).length > 0 && calendarData.filter(item => item === dd).length < 4) {
+                                    return {
+                                        html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length) + "</div>",
+                                        disabled: false,
+                                        classes: 'isNoteOne',
+                                        attrs: {
+                                            title: 'Cell is disabled'
+                                        }
+                                    }
+                                }
+                                if (calendarData.filter(item => item === dd).length > 3 && calendarData.filter(item => item === dd).length < 7) {
+                                    return {
+                                        html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div><div class='widgetRow'>" + getCircles(3) + "</div><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length - 3) + "</div></div>",
+                                        disabled: false,
+                                        classes: 'isNoteOne',
+                                        attrs: {
+                                            title: 'Cell is disabled'
+                                        }
+                                    }
+                                }
+                                if (calendarData.filter(item => item === dd).length > 6) {
+                                    return {
+                                        html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div><div class='bigCircle'><p class='textIntoCircle'>" + calendarData.filter(item => item === dd).length + "</p></div></div>",
+                                        disabled: false,
+                                        classes: 'isNoteOne',
+                                        attrs: {
+                                            title: 'Cell is disabled'
+                                        }
+                                    }
+                                }
+                            }
+                        // })
+
+                        // if (date.getDate() === 12) {
+                        //     console.log(date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate())
+                        //     console.log(calendarData)
+                        //     return {
+                        //         disabled: true,
+                        //         classes: 'disabled-class',
+                        //         attrs: {
+                        //             title: 'Cell is disabled'
+                        //         }
+                        //     }
+                        // }
+                    },
+                    onSelect({date}) {
+                        var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+                        massiveDate = String(myDate).split("-");
+
+                        var mounth;
+                        var dayNumber;
+
+                        if (massiveDate[1].length === 1) {
+                            mounth = "0" + massiveDate[1]
+                        } else {
+                            mounth = massiveDate[1]
+                        }
+
+                        if (massiveDate[2].length === 1) {
+                            dayNumber = "0" + massiveDate[2]
+                        } else {
+                            dayNumber = massiveDate[2]
+                        }
+                        selectDate = massiveDate[0] + "-" + mounth + "-" + dayNumber;
+                        window.location.replace('/newnote?' + selectDate)
+                    }
+                });
+
+            }
+        });
     });
+
+    function getCircles(count) {
+        var htmlText = ""
+        console.log("12")
+
+        for (let i = 1; i < count + 1; i++) {
+            console.log("11")
+            htmlText = htmlText + "<div class='circle'></div>"
+        }
+        return htmlText
+    }
+
+    function parseDate(date) {
+        var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        massiveDate = String(myDate).split("-");
+
+        var mounth;
+        var dayNumber;
+
+        if (massiveDate[1].length === 1) {
+            mounth = "0" + massiveDate[1]
+        } else {
+            mounth = massiveDate[1]
+        }
+
+        if (massiveDate[2].length === 1) {
+            dayNumber = "0" + massiveDate[2]
+        } else {
+            dayNumber = massiveDate[2]
+        }
+
+        return massiveDate[0] + "-" + mounth + "-" + dayNumber;
+    }
 
     function getClientInfo(elementId) {
         clientData = document.getElementById(elementId).value;
