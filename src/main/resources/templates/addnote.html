@@ -8,13 +8,21 @@
     <link rel="stylesheet" type="text/css" href="/airdatepicker/air_datepicker.css">
     <link rel="stylesheet" href="/cosmoStyle.css">
     <link rel="stylesheet" href="/menu.css">
+    <link rel="stylesheet" href="/loader.css">
 </head>
+
 <body class="body">
 
+<!--Loader-->
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
+
+<!--Заголовок-->
 <div class="fixedblock widgetBetween">
-    <a style="color: white" href="/home"><H3 class="font-80 header">&nbsp &#8592</H3></a>
+    <a style="color: white" href="/home"><H3 class="font-80 header transition">&nbsp &#8592</H3></a>
     <H3 class="font-80 header">Записи</H3>
-    <a style="color: white" href="/home"><H3 class="font-80 header">⌂ &nbsp</H3></a>
+    <a style="color: white" href="/home"><H3 class="font-80 header transition">⌂ &nbsp</H3></a>
 </div>
 
 <!--Аналитика-->
@@ -29,7 +37,7 @@
 </div>
 
 <!--Кнопка Новая запись-->
-<div class="widgetRow calcelementul">
+<div id="nnb" class="widgetRow calcelementul">
     <button type="submit" class="buttonform fonts homeInvertButton newNoteButton" onclick="getTimeForNote()">Добавить
         запись
     </button>
@@ -50,6 +58,7 @@
 <script type="text/javascript" src="/airdatepicker/air-datepicker.js"></script>
 <script type="text/javascript" src="/buttom/buttom.js"></script>
 <script type="text/javascript" src="fastclick.js"></script>
+<script type="text/javascript" src="/loader/loader.js"></script>
 <script>
 
     let timeList = ["07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"];
@@ -116,6 +125,8 @@
                         }
                     },
                     onSelect({date}) {
+                        hideNewNoteButton(date)
+
                         if (document.getElementById('timeFill')) {
                             removeElementById("timeFill");
                         }
@@ -137,16 +148,40 @@
         });
     });
 
+    var dateIsLast = false
+
+    function hideNewNoteButton(date) {
+        var today = new Date();
+
+        console.log(today - date)
+        if (today - date > 86400000) dateIsLast = true
+
+        if (dateIsLast) {
+            document.getElementById("nnb").style = "display: none"
+            if (today - date > 86400000) dateIsLast = true
+            else dateIsLast = false
+        }
+        else document.getElementById("nnb").style = "display: flex"
+    }
+
+    $("a.transition").click(function (event) {
+        event.preventDefault();
+        linkLocation = this.href;
+        $("body").hide().fadeOut(500, redirectPage);
+    });
+
+    function redirectPage() {
+        window.location = linkLocation;
+    }
+
     function removeElementById(id) {
         document.getElementById(id).remove();
     }
 
     function getCircles(count) {
         var htmlText = ""
-        console.log("12")
 
         for (let i = 1; i < count + 1; i++) {
-            console.log("11")
             htmlText = htmlText + "<div class='circle'></div>"
         }
         return htmlText
@@ -199,7 +234,8 @@
             notesPlace.prepend(filler);
 
             isDaySelected = false;
-        } else {
+        }
+        else {
             var filler = document.createElement('div');
             filler.id = "fill";
 

@@ -2,24 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Мои расходы</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="stylesheet" href="chief-slider.css">
+    <link rel="stylesheet" href="/loader.css">
 
     <style>
-         .margin-top-30{
+        .margin-top-30 {
             margin-top: 30%;
         }
-        .margin-top-5{
+
+        .margin-top-5 {
             margin-top: 5%;
         }
-        .margin-side-10{
+
+        .margin-side-10 {
             margin: 0px 10px;
         }
-        .margin-side-25{
+
+        .margin-side-25 {
             margin: 0px 25px;
         }
-        .buttonform_ok{
+
+        .buttonform_ok {
             text-decoration: none;
             display: inline-block;
             width: 280px;
@@ -35,7 +40,8 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
             transition: .3s;
         }
-        .buttonform{
+
+        .buttonform {
             text-decoration: none;
             display: inline-block;
             width: 280px;
@@ -51,7 +57,8 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
             transition: .3s;
         }
-        .buttonformmiddle{
+
+        .buttonformmiddle {
             text-decoration: none;
             display: inline-block;
             width: 390px;
@@ -67,7 +74,8 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
             transition: .3s;
         }
-        .buttonformlong{
+
+        .buttonformlong {
             text-decoration: none;
             display: inline-block;
             width: 370px;
@@ -83,51 +91,62 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
             transition: .3s;
         }
-        .addbutton{
+
+        .addbutton {
             background: white;
             box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
             transition: .3s;
             border-radius: 45px;
         }
-        .fixedblock{
+
+        .fixedblock {
             display: block;
             background-color: #34363d;
             color: white;
             margin: 0;
             position: static;
         }
-        .header{
+
+        .header {
             text-align: center;
             margin: 0;
         }
-        .padding-15{
+
+        .padding-15 {
             padding-top: 5px;
         }
-        .font-20{
+
+        .font-20 {
             font-family: 'Montserrat', sans-serif;
             font-size: 20px;
         }
-        .font-30{
+
+        .font-30 {
             font-family: 'Montserrat', sans-serif;
             font-size: 30px;
         }
-        .font-80{
+
+        .font-80 {
             font-family: 'Montserrat', sans-serif;
             font-size: 80px;
         }
-        .flex{
+
+        .flex {
             display: flex;
             flex-direction: row;
         }
-        .nonborder{
+
+        .nonborder {
             border: none;
         }
-        .middle{
+
+        .middle {
             position: relative;
             left: 50%;
             transform: translate(-50%, 0%);
         }
-        .delbutton{
+
+        .delbutton {
             height: 80px;
             width: 80px;
             border: none;
@@ -140,30 +159,34 @@
             margin-left: 70px;
             transform: scale(0.82);
         }
-        .middle{
+
+        .middle {
             display: flex;
             justify-content: center;
         }
-        .inputenumberlement{
+
+        .inputenumberlement {
             width: 400px;
             height: 50px;
             resize: vertical;
-            padding:15px;
-            border-radius:45px;
-            border:0;
-            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 45px;
+            border: 0;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-size: 38px;
             text-align: center;
             opacity: 0.5;
             margin-top: 15px;
         }
-        .inputenumberlement:hover{
+
+        .inputenumberlement:hover {
             opacity: 1;
             transition: opacity 1s;
-            box-shadow:0px 0px 10px rgba(0,0,0,0.8);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
         }
-        .pelement{
+
+        .pelement {
             font-family: 'Montserrat', sans-serif;
             font-size: 20px;
             text-align: center;
@@ -173,7 +196,8 @@
             font-weight: 600;
             color: #524f4e;
         }
-        .pelementhight{
+
+        .pelementhight {
             font-family: 'Montserrat', sans-serif;
             font-size: 20px;
             text-align: center;
@@ -183,14 +207,16 @@
             font-weight: 600;
             color: #524f4e;
         }
-        .calcelement{
+
+        .calcelement {
             width: 95%;
             height: 100px;
             position: relative;
             left: 50%;
             transform: translate(-50%, 0%);
         }
-        div.calcelement span{
+
+        div.calcelement span {
             display: flex;
             justify-content: center;
             width: 800px;
@@ -200,164 +226,170 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
             border-radius: 60px;
         }
-        .pspan{
+
+        .pspan {
             width: 220px;
         }
-        .foot{
+
+        .foot {
             display: block;
-            height: 80px;            
+            height: 80px;
         }
-        .backgroundincomeimg{
+
+        .backgroundincomeimg {
             width: 100%;
             height: 20vw;
             background-repeat: no-repeat;
         }
-        .body{
+
+        .body {
             background-color: #f9f9f9;
             margin: 0%;
         }
 
 
         .container {
-      max-width: 100%;
-      margin: 0 auto;
-    }
+            max-width: 100%;
+            margin: 0 auto;
+        }
 
-    .slider__container {
-      padding-left: 0;
-      padding-right: 0;
-    }
+        .slider__container {
+            padding-left: 0;
+            padding-right: 0;
+        }
 
-    .slider__items {
-      counter-reset: slide;
-    }
+        .slider__items {
+            counter-reset: slide;
+        }
 
-    .slider__item {
-      -webkit-box-flex: 0;
-      -ms-flex: 0 0 100%;
-      flex: 0 0 100%;
-      max-width: 100%;
-      counter-increment: slide;
-      height: 220px;
-      position: relative;
-    }
-    .slider {
-  position: relative;
-}
+        .slider__item {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            counter-increment: slide;
+            height: 220px;
+            position: relative;
+        }
 
-.slider__container {
-  overflow: hidden;
-}
+        .slider {
+            position: relative;
+        }
 
-.slider__wrapper {
-  /*overflow: hidden;*/
-}
+        .slider__container {
+            overflow: hidden;
+        }
 
-.slider__items {
-  display: flex;
-  transition: transform 0.5s ease;
-}
+        .slider__wrapper {
+            /*overflow: hidden;*/
+        }
 
-.slider_disable-transition {
-  transition: none;
-}
+        .slider__items {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
 
-.slider__item {
-  flex: 0 0 100%;
-  max-width: 100%;
-  user-select: none;
-}
+        .slider_disable-transition {
+            transition: none;
+        }
 
-/* кнопки влево и вправо */
+        .slider__item {
+            flex: 0 0 100%;
+            max-width: 100%;
+            user-select: none;
+        }
 
-.slider__control {
-  position: absolute;
-  top: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  color: #fff;
-  text-align: center;
-  height: 50px;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.2);
-}
+        /* кнопки влево и вправо */
 
-.slider__control_hide {
-  display: none;
-}
+        .slider__control {
+            position: absolute;
+            top: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            color: #fff;
+            text-align: center;
+            height: 50px;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.2);
+        }
 
-.slider__control[data-slide='prev'] {
-  left: 0;
-}
+        .slider__control_hide {
+            display: none;
+        }
 
-.slider__control[data-slide='next'] {
-  right: 0;
-}
+        .slider__control[data-slide='prev'] {
+            left: 0;
+        }
 
-.slider__control:hover,
-.slider__control:focus {
-  color: #fff;
-  text-decoration: none;
-  outline: 0;
-  background: rgba(0, 0, 0, 0.3);
-}
+        .slider__control[data-slide='next'] {
+            right: 0;
+        }
 
-.slider__control::before {
-  content: '';
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background: transparent no-repeat center center;
-  background-size: 100% 100%;
-}
+        .slider__control:hover,
+        .slider__control:focus {
+            color: #fff;
+            text-decoration: none;
+            outline: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
 
-.slider__control[data-slide='prev']::before {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
-}
+        .slider__control::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: transparent no-repeat center center;
+            background-size: 100% 100%;
+        }
 
-.slider__control[data-slide='next']::before {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-}
+        .slider__control[data-slide='prev']::before {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+        }
 
-/* индикаторы */
+        .slider__control[data-slide='next']::before {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+        }
 
-.slider__indicators {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 15;
-  display: flex;
-  justify-content: center;
-  padding-left: 0;
-  margin-right: 15%;
-  margin-left: 15%;
-  list-style: none;
-  margin-top: 0;
-  margin-bottom: 0;
-}
+        /* индикаторы */
 
-.slider__indicators li {
-  box-sizing: content-box;
-  flex: 0 1 auto;
-  width: 30px;
-  height: 5px;
-  margin-right: 3px;
-  margin-left: 3px;
-  text-indent: -999px;
-  cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.5);
-  background-clip: padding-box;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-}
+        .slider__indicators {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 15;
+            display: flex;
+            justify-content: center;
+            padding-left: 0;
+            margin-right: 15%;
+            margin-left: 15%;
+            list-style: none;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
 
-.slider__indicators li.active {
-  background-color: rgba(255, 255, 255, 0.9);
-}
-.selfelement{
+        .slider__indicators li {
+            box-sizing: content-box;
+            flex: 0 1 auto;
+            width: 30px;
+            height: 5px;
+            margin-right: 3px;
+            margin-left: 3px;
+            text-indent: -999px;
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.5);
+            background-clip: padding-box;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        .slider__indicators li.active {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .selfelement {
             font-family: 'Montserrat', sans-serif;
             font-size: 20px;
             text-align: center;
@@ -368,778 +400,961 @@
             font-weight: 600;
             color: #524f4e;
         }
-    .hidden{
-        visibility: hidden;
-    }
 
-    .slide-in-blurred-top{-webkit-animation:bounce-top .9s both;animation:bounce-top .9s both}
-        @-webkit-keyframes slide-in-blurred-top{0%{-webkit-transform:translateY(-1000px) scaleY(2.5) scaleX(.2);transform:translateY(-1000px) scaleY(2.5) scaleX(.2);-webkit-transform-origin:50% 0;transform-origin:50% 0;-webkit-filter:blur(40px);filter:blur(40px);opacity:0}100%{-webkit-transform:translateY(0) scaleY(1) scaleX(1);transform:translateY(0) scaleY(1) scaleX(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-filter:blur(0);filter:blur(0);opacity:1}}@keyframes slide-in-blurred-top{0%{-webkit-transform:translateY(-1000px) scaleY(2.5) scaleX(.2);transform:translateY(-1000px) scaleY(2.5) scaleX(.2);-webkit-transform-origin:50% 0;transform-origin:50% 0;-webkit-filter:blur(40px);filter:blur(40px);opacity:0}100%{-webkit-transform:translateY(0) scaleY(1) scaleX(1);transform:translateY(0) scaleY(1) scaleX(1);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-filter:blur(0);filter:blur(0);opacity:1}}
-        @-webkit-keyframes bounce-top{0%{-webkit-transform:translateY(-45px);transform:translateY(-45px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{-webkit-transform:translateY(-24px);transform:translateY(-24px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}65%{-webkit-transform:translateY(-12px);transform:translateY(-12px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}82%{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}93%{-webkit-transform:translateY(-4px);transform:translateY(-4px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}25%,55%,75%,87%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}100%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}}@keyframes bounce-top{0%{-webkit-transform:translateY(-45px);transform:translateY(-45px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in;opacity:1}24%{opacity:1}40%{-webkit-transform:translateY(-24px);transform:translateY(-24px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}65%{-webkit-transform:translateY(-12px);transform:translateY(-12px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}82%{-webkit-transform:translateY(-6px);transform:translateY(-6px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}93%{-webkit-transform:translateY(-4px);transform:translateY(-4px);-webkit-animation-timing-function:ease-in;animation-timing-function:ease-in}25%,55%,75%,87%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out}100%{-webkit-transform:translateY(0);transform:translateY(0);-webkit-animation-timing-function:ease-out;animation-timing-function:ease-out;opacity:1}}
+        .hidden {
+            visibility: hidden;
+        }
+
+        .slide-in-bck-center {
+            -webkit-animation: bounce-top .9s both;
+            animation: bounce-top .9s both
+        }
+
+        @-webkit-keyframes slide-in-bck-center {
+            0% {
+                -webkit-transform: translateY(-1000px) scaleY(2.5) scaleX(.2);
+                transform: translateY(-1000px) scaleY(2.5) scaleX(.2);
+                -webkit-transform-origin: 50% 0;
+                transform-origin: 50% 0;
+                -webkit-filter: blur(40px);
+                filter: blur(40px);
+                opacity: 0
+            }
+            100% {
+                -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+                transform: translateY(0) scaleY(1) scaleX(1);
+                -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+                -webkit-filter: blur(0);
+                filter: blur(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes slide-in-bck-center {
+            0% {
+                -webkit-transform: translateY(-1000px) scaleY(2.5) scaleX(.2);
+                transform: translateY(-1000px) scaleY(2.5) scaleX(.2);
+                -webkit-transform-origin: 50% 0;
+                transform-origin: 50% 0;
+                -webkit-filter: blur(40px);
+                filter: blur(40px);
+                opacity: 0
+            }
+            100% {
+                -webkit-transform: translateY(0) scaleY(1) scaleX(1);
+                transform: translateY(0) scaleY(1) scaleX(1);
+                -webkit-transform-origin: 50% 50%;
+                transform-origin: 50% 50%;
+                -webkit-filter: blur(0);
+                filter: blur(0);
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes bounce-top {
+            0% {
+                -webkit-transform: translateY(-45px);
+                transform: translateY(-45px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+                opacity: 1
+            }
+            24% {
+                opacity: 1
+            }
+            40% {
+                -webkit-transform: translateY(-24px);
+                transform: translateY(-24px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in
+            }
+            65% {
+                -webkit-transform: translateY(-12px);
+                transform: translateY(-12px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in
+            }
+            82% {
+                -webkit-transform: translateY(-6px);
+                transform: translateY(-6px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in
+            }
+            93% {
+                -webkit-transform: translateY(-4px);
+                transform: translateY(-4px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in
+            }
+            25%, 55%, 75%, 87% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+                opacity: 1
+            }
+        }
+
+        @keyframes bounce-top {
+            0% {
+                -webkit-transform: translateY(-45px);
+                transform: translateY(-45px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in;
+                opacity: 1
+            }
+            24% {
+                opacity: 1
+            }
+            40% {
+                -webkit-transform: translateY(-24px);
+                transform: translateY(-24px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in
+            }
+            65% {
+                -webkit-transform: translateY(-12px);
+                transform: translateY(-12px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in
+            }
+            82% {
+                -webkit-transform: translateY(-6px);
+                transform: translateY(-6px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in
+            }
+            93% {
+                -webkit-transform: translateY(-4px);
+                transform: translateY(-4px);
+                -webkit-animation-timing-function: ease-in;
+                animation-timing-function: ease-in
+            }
+            25%, 55%, 75%, 87% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                transform: translateY(0);
+                -webkit-animation-timing-function: ease-out;
+                animation-timing-function: ease-out;
+                opacity: 1
+            }
+        }
     </style>
     <script defer src="chief-slider.js">
 
     </script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const slider = new ChiefSlider('.slider', {
-          loop: false
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = new ChiefSlider('.slider', {
+                loop: false
+            });
         });
-      });
     </script>
 
 </head>
 <body class="body">
-  <div class="fixedblock"><H3 class="font-80 header">Расходы</H3></div>
-    <div class="backgroundincomeimg middle margin-top-5">
-        <img src="https://img.icons8.com/cotton/300/000000/withdrawal--v1.png"/>
-    </div>
-  
-    <div class="container">
 
-        <div class="slider">
-          <div class="slider__container">
+<!--Loader-->
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
+
+<div class="fixedblock"><H3 class="font-80 header">Расходы</H3></div>
+<div class="backgroundincomeimg middle margin-top-5">
+    <img src="https://img.icons8.com/cotton/300/000000/withdrawal--v1.png"/>
+</div>
+
+<div class="container">
+
+    <div class="slider">
+        <div class="slider__container">
             <div class="slider__wrapper">
-              <div class="slider__items">
-                <div class="slider__item">
+                <div class="slider__items">
+                    <div class="slider__item">
 
-                    <div class="margin-top-5 flex">
+                        <div class="margin-top-5 flex">
                         <span class="middle">
-                            <button class="buttonform font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep1()">Stylage L</button>
-                            <button class="buttonform font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep2()">Stylage M</button>
-                            <button class="buttonform font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep3()">Hyafilia</button>
+                            <button class="buttonform font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep1()">Stylage L</button>
+                            <button class="buttonform font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep2()">Stylage M</button>
+                            <button class="buttonform font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep3()">Hyafilia</button>
                         </span>
+                        </div>
+                        <!-- Контент 1 слайда -->
                     </div>
-                  <!-- Контент 1 слайда -->
-                </div>
-                <div class="slider__item">
-                    
-                    <div class="margin-top-5 flex">
-                        <span class="middle">
-                            <button class="buttonformmiddle font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep4()">Princess Filler</button>
-                            <button class="buttonformmiddle font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep5()">Princess Volume</button>
-                        </span>
-                    </div>
-                  <!-- Контент 2 слайда -->
-                </div>
-                <div class="slider__item">
+                    <div class="slider__item">
 
-                    <div class="margin-top-5 flex">
+                        <div class="margin-top-5 flex">
                         <span class="middle">
-                            <button class="buttonform font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep6()">Juvederm 3</button>
-                            <button class="buttonform font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep7()">Juvederm 4</button>
+                            <button class="buttonformmiddle font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep4()">Princess Filler</button>
+                            <button class="buttonformmiddle font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep5()">Princess Volume</button>
                         </span>
+                        </div>
+                        <!-- Контент 2 слайда -->
                     </div>
-                  <!-- Контент 3 слайда -->
-                </div>
-                <div class="slider__item">
+                    <div class="slider__item">
 
-                    <div class="margin-top-5 flex">
+                        <div class="margin-top-5 flex">
                         <span class="middle">
-                            <button class="buttonformlong font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep8()">Juvederm Ultra Smile</button>
-                            <button class="buttonformlong font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep9()">Belotero Balance</button>
+                            <button class="buttonform font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep6()">Juvederm 3</button>
+                            <button class="buttonform font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep7()">Juvederm 4</button>
                         </span>
+                        </div>
+                        <!-- Контент 3 слайда -->
                     </div>
-                  <!-- Контент 4 слайда -->
-                </div>
-                <div class="slider__item">
-                    <div class="margin-top-5 flex">
+                    <div class="slider__item">
+
+                        <div class="margin-top-5 flex">
                         <span class="middle">
-                            <button class="buttonform font-30 padding-15 nonborder margin-side-10" onclick="addElementPrep10()">Аренда</button>
-                            <button class="buttonform font-30 padding-15 nonborder margin-side-10" onclick="addElementRash()">Расходники</button>
+                            <button class="buttonformlong font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep8()">Juvederm Ultra Smile</button>
+                            <button class="buttonformlong font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep9()">Belotero Balance</button>
                         </span>
+                        </div>
+                        <!-- Контент 4 слайда -->
                     </div>
-                  <!-- Контент 5 слайда -->
+                    <div class="slider__item">
+                        <div class="margin-top-5 flex">
+                        <span class="middle">
+                            <button class="buttonform font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementPrep10()">Аренда</button>
+                            <button class="buttonform font-30 padding-15 nonborder margin-side-10"
+                                    onclick="addElementRash()">Расходники</button>
+                        </span>
+                        </div>
+                        <!-- Контент 5 слайда -->
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-
-          <!-- Стрелочки слайдера-->
-          <a href="#" class="slider__control" data-slide="prev"></a>
-          <a href="#" class="slider__control" data-slide="next"></a>
-
         </div>
-    
-      </div>
-    
-  <form id="expensesinfo" action="/expenses" method="post">
+
+        <!-- Стрелочки слайдера-->
+        <a href="#" class="slider__control" data-slide="prev"></a>
+        <a href="#" class="slider__control" data-slide="next"></a>
+
+    </div>
+
+</div>
+
+<form id="expensesinfo" action="/expenses" method="post">
     <div class="margin-top-5 middle">
-      <button type="button" class="addbutton nonborder margin-side-25" onclick="addElementSelf()"><img src="https://img.icons8.com/wired/120/000000/add--v2.png"/></button>
-      <button class="addbutton nonborder margin-side-25" method="post" type="submit"><img src="https://img.icons8.com/fluency/120/000000/in-progress.png"/></button>
+        <button type="button" class="addbutton nonborder margin-side-25" onclick="addElementSelf()"><img
+                src="https://img.icons8.com/wired/120/000000/add--v2.png"/></button>
+        <button class="addbutton nonborder margin-side-25" method="post" type="submit"><img
+                src="https://img.icons8.com/fluency/120/000000/in-progress.png"/></button>
     </div>
-  </form>
-    <div class="foot">        
-    </div>
+</form>
+<div class="foot">
+</div>
 
-     <script>
-         var idNumber = 0;
-         var idNamePrep1 = 0;
-         var idNamePrep2 = 0;
-         var idNamePrep3 = 0;
-         var idNamePrep4 = 0;
-         var idNamePrep5 = 0;
-         var idNamePrep6 = 0;
-         var idNamePrep7 = 0;
-         var idNamePrep8 = 0;
-         var idNamePrep9 = 0;
-         var idNamePrep10 = 0;
-         var idNamePrePayment = 0;
-         var idselfProcedure = 0;
-         var idselfIncome = 0;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="/loader/loader.js"></script>
+<script>
+    $(document).ready(function () {
+        getNotesOfCurrentDay();
+    });
+</script>
 
-         function addElementPrep1(){
-            var lipsElement = document.getElementById('expensesinfo');
-            var lipsDiv = document.createElement('div');
-            lipsDiv.className = 'calcelement';
-            lipsDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo" name="procedures">Stylage L</p><input type="number" name="prep1_' + idNamePrep1 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
-            lipsElement.prepend(lipsDiv);
-            idNamePrep1++;
-            idNumber++;
-            }
+<script>
+    var idNumber = 0;
+    var idNamePrep1 = 0;
+    var idNamePrep2 = 0;
+    var idNamePrep3 = 0;
+    var idNamePrep4 = 0;
+    var idNamePrep5 = 0;
+    var idNamePrep6 = 0;
+    var idNamePrep7 = 0;
+    var idNamePrep8 = 0;
+    var idNamePrep9 = 0;
+    var idNamePrep10 = 0;
+    var idNamePrePayment = 0;
+    var idselfProcedure = 0;
+    var idselfIncome = 0;
 
-            function addElementPrep2(){
-            var botoksElement = document.getElementById('expensesinfo');
-            var botoksDiv = document.createElement('div');
-            botoksDiv.className = 'calcelement';
-            botoksDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Stylage M</p><input type="number" name="prep2_' + idNamePrep2 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
-            botoksElement.prepend(botoksDiv);
-            idNamePrep2++;
-            idNumber++;
-            }
-
-            function addElementPrep3(){
-            var chistkaElement = document.getElementById('expensesinfo');
-            var chistkaDiv = document.createElement('div');
-            chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Hyafilia</p><input type="number" name="prep3_' + idNamePrep3 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            chistkaElement.prepend(chistkaDiv);
-            idNamePrep3++;
-            idNumber++;
-            }
-
-            function addElementPrep4(){
-            var chistkaElement = document.getElementById('expensesinfo');
-            var chistkaDiv = document.createElement('div');
-            chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelementhight pspan font-20" id="expensesinfo">Princess Filler</p><input type="number" name="prep4_' + idNamePrep4 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            chistkaElement.prepend(chistkaDiv);
-            idNamePrep4++;
-            idNumber++;
-            }
-
-            function addElementPrep5(){
-            var chistkaElement = document.getElementById('expensesinfo');
-            var chistkaDiv = document.createElement('div');
-            chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelementhight pspan font-20" id="expensesinfo">Princess Volume</p><input type="number" name="prep5_' + idNamePrep5 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            chistkaElement.prepend(chistkaDiv);
-            idNamePrep5++;
-            idNumber++;
-            }
-
-            function addElementPrep6(){
-            var chistkaElement = document.getElementById('expensesinfo');
-            var chistkaDiv = document.createElement('div');
-            chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Juvederm 3</p><input type="number" name="prep6_' + idNamePrep6 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            chistkaElement.prepend(chistkaDiv);
-            idNamePrep6++;
-            idNumber++;
-            }
-
-
-            function addElementPrep7(){
-            var chistkaElement = document.getElementById('expensesinfo');
-            var chistkaDiv = document.createElement('div');
-            chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Juvederm 4</p><input type="number" name="prep7_' + idNamePrep7 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            chistkaElement.prepend(chistkaDiv);
-            idNamePrep7++;
-            idNumber++;
-            }
-
-
-            function addElementPrep8(){
-            var chistkaElement = document.getElementById('expensesinfo');
-            var chistkaDiv = document.createElement('div');
-            chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelementhight pspan font-20" id="expensesinfo">Juvederm Ultra Smile</p><input type="number" name="prep8_' + idNamePrep8 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            chistkaElement.prepend(chistkaDiv);
-            idNamePrep8++;
-            idNumber++;
-            }
-
-
-            function addElementPrep9(){
-            var chistkaElement = document.getElementById('expensesinfo');
-            var chistkaDiv = document.createElement('div');
-            chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelementhight pspan font-20" id="expensesinfo">Belotero Balance</p><input type="number" name="prep9_' + idNamePrep9 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            chistkaElement.prepend(chistkaDiv);
-            idNamePrep9++;
-            idNumber++;
-            }
-
-
-            function addElementPrep10(){
-            var chistkaElement = document.getElementById('expensesinfo');
-            var chistkaDiv = document.createElement('div');
-            chistkaDiv.className = 'calcelement';
-            chistkaDiv.innerHTML = '<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Аренда</p><input type="number" name="prep10_' + idNamePrep10 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            chistkaElement.prepend(chistkaDiv);
-            idNamePrep10++;
-            idNumber++;
-            }
-
-
-            function addElementRash(){
-            var predoplataElement = document.getElementById('expensesinfo');
-            var predoplataDiv = document.createElement('div');
-            predoplataDiv.className = 'calcelement';
-            predoplataDiv.innerHTML ='<span class="slide-in-blurred-top" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Расходники</p><input type="prepayment" name="prep11_' + idNamePrePayment + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            predoplataElement.prepend(predoplataDiv);
-            idNamePrePayment++;
-            idNumber++;
-            }
-
-            function addElementSelf(){
-            var predoplataElement = document.getElementById('expensesinfo');
-            var predoplataDiv = document.createElement('div');
-            predoplataDiv.className = 'calcelement';
-            predoplataDiv.innerHTML ='<span class="slide-in-blurred-top"  id="p' + idNumber + '"><input type="text" name="selfProcedure' + idselfProcedure + '" placeholder="Моя процедура" class="inputenumberlement selfelement pspan font-20"><input type="number" name="selfIncome' + idselfIncome + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="'+ idNumber +'" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
-            predoplataElement.prepend(predoplataDiv);
-            idselfProcedure++;
-            idselfIncome++
-            idNumber++;
-         }
-
-        function deleteElement(button){
-            button.parentNode.parentNode.remove();
-            }
-     </script>
-     <script>
-         /**
- * ChiefSlider by Itchief v2.0.0 (https://github.com/itchief/ui-components/tree/master/simple-adaptive-slider)
- * Copyright 2020 - 2021 Alexander Maltsev
- * Licensed under MIT (https://github.com/itchief/ui-components/blob/master/LICENSE)
- */
-
-(function() {
-  if (typeof window.CustomEvent === 'function' ) return false;
-  function CustomEvent(event, params) {
-    params = params || {bubbles: false, cancelable: false, detail: null};
-    var e = document.createEvent('CustomEvent');
-    e.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-    return e;
-  }
-  window.CustomEvent = CustomEvent;
-})();
-
-var WRAPPER_SELECTOR = '.slider__wrapper';
-var ITEMS_SELECTOR = '.slider__items';
-var ITEM_SELECTOR = '.slider__item';
-var CONTROL_CLASS = 'slider__control';
-
-/* var ITEM_CLASS_ACTIVE = 'slider__item_active';
-var CONTROL_SELECTOR = '.slider__control';
-var CONTROL_CLASS_SHOW = 'slider__control_show';
-// индикаторы
-var INDICATOR_WRAPPER_ELEMENT = 'ol';
-var INDICATOR_WRAPPER_CLASS = 'slider__indicators';
-var INDICATOR_ITEM_ELEMENT = 'li';
-var INDICATOR_ITEM_CLASS = 'slider__indicator';
-var INDICATOR_ITEM_CLASS_ACTIVE = 'slider__indicator_active';
-// порог для переключения слайда (40%)
-var POS_THRESHOLD = 40;
-// класс для отключения transition
-var TRANSITION_NONE = 'transition-none';*/
-
-var SELECTOR_PREV = '.slider__control[data-slide="prev"]';
-var SELECTOR_NEXT = '.slider__control[data-slide="next"]';
-var SELECTOR_INDICATOR = '.slider__indicators>li';
-var SLIDER_TRANSITION_OFF = 'slider_disable-transition';
-var CLASS_CONTROL_HIDE = 'slider__control_hide';
-var CLASS_ITEM_ACTIVE = 'slider__item_active';
-var CLASS_INDICATOR_ACTIVE = 'active';
-
-function ChiefSlider(selector, config) {
-  // элементы слайдера
-  var $root = typeof selector === 'string' ?
-    document.querySelector(selector) : selector;
-  this._$root = $root;
-  this._$wrapper = $root.querySelector(WRAPPER_SELECTOR);
-  this._$items = $root.querySelector(ITEMS_SELECTOR);
-  this._$itemList = $root.querySelectorAll(ITEM_SELECTOR);
-  this._$controlPrev = $root.querySelector(SELECTOR_PREV);
-  this._$controlNext = $root.querySelector(SELECTOR_NEXT);
-  this._$indicatorList = $root.querySelectorAll(SELECTOR_INDICATOR);
-  // экстремальные значения слайдов
-  this._minOrder = 0;
-  this._maxOrder = 0;
-  this._$itemWithMinOrder = null;
-  this._$itemWithMaxOrder = null;
-  this._minTranslate = 0;
-  this._maxTranslate = 0;
-  // направление смены слайдов (по умолчанию)
-  this._direction = 'next';
-  // determines whether the position of item needs to be determined
-  this._balancingItemsFlag = false;
-  this._activeItems = [];
-  // текущее значение трансформации
-  this._transform = 0;
-  // swipe параметры
-  this._hasSwipeState = false;
-  this.__swipeStartPos = 0;
-  // slider properties
-  this._transform = 0; // текущее значение трансформации
-  this._intervalId = null;
-  // configuration of the slider
-  this._config = {
-    loop: true,
-    autoplay: false,
-    interval: 5000,
-    refresh: true,
-    swipe: true,
-  };
-  for (var key in config) {
-    if (this._config.hasOwnProperty(key)) {
-      this._config[key] = config[key];
+    function addElementPrep1() {
+        var lipsElement = document.getElementById('expensesinfo');
+        var lipsDiv = document.createElement('div');
+        lipsDiv.className = 'calcelement';
+        lipsDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo" name="procedures">Stylage L</p><input type="number" name="prep1_' + idNamePrep1 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
+        lipsElement.prepend(lipsDiv);
+        idNamePrep1++;
+        idNumber++;
     }
-  }
-  // create some constants
-  var $itemList = this._$itemList;
-  var widthItem = $itemList[0].offsetWidth;
-  var widthWrapper = this._$wrapper.offsetWidth;
-  var itemsInVisibleArea = Math.round(widthWrapper / widthItem);
-  // initial setting properties
-  this._widthItem = widthItem;
-  this._widthWrapper = widthWrapper;
-  this._itemsInVisibleArea = itemsInVisibleArea;
-  this._transformStep = 100 / itemsInVisibleArea;
-  // initial setting order and translate items
-  for (var i = 0, length = $itemList.length; i < length; i++) {
-    $itemList[i].dataset.index = i;
-    $itemList[i].dataset.order = i;
-    $itemList[i].dataset.translate = 0;
-    if (i < itemsInVisibleArea) {
-      this._activeItems.push(i);
-    }
-  }
-  if (this._config.loop) {
-    // перемещаем последний слайд перед первым
-    var count = $itemList.length - 1;
-    var translate = -$itemList.length * 100;
-    $itemList[count].dataset.order = -1;
-    $itemList[count].dataset.translate = -$itemList.length * 100;
-    $itemList[count].style.transform = 'translateX(' + translate + '%)';
-    this.__refreshExtremeValues();
-  } else {
-    if (this._$controlPrev) {
-      this._$controlPrev.classList.add(CLASS_CONTROL_HIDE);
-    }
-  }
-  this._setActiveClass();
-  this._addEventListener();
-  this._updateIndicators();
-  this._autoplay();
-}
 
-// подключения обработчиков событий для слайдера
-ChiefSlider.prototype._addEventListener = function() {
-  var $root = this._$root;
-  var $items = this._$items;
-  var config = this._config;
-  function onClick(e) {
-    var $target = e.target;
-    this._autoplay('stop');
-    if ($target.classList.contains(CONTROL_CLASS)) {
-      e.preventDefault();
-      this._direction = $target.dataset.slide;
-      this._move();
-    } else if ($target.dataset.slideTo) {
-      var index = parseInt($target.dataset.slideTo);
-      this._moveTo(index);
+    function addElementPrep2() {
+        var botoksElement = document.getElementById('expensesinfo');
+        var botoksDiv = document.createElement('div');
+        botoksDiv.className = 'calcelement';
+        botoksDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Stylage M</p><input type="number" name="prep2_' + idNamePrep2 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span> ';
+        botoksElement.prepend(botoksDiv);
+        idNamePrep2++;
+        idNumber++;
     }
-    if (this._config.loop) {
-      this._autoplay();
-    }
-  }
-  function onMouseEnter(e) {
-    this._autoplay('stop');
-  }
-  function onMouseLeave(e) {
-    this._autoplay();
-  }
-  function onTransitionStart() {
-    if (this._balancingItemsFlag) {
-      return;
-    }
-    this._balancingItemsFlag = true;
-    window.requestAnimationFrame(this._balancingItems.bind(this));
-  }
-  function onTransitionEnd() {
-    this._balancingItemsFlag = false;
-  }
-  function onResize() {
-    window.requestAnimationFrame(this._refresh.bind(this));
-  }
-  function onSwipeStart(e) {
-    this._autoplay('stop');
-    var event = e.type.search('touch') === 0 ? e.touches[0] : e;
-    this._swipeStartPos = event.clientX;
-    this._hasSwipeState = true;
-  }
-  function onSwipeEnd(e) {
-    if (!this._hasSwipeState) {
-      return;
-    }
-    var event = e.type.search('touch') === 0 ? e.changedTouches[0] : e;
-    var diffPos = this._swipeStartPos - event.clientX;
-    if (diffPos > 50) {
-      this._direction = 'next';
-      this._move();
-    } else if (diffPos < -50) {
-      this._direction = 'prev';
-      this._move();
-    }
-    this._hasSwipeState = false;
-    if (this._config.loop) {
-      this._autoplay();
-    }
-  }
-  function onDragStart(e) {
-    e.preventDefault();
-  }
-  function onVisibilityChange() {
-    if (document.visibilityState === 'hidden') {
-      this._autoplay('stop');
-    } else if (document.visibilityState === 'visible') {
-      if (this._config.loop) {
-        this._autoplay();
-      }
-    }
-  }
 
-  $root.addEventListener('click', onClick.bind(this));
-  $root.addEventListener('mouseenter', onMouseEnter.bind(this));
-  $root.addEventListener('mouseleave', onMouseLeave.bind(this));
-  // on resize
-  if (config.refresh) {
-    window.addEventListener('resize', onResize.bind(this));
-  }
-  // on transitionstart and transitionend
-  if (config.loop) {
-    $items.addEventListener('transition-start', onTransitionStart.bind(this));
-    $items.addEventListener('transitionend', onTransitionEnd.bind(this));
-  }
-  // on touchstart and touchend
-  if (config.swipe) {
-    $root.addEventListener('touchstart', onSwipeStart.bind(this));
-    $root.addEventListener('mousedown', onSwipeStart.bind(this));
-    document.addEventListener('touchend', onSwipeEnd.bind(this));
-    document.addEventListener('mouseup', onSwipeEnd.bind(this));
-  }
-  $root.addEventListener('dragstart', onDragStart.bind(this));
-  // при изменении активности вкладки
-  document.addEventListener('visibilitychange', onVisibilityChange.bind(this));
-};
+    function addElementPrep3() {
+        var chistkaElement = document.getElementById('expensesinfo');
+        var chistkaDiv = document.createElement('div');
+        chistkaDiv.className = 'calcelement';
+        chistkaDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Hyafilia</p><input type="number" name="prep3_' + idNamePrep3 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        chistkaElement.prepend(chistkaDiv);
+        idNamePrep3++;
+        idNumber++;
+    }
 
-// update values of extreme properties
-ChiefSlider.prototype.__refreshExtremeValues = function() {
-  var $itemList = this._$itemList;
-  this._minOrder = +$itemList[0].dataset.order;
-  this._maxOrder = this._minOrder;
-  this._$itemByMinOrder = $itemList[0];
-  this._$itemByMaxOrder = $itemList[0];
-  this._minTranslate = +$itemList[0].dataset.translate;
-  this._maxTranslate = this._minTranslate;
-  for (var i = 0, length = $itemList.length; i < length; i++) {
-    var $item = $itemList[i];
-    var order = +$item.dataset.order;
-    if (order < this._minOrder) {
-      this._minOrder = order;
-      this._$itemByMinOrder = $item;
-      this._minTranslate = +$item.dataset.translate;
-    } else if (order > this._maxOrder) {
-      this._maxOrder = order;
-      this._$itemByMaxOrder = $item;
-      this._minTranslate = +$item.dataset.translate;
+    function addElementPrep4() {
+        var chistkaElement = document.getElementById('expensesinfo');
+        var chistkaDiv = document.createElement('div');
+        chistkaDiv.className = 'calcelement';
+        chistkaDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelementhight pspan font-20" id="expensesinfo">Princess Filler</p><input type="number" name="prep4_' + idNamePrep4 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        chistkaElement.prepend(chistkaDiv);
+        idNamePrep4++;
+        idNumber++;
     }
-  }
-};
 
-// update position of item
-ChiefSlider.prototype._balancingItems = function() {
-  if (!this._balancingItemsFlag) {
-    return;
-  }
-  var $wrapper = this._$wrapper;
-  var $wrapperClientRect = $wrapper.getBoundingClientRect();
-  var widthHalfItem = $wrapperClientRect.width / this._itemsInVisibleArea / 2;
-  var count = this._$itemList.length;
-  var translate;
-  var clientRect;
-  if (this._direction === 'next') {
-    var wrapperLeft = $wrapperClientRect.left;
-    var $min = this._$itemByMinOrder;
-    translate = this._minTranslate;
-    clientRect = $min.getBoundingClientRect();
-    if (clientRect.right < wrapperLeft - widthHalfItem) {
-      $min.dataset.order = this._minOrder + count;
-      translate += count * 100;
-      $min.dataset.translate = translate;
-      $min.style.transform = 'translateX('.concat(translate, '%)');
-      // update values of extreme properties
-      this.__refreshExtremeValues();
+    function addElementPrep5() {
+        var chistkaElement = document.getElementById('expensesinfo');
+        var chistkaDiv = document.createElement('div');
+        chistkaDiv.className = 'calcelement';
+        chistkaDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelementhight pspan font-20" id="expensesinfo">Princess Volume</p><input type="number" name="prep5_' + idNamePrep5 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        chistkaElement.prepend(chistkaDiv);
+        idNamePrep5++;
+        idNumber++;
     }
-  } else {
-    var wrapperRight = $wrapperClientRect.right;
-    var $max = this._$itemByMaxOrder;
-    translate = this._maxTranslate;
-    clientRect = $max.getBoundingClientRect();
-    if (clientRect.left > wrapperRight + widthHalfItem) {
-      $max.dataset.order = this._maxOrder - count;
-      translate -= count * 100;
-      $max.dataset.translate = translate;
-      $max.style.transform = 'translateX('.concat(translate, '%)');
-      // update values of extreme properties
-      this.__refreshExtremeValues();
-    }
-  }
-  // updating...
-  requestAnimationFrame(this._balancingItems.bind(this));
-};
 
-// _setActiveClass
-ChiefSlider.prototype._setActiveClass = function() {
-  var activeItems = this._activeItems;
-  var $itemList = this._$itemList;
-  for (var i = 0, length = $itemList.length; i < length; i++) {
-    var $item = $itemList[i];
-    var index = +$item.dataset.index;
-    if (activeItems.indexOf(index) > -1) {
-      $item.classList.add(CLASS_ITEM_ACTIVE);
-    } else {
-      $item.classList.remove(CLASS_ITEM_ACTIVE);
+    function addElementPrep6() {
+        var chistkaElement = document.getElementById('expensesinfo');
+        var chistkaDiv = document.createElement('div');
+        chistkaDiv.className = 'calcelement';
+        chistkaDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Juvederm 3</p><input type="number" name="prep6_' + idNamePrep6 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        chistkaElement.prepend(chistkaDiv);
+        idNamePrep6++;
+        idNumber++;
     }
-  }
-};
 
-// _updateIndicators
-ChiefSlider.prototype._updateIndicators = function() {
-  var $indicatorList = this._$indicatorList;
-  var $itemList = this._$itemList;
-  if (!$indicatorList.length) {
-    return;
-  }
-  for (var index = 0, length = $itemList.length; index < length; index++) {
-    var $item = $itemList[index];
-    if ($item.classList.contains(CLASS_ITEM_ACTIVE)) {
-      $indicatorList[index].classList.add(CLASS_INDICATOR_ACTIVE);
-    } else {
-      $indicatorList[index].classList.remove(CLASS_INDICATOR_ACTIVE);
-    }
-  }
-};
 
-// move slides
-ChiefSlider.prototype._move = function() {
-  var step = this._direction ===
-   'next' ? -this._transformStep : this._transformStep;
-  var transform = this._transform + step;
-  if (!this._config.loop) {
-    var endTransformValue =
-      this._transformStep * (this._$itemList.length - this._itemsInVisibleArea);
-    transform = Math.round(transform * 10) / 10;
-    if (transform < -endTransformValue || transform > 0) {
-      return;
+    function addElementPrep7() {
+        var chistkaElement = document.getElementById('expensesinfo');
+        var chistkaDiv = document.createElement('div');
+        chistkaDiv.className = 'calcelement';
+        chistkaDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Juvederm 4</p><input type="number" name="prep7_' + idNamePrep7 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        chistkaElement.prepend(chistkaDiv);
+        idNamePrep7++;
+        idNumber++;
     }
-    this._$controlPrev.classList.remove(CLASS_CONTROL_HIDE);
-    this._$controlNext.classList.remove(CLASS_CONTROL_HIDE);
-    if (transform === -endTransformValue) {
-      this._$controlNext.classList.add(CLASS_CONTROL_HIDE);
-    } else if (transform === 0) {
-      this._$controlPrev.classList.add(CLASS_CONTROL_HIDE);
-    }
-  }
-  var activeIndex = [];
-  var i = 0;
-  var length;
-  var index;
-  var newIndex;
-  if (this._direction === 'next') {
-    for (i = 0, length = this._activeItems.length; i < length; i++) {
-      index = this._activeItems[i];
-      newIndex = ++index;
-      if (newIndex > this._$itemList.length - 1) {
-        newIndex -= this._$itemList.length;
-      }
-      activeIndex.push(newIndex);
-    }
-  } else {
-    for (i = 0, length = this._activeItems.length; i < length; i++) {
-      index = this._activeItems[i];
-      newIndex = --index;
-      if (newIndex < 0) {
-        newIndex += this._$itemList.length;
-      }
-      activeIndex.push(newIndex);
-    }
-  }
-  this._activeItems = activeIndex;
-  this._setActiveClass();
-  this._updateIndicators();
-  this._transform = transform;
-  this._$items.style.transform = 'translateX(' + transform + '%)';
-  this._$items.dispatchEvent(new CustomEvent('transition-start', {bubbles: true}));
-};
 
-// _moveToNext
-ChiefSlider.prototype._moveToNext = function() {
-  this._direction = 'next';
-  this._move();
-};
 
-// _moveToPrev
-ChiefSlider.prototype._moveToPrev = function() {
-  this._direction = 'prev';
-  this._move();
-};
+    function addElementPrep8() {
+        var chistkaElement = document.getElementById('expensesinfo');
+        var chistkaDiv = document.createElement('div');
+        chistkaDiv.className = 'calcelement';
+        chistkaDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelementhight pspan font-20" id="expensesinfo">Juvederm Ultra Smile</p><input type="number" name="prep8_' + idNamePrep8 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        chistkaElement.prepend(chistkaDiv);
+        idNamePrep8++;
+        idNumber++;
+    }
 
-// _moveTo
-ChiefSlider.prototype._moveTo = function(index) {
-  var $indicatorList = this._$indicatorList;
-  var nearestIndex = null;
-  var diff = null;
-  var i;
-  var length;
-  for (i = 0, length = $indicatorList.length; i < length; i++) {
-    var $indicator = $indicatorList[i];
-    if ($indicator.classList.contains(CLASS_INDICATOR_ACTIVE)) {
-      var slideTo = +$indicator.dataset.slideTo;
-      if (diff === null) {
-        nearestIndex = slideTo;
-        diff = Math.abs(index - nearestIndex);
-      } else {
-        if (Math.abs(index - slideTo) < diff) {
-          nearestIndex = slideTo;
-          diff = Math.abs(index - nearestIndex);
+
+    function addElementPrep9() {
+        var chistkaElement = document.getElementById('expensesinfo');
+        var chistkaDiv = document.createElement('div');
+        chistkaDiv.className = 'calcelement';
+        chistkaDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelementhight pspan font-20" id="expensesinfo">Belotero Balance</p><input type="number" name="prep9_' + idNamePrep9 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        chistkaElement.prepend(chistkaDiv);
+        idNamePrep9++;
+        idNumber++;
+    }
+
+
+    function addElementPrep10() {
+        var chistkaElement = document.getElementById('expensesinfo');
+        var chistkaDiv = document.createElement('div');
+        chistkaDiv.className = 'calcelement';
+        chistkaDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Аренда</p><input type="number" name="prep10_' + idNamePrep10 + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        chistkaElement.prepend(chistkaDiv);
+        idNamePrep10++;
+        idNumber++;
+    }
+
+
+    function addElementRash() {
+        var predoplataElement = document.getElementById('expensesinfo');
+        var predoplataDiv = document.createElement('div');
+        predoplataDiv.className = 'calcelement';
+        predoplataDiv.innerHTML = '<span class="slide-in-bck-center" id="' + idNumber + '"><p class="pelement pspan font-20" id="expensesinfo">Расходники</p><input type="prepayment" name="prep11_' + idNamePrePayment + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        predoplataElement.prepend(predoplataDiv);
+        idNamePrePayment++;
+        idNumber++;
+    }
+
+    function addElementSelf() {
+        var predoplataElement = document.getElementById('expensesinfo');
+        var predoplataDiv = document.createElement('div');
+        predoplataDiv.className = 'calcelement';
+        predoplataDiv.innerHTML = '<span class="slide-in-bck-center"  id="p' + idNumber + '"><input type="text" name="selfProcedure' + idselfProcedure + '" placeholder="Моя процедура" class="inputenumberlement selfelement pspan font-20"><input type="number" name="selfIncome' + idselfIncome + '" placeholder="Введите сумму" min="0" max="100000" step="1" class="inputenumberlement"><button class="delbutton" name="' + idNumber + '" onclick="deleteElement(this)"><img src="https://img.icons8.com/material-outlined/48/000000/delete-trash.png"/></button></span>';
+        predoplataElement.prepend(predoplataDiv);
+        idselfProcedure++;
+        idselfIncome++
+        idNumber++;
+    }
+
+    function deleteElement(button) {
+        button.parentNode.parentNode.remove();
+    }
+</script>
+<script>
+    /**
+     * ChiefSlider by Itchief v2.0.0 (https://github.com/itchief/ui-components/tree/master/simple-adaptive-slider)
+     * Copyright 2020 - 2021 Alexander Maltsev
+     * Licensed under MIT (https://github.com/itchief/ui-components/blob/master/LICENSE)
+     */
+
+    (function () {
+        if (typeof window.CustomEvent === 'function') return false;
+
+        function CustomEvent(event, params) {
+            params = params || {bubbles: false, cancelable: false, detail: null};
+            var e = document.createEvent('CustomEvent');
+            e.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+            return e;
         }
-      }
+
+        window.CustomEvent = CustomEvent;
+    })();
+
+    var WRAPPER_SELECTOR = '.slider__wrapper';
+    var ITEMS_SELECTOR = '.slider__items';
+    var ITEM_SELECTOR = '.slider__item';
+    var CONTROL_CLASS = 'slider__control';
+
+    /* var ITEM_CLASS_ACTIVE = 'slider__item_active';
+    var CONTROL_SELECTOR = '.slider__control';
+    var CONTROL_CLASS_SHOW = 'slider__control_show';
+    // индикаторы
+    var INDICATOR_WRAPPER_ELEMENT = 'ol';
+    var INDICATOR_WRAPPER_CLASS = 'slider__indicators';
+    var INDICATOR_ITEM_ELEMENT = 'li';
+    var INDICATOR_ITEM_CLASS = 'slider__indicator';
+    var INDICATOR_ITEM_CLASS_ACTIVE = 'slider__indicator_active';
+    // порог для переключения слайда (40%)
+    var POS_THRESHOLD = 40;
+    // класс для отключения transition
+    var TRANSITION_NONE = 'transition-none';*/
+
+    var SELECTOR_PREV = '.slider__control[data-slide="prev"]';
+    var SELECTOR_NEXT = '.slider__control[data-slide="next"]';
+    var SELECTOR_INDICATOR = '.slider__indicators>li';
+    var SLIDER_TRANSITION_OFF = 'slider_disable-transition';
+    var CLASS_CONTROL_HIDE = 'slider__control_hide';
+    var CLASS_ITEM_ACTIVE = 'slider__item_active';
+    var CLASS_INDICATOR_ACTIVE = 'active';
+
+    function ChiefSlider(selector, config) {
+        // элементы слайдера
+        var $root = typeof selector === 'string' ?
+            document.querySelector(selector) : selector;
+        this._$root = $root;
+        this._$wrapper = $root.querySelector(WRAPPER_SELECTOR);
+        this._$items = $root.querySelector(ITEMS_SELECTOR);
+        this._$itemList = $root.querySelectorAll(ITEM_SELECTOR);
+        this._$controlPrev = $root.querySelector(SELECTOR_PREV);
+        this._$controlNext = $root.querySelector(SELECTOR_NEXT);
+        this._$indicatorList = $root.querySelectorAll(SELECTOR_INDICATOR);
+        // экстремальные значения слайдов
+        this._minOrder = 0;
+        this._maxOrder = 0;
+        this._$itemWithMinOrder = null;
+        this._$itemWithMaxOrder = null;
+        this._minTranslate = 0;
+        this._maxTranslate = 0;
+        // направление смены слайдов (по умолчанию)
+        this._direction = 'next';
+        // determines whether the position of item needs to be determined
+        this._balancingItemsFlag = false;
+        this._activeItems = [];
+        // текущее значение трансформации
+        this._transform = 0;
+        // swipe параметры
+        this._hasSwipeState = false;
+        this.__swipeStartPos = 0;
+        // slider properties
+        this._transform = 0; // текущее значение трансформации
+        this._intervalId = null;
+        // configuration of the slider
+        this._config = {
+            loop: true,
+            autoplay: false,
+            interval: 5000,
+            refresh: true,
+            swipe: true,
+        };
+        for (var key in config) {
+            if (this._config.hasOwnProperty(key)) {
+                this._config[key] = config[key];
+            }
+        }
+        // create some constants
+        var $itemList = this._$itemList;
+        var widthItem = $itemList[0].offsetWidth;
+        var widthWrapper = this._$wrapper.offsetWidth;
+        var itemsInVisibleArea = Math.round(widthWrapper / widthItem);
+        // initial setting properties
+        this._widthItem = widthItem;
+        this._widthWrapper = widthWrapper;
+        this._itemsInVisibleArea = itemsInVisibleArea;
+        this._transformStep = 100 / itemsInVisibleArea;
+        // initial setting order and translate items
+        for (var i = 0, length = $itemList.length; i < length; i++) {
+            $itemList[i].dataset.index = i;
+            $itemList[i].dataset.order = i;
+            $itemList[i].dataset.translate = 0;
+            if (i < itemsInVisibleArea) {
+                this._activeItems.push(i);
+            }
+        }
+        if (this._config.loop) {
+            // перемещаем последний слайд перед первым
+            var count = $itemList.length - 1;
+            var translate = -$itemList.length * 100;
+            $itemList[count].dataset.order = -1;
+            $itemList[count].dataset.translate = -$itemList.length * 100;
+            $itemList[count].style.transform = 'translateX(' + translate + '%)';
+            this.__refreshExtremeValues();
+        } else {
+            if (this._$controlPrev) {
+                this._$controlPrev.classList.add(CLASS_CONTROL_HIDE);
+            }
+        }
+        this._setActiveClass();
+        this._addEventListener();
+        this._updateIndicators();
+        this._autoplay();
     }
-  }
-  diff = index - nearestIndex;
-  if (diff === 0) {
-    return;
-  }
-  this._direction = diff > 0 ? 'next' : 'prev';
-  for (i = 1; i <= Math.abs(diff); i++) {
-    this._move();
-  }
-};
 
-// _autoplay
-ChiefSlider.prototype._autoplay = function(action) {
-  if (!this._config.autoplay) {
-    return;
-  }
-  if (action === 'stop') {
-    clearInterval(this._intervalId);
-    this._intervalId = null;
-    return;
-  }
-  if (this._intervalId === null) {
-    this._intervalId = setInterval(
-        function() {
-          this._direction = 'next';
-          this._move();
-        }.bind(this),
-        this._config.interval
-    );
-  }
-};
+    // подключения обработчиков событий для слайдера
+    ChiefSlider.prototype._addEventListener = function () {
+        var $root = this._$root;
+        var $items = this._$items;
+        var config = this._config;
 
-// _refresh
-ChiefSlider.prototype._refresh = function() {
-  // create some constants
-  var $itemList = this._$itemList;
-  var widthItem = $itemList[0].offsetWidth;
-  var widthWrapper = this._$wrapper.offsetWidth;
-  var itemsInVisibleArea = Math.round(widthWrapper / widthItem);
+        function onClick(e) {
+            var $target = e.target;
+            this._autoplay('stop');
+            if ($target.classList.contains(CONTROL_CLASS)) {
+                e.preventDefault();
+                this._direction = $target.dataset.slide;
+                this._move();
+            } else if ($target.dataset.slideTo) {
+                var index = parseInt($target.dataset.slideTo);
+                this._moveTo(index);
+            }
+            if (this._config.loop) {
+                this._autoplay();
+            }
+        }
 
-  if (itemsInVisibleArea === this._itemsInVisibleArea) {
-    return;
-  }
+        function onMouseEnter(e) {
+            this._autoplay('stop');
+        }
 
-  this._autoplay('stop');
+        function onMouseLeave(e) {
+            this._autoplay();
+        }
 
-  this._$items.classList.add(SLIDER_TRANSITION_OFF);
-  this._$items.style.transform = 'translateX(0)';
+        function onTransitionStart() {
+            if (this._balancingItemsFlag) {
+                return;
+            }
+            this._balancingItemsFlag = true;
+            window.requestAnimationFrame(this._balancingItems.bind(this));
+        }
 
-  // setting properties after reset
-  this._widthItem = widthItem;
-  this._widthWrapper = widthWrapper;
-  this._itemsInVisibleArea = itemsInVisibleArea;
-  this._transform = 0;
-  this._transformStep = 100 / itemsInVisibleArea;
-  this._balancingItemsFlag = false;
-  this._activeItems = [];
+        function onTransitionEnd() {
+            this._balancingItemsFlag = false;
+        }
 
-  // setting order and translate items after reset
-  for (var i = 0, length = $itemList.length; i < length; i++) {
-    var $item = $itemList[i];
-    var position = i;
-    $item.dataset.index = position;
-    $item.dataset.order = position;
-    $item.dataset.translate = 0;
-    $item.style.transform = 'translateX(0)';
-    if (position < itemsInVisibleArea) {
-      this._activeItems.push(position);
-    }
-  }
+        function onResize() {
+            window.requestAnimationFrame(this._refresh.bind(this));
+        }
 
-  this._setActiveClass();
-  this._updateIndicators();
-  window.requestAnimationFrame(
-      function() {
-        this._$items.classList.remove(SLIDER_TRANSITION_OFF);
-      }.bind(this)
-  );
+        function onSwipeStart(e) {
+            this._autoplay('stop');
+            var event = e.type.search('touch') === 0 ? e.touches[0] : e;
+            this._swipeStartPos = event.clientX;
+            this._hasSwipeState = true;
+        }
 
-  // hide prev arrow for non-infinite slider
-  if (!this._config.loop) {
-    if (this._$controlPrev) {
-      this._$controlPrev.classList.add(CLASS_CONTROL_HIDE);
-    }
-    return;
-  }
+        function onSwipeEnd(e) {
+            if (!this._hasSwipeState) {
+                return;
+            }
+            var event = e.type.search('touch') === 0 ? e.changedTouches[0] : e;
+            var diffPos = this._swipeStartPos - event.clientX;
+            if (diffPos > 50) {
+                this._direction = 'next';
+                this._move();
+            } else if (diffPos < -50) {
+                this._direction = 'prev';
+                this._move();
+            }
+            this._hasSwipeState = false;
+            if (this._config.loop) {
+                this._autoplay();
+            }
+        }
 
-  // translate last item before first
-  var count = $itemList.length - 1;
-  var translate = -$itemList.length * 100;
-  $itemList[count].dataset.order = -1;
-  $itemList[count].dataset.translate = -$itemList.length * 100;
-  $itemList[count].style.transform = 'translateX('.concat(translate, '%)');
-  // update values of extreme properties
-  this.__refreshExtremeValues();
-  // calling _autoplay
-  this._autoplay();
-};
+        function onDragStart(e) {
+            e.preventDefault();
+        }
 
-// public
-ChiefSlider.prototype.next = function() {
-  this._moveToNext();
-};
-ChiefSlider.prototype.prev = function() {
-  this._moveToPrev();
-};
-ChiefSlider.prototype.moveTo = function(index) {
-  this._moveTo(index);
-};
-ChiefSlider.prototype.refresh = function() {
-  this._refresh();
-};
+        function onVisibilityChange() {
+            if (document.visibilityState === 'hidden') {
+                this._autoplay('stop');
+            } else if (document.visibilityState === 'visible') {
+                if (this._config.loop) {
+                    this._autoplay();
+                }
+            }
+        }
 
-     </script>
+        $root.addEventListener('click', onClick.bind(this));
+        $root.addEventListener('mouseenter', onMouseEnter.bind(this));
+        $root.addEventListener('mouseleave', onMouseLeave.bind(this));
+        // on resize
+        if (config.refresh) {
+            window.addEventListener('resize', onResize.bind(this));
+        }
+        // on transitionstart and transitionend
+        if (config.loop) {
+            $items.addEventListener('transition-start', onTransitionStart.bind(this));
+            $items.addEventListener('transitionend', onTransitionEnd.bind(this));
+        }
+        // on touchstart and touchend
+        if (config.swipe) {
+            $root.addEventListener('touchstart', onSwipeStart.bind(this));
+            $root.addEventListener('mousedown', onSwipeStart.bind(this));
+            document.addEventListener('touchend', onSwipeEnd.bind(this));
+            document.addEventListener('mouseup', onSwipeEnd.bind(this));
+        }
+        $root.addEventListener('dragstart', onDragStart.bind(this));
+        // при изменении активности вкладки
+        document.addEventListener('visibilitychange', onVisibilityChange.bind(this));
+    };
+
+    // update values of extreme properties
+    ChiefSlider.prototype.__refreshExtremeValues = function () {
+        var $itemList = this._$itemList;
+        this._minOrder = +$itemList[0].dataset.order;
+        this._maxOrder = this._minOrder;
+        this._$itemByMinOrder = $itemList[0];
+        this._$itemByMaxOrder = $itemList[0];
+        this._minTranslate = +$itemList[0].dataset.translate;
+        this._maxTranslate = this._minTranslate;
+        for (var i = 0, length = $itemList.length; i < length; i++) {
+            var $item = $itemList[i];
+            var order = +$item.dataset.order;
+            if (order < this._minOrder) {
+                this._minOrder = order;
+                this._$itemByMinOrder = $item;
+                this._minTranslate = +$item.dataset.translate;
+            } else if (order > this._maxOrder) {
+                this._maxOrder = order;
+                this._$itemByMaxOrder = $item;
+                this._minTranslate = +$item.dataset.translate;
+            }
+        }
+    };
+
+    // update position of item
+    ChiefSlider.prototype._balancingItems = function () {
+        if (!this._balancingItemsFlag) {
+            return;
+        }
+        var $wrapper = this._$wrapper;
+        var $wrapperClientRect = $wrapper.getBoundingClientRect();
+        var widthHalfItem = $wrapperClientRect.width / this._itemsInVisibleArea / 2;
+        var count = this._$itemList.length;
+        var translate;
+        var clientRect;
+        if (this._direction === 'next') {
+            var wrapperLeft = $wrapperClientRect.left;
+            var $min = this._$itemByMinOrder;
+            translate = this._minTranslate;
+            clientRect = $min.getBoundingClientRect();
+            if (clientRect.right < wrapperLeft - widthHalfItem) {
+                $min.dataset.order = this._minOrder + count;
+                translate += count * 100;
+                $min.dataset.translate = translate;
+                $min.style.transform = 'translateX('.concat(translate, '%)');
+                // update values of extreme properties
+                this.__refreshExtremeValues();
+            }
+        } else {
+            var wrapperRight = $wrapperClientRect.right;
+            var $max = this._$itemByMaxOrder;
+            translate = this._maxTranslate;
+            clientRect = $max.getBoundingClientRect();
+            if (clientRect.left > wrapperRight + widthHalfItem) {
+                $max.dataset.order = this._maxOrder - count;
+                translate -= count * 100;
+                $max.dataset.translate = translate;
+                $max.style.transform = 'translateX('.concat(translate, '%)');
+                // update values of extreme properties
+                this.__refreshExtremeValues();
+            }
+        }
+        // updating...
+        requestAnimationFrame(this._balancingItems.bind(this));
+    };
+
+    // _setActiveClass
+    ChiefSlider.prototype._setActiveClass = function () {
+        var activeItems = this._activeItems;
+        var $itemList = this._$itemList;
+        for (var i = 0, length = $itemList.length; i < length; i++) {
+            var $item = $itemList[i];
+            var index = +$item.dataset.index;
+            if (activeItems.indexOf(index) > -1) {
+                $item.classList.add(CLASS_ITEM_ACTIVE);
+            } else {
+                $item.classList.remove(CLASS_ITEM_ACTIVE);
+            }
+        }
+    };
+
+    // _updateIndicators
+    ChiefSlider.prototype._updateIndicators = function () {
+        var $indicatorList = this._$indicatorList;
+        var $itemList = this._$itemList;
+        if (!$indicatorList.length) {
+            return;
+        }
+        for (var index = 0, length = $itemList.length; index < length; index++) {
+            var $item = $itemList[index];
+            if ($item.classList.contains(CLASS_ITEM_ACTIVE)) {
+                $indicatorList[index].classList.add(CLASS_INDICATOR_ACTIVE);
+            } else {
+                $indicatorList[index].classList.remove(CLASS_INDICATOR_ACTIVE);
+            }
+        }
+    };
+
+    // move slides
+    ChiefSlider.prototype._move = function () {
+        var step = this._direction ===
+        'next' ? -this._transformStep : this._transformStep;
+        var transform = this._transform + step;
+        if (!this._config.loop) {
+            var endTransformValue =
+                this._transformStep * (this._$itemList.length - this._itemsInVisibleArea);
+            transform = Math.round(transform * 10) / 10;
+            if (transform < -endTransformValue || transform > 0) {
+                return;
+            }
+            this._$controlPrev.classList.remove(CLASS_CONTROL_HIDE);
+            this._$controlNext.classList.remove(CLASS_CONTROL_HIDE);
+            if (transform === -endTransformValue) {
+                this._$controlNext.classList.add(CLASS_CONTROL_HIDE);
+            } else if (transform === 0) {
+                this._$controlPrev.classList.add(CLASS_CONTROL_HIDE);
+            }
+        }
+        var activeIndex = [];
+        var i = 0;
+        var length;
+        var index;
+        var newIndex;
+        if (this._direction === 'next') {
+            for (i = 0, length = this._activeItems.length; i < length; i++) {
+                index = this._activeItems[i];
+                newIndex = ++index;
+                if (newIndex > this._$itemList.length - 1) {
+                    newIndex -= this._$itemList.length;
+                }
+                activeIndex.push(newIndex);
+            }
+        } else {
+            for (i = 0, length = this._activeItems.length; i < length; i++) {
+                index = this._activeItems[i];
+                newIndex = --index;
+                if (newIndex < 0) {
+                    newIndex += this._$itemList.length;
+                }
+                activeIndex.push(newIndex);
+            }
+        }
+        this._activeItems = activeIndex;
+        this._setActiveClass();
+        this._updateIndicators();
+        this._transform = transform;
+        this._$items.style.transform = 'translateX(' + transform + '%)';
+        this._$items.dispatchEvent(new CustomEvent('transition-start', {bubbles: true}));
+    };
+
+    // _moveToNext
+    ChiefSlider.prototype._moveToNext = function () {
+        this._direction = 'next';
+        this._move();
+    };
+
+    // _moveToPrev
+    ChiefSlider.prototype._moveToPrev = function () {
+        this._direction = 'prev';
+        this._move();
+    };
+
+    // _moveTo
+    ChiefSlider.prototype._moveTo = function (index) {
+        var $indicatorList = this._$indicatorList;
+        var nearestIndex = null;
+        var diff = null;
+        var i;
+        var length;
+        for (i = 0, length = $indicatorList.length; i < length; i++) {
+            var $indicator = $indicatorList[i];
+            if ($indicator.classList.contains(CLASS_INDICATOR_ACTIVE)) {
+                var slideTo = +$indicator.dataset.slideTo;
+                if (diff === null) {
+                    nearestIndex = slideTo;
+                    diff = Math.abs(index - nearestIndex);
+                } else {
+                    if (Math.abs(index - slideTo) < diff) {
+                        nearestIndex = slideTo;
+                        diff = Math.abs(index - nearestIndex);
+                    }
+                }
+            }
+        }
+        diff = index - nearestIndex;
+        if (diff === 0) {
+            return;
+        }
+        this._direction = diff > 0 ? 'next' : 'prev';
+        for (i = 1; i <= Math.abs(diff); i++) {
+            this._move();
+        }
+    };
+
+    // _autoplay
+    ChiefSlider.prototype._autoplay = function (action) {
+        if (!this._config.autoplay) {
+            return;
+        }
+        if (action === 'stop') {
+            clearInterval(this._intervalId);
+            this._intervalId = null;
+            return;
+        }
+        if (this._intervalId === null) {
+            this._intervalId = setInterval(
+                function () {
+                    this._direction = 'next';
+                    this._move();
+                }.bind(this),
+                this._config.interval
+            );
+        }
+    };
+
+    // _refresh
+    ChiefSlider.prototype._refresh = function () {
+        // create some constants
+        var $itemList = this._$itemList;
+        var widthItem = $itemList[0].offsetWidth;
+        var widthWrapper = this._$wrapper.offsetWidth;
+        var itemsInVisibleArea = Math.round(widthWrapper / widthItem);
+
+        if (itemsInVisibleArea === this._itemsInVisibleArea) {
+            return;
+        }
+
+        this._autoplay('stop');
+
+        this._$items.classList.add(SLIDER_TRANSITION_OFF);
+        this._$items.style.transform = 'translateX(0)';
+
+        // setting properties after reset
+        this._widthItem = widthItem;
+        this._widthWrapper = widthWrapper;
+        this._itemsInVisibleArea = itemsInVisibleArea;
+        this._transform = 0;
+        this._transformStep = 100 / itemsInVisibleArea;
+        this._balancingItemsFlag = false;
+        this._activeItems = [];
+
+        // setting order and translate items after reset
+        for (var i = 0, length = $itemList.length; i < length; i++) {
+            var $item = $itemList[i];
+            var position = i;
+            $item.dataset.index = position;
+            $item.dataset.order = position;
+            $item.dataset.translate = 0;
+            $item.style.transform = 'translateX(0)';
+            if (position < itemsInVisibleArea) {
+                this._activeItems.push(position);
+            }
+        }
+
+        this._setActiveClass();
+        this._updateIndicators();
+        window.requestAnimationFrame(
+            function () {
+                this._$items.classList.remove(SLIDER_TRANSITION_OFF);
+            }.bind(this)
+        );
+
+        // hide prev arrow for non-infinite slider
+        if (!this._config.loop) {
+            if (this._$controlPrev) {
+                this._$controlPrev.classList.add(CLASS_CONTROL_HIDE);
+            }
+            return;
+        }
+
+        // translate last item before first
+        var count = $itemList.length - 1;
+        var translate = -$itemList.length * 100;
+        $itemList[count].dataset.order = -1;
+        $itemList[count].dataset.translate = -$itemList.length * 100;
+        $itemList[count].style.transform = 'translateX('.concat(translate, '%)');
+        // update values of extreme properties
+        this.__refreshExtremeValues();
+        // calling _autoplay
+        this._autoplay();
+    };
+
+    // public
+    ChiefSlider.prototype.next = function () {
+        this._moveToNext();
+    };
+    ChiefSlider.prototype.prev = function () {
+        this._moveToPrev();
+    };
+    ChiefSlider.prototype.moveTo = function (index) {
+        this._moveTo(index);
+    };
+    ChiefSlider.prototype.refresh = function () {
+        this._refresh();
+    };
+
+</script>
 </body>
 </html>

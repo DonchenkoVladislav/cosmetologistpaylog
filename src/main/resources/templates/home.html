@@ -8,8 +8,16 @@
     <link rel="stylesheet" type="text/css" href="/airdatepicker/air_datepicker.css">
     <link rel="stylesheet" href="/cosmoStyle.css">
     <link rel="stylesheet" href="/menu.css">
+    <link rel="stylesheet" href="/loader.css">
 </head>
 <body class="body">
+
+<!--Loader-->
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
+
+<!--Настройки пользователя-->
 <form th:action="@{/logout}" method="post">
     <ul class="flexname gorisontalcolumn-akk font-20 nicecolor margin-top-40">
         <li>
@@ -20,6 +28,8 @@
         </li>
     </ul>
 </form>
+
+<!--Данные за текущий месяц (скрыты)-->
 <ul class="fonts gorisontalcolumnbanner nicecolor">
     <li class="prevblock">
         <ul class="fonts gorisontalcolumn">
@@ -58,9 +68,9 @@
 
 <!--Доходы и расходы-->
 <div class="widgetRowTogether" style="justify-content: space-evenly">
-    <a href='/income' class="buttonform fonts" style="background-color: #f9f9f9; color: #514f4e">Доходы</a>
-    <a href='/expenses' class="buttonform fonts" style="background-color: #f9f9f9; color: #514f4e">Расходы</a>
-    <a href="/all_operations" class="buttonform fonts" style="width: 340px;">Все записи</a>
+    <a href='/income' class="buttonform fonts transition" style="background-color: #f9f9f9; color: #514f4e">Доходы</a>
+    <a href='/expenses' class="buttonform fonts transition" style="background-color: #f9f9f9; color: #514f4e">Расходы</a>
+    <a href="/all_operations" class="buttonform fonts transition" style="width: 340px;">Все записи</a>
 </div>
 
 <!--Место для записей-->
@@ -92,8 +102,8 @@
 
     </li>
     <div class="widgetRowTogether">
-        <a href='/history' class="buttonform fonts" style="width: 320px; margin-left: 5%;">Вся история</a>
-        <a href="/editposts" class="buttonform fonts">Изменить</a>
+        <a href='/history' class="buttonform fonts transition" style="width: 320px; margin-left: 5%;">Вся история</a>
+        <a href="/editposts" class="buttonform fonts transition">Изменить</a>
     </div>
 </ul>
 
@@ -112,7 +122,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="/airdatepicker/air-datepicker.js"></script>
 <script type="text/javascript" src="/buttom/buttom.js"></script>
-<script type="text/javascript" src="fastclick.js"></script>
+<script type="text/javascript" src="/fastclick.js"></script>
+<script type="text/javascript" src="/loader/loader.js"></script>
 <script>
     function getNotesOfCurrentDay() {
         $.ajax({

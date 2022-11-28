@@ -2,17 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>История</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="/loader.css">
     <style>
-        .margin-0{
+        .margin-0 {
             margin: 0%;
         }
-        .base{
+
+        .base {
             margin-top: 8%;
         }
-        .calcbtn{
+
+        .calcbtn {
             width: 200px; /* Ширина блока */
-            height: 200px;/* Высота блока */
+            height: 200px; /* Высота блока */
             display: block;
             color: white;
             padding: 10px;
@@ -23,142 +26,171 @@
             border-radius: 120px;
             border: solid;
         }
-        .middle{
+
+        .middle {
             position: relative;
             left: 50%;
             transform: translate(-50%, 0%);
         }
-        .pbtn{
+
+        .pbtn {
             text-align: center;
             margin-top: 37%;
         }
-        .Ops{
-            text-align:center;
+
+        .Ops {
+            text-align: center;
             width: 600px; /* Ширина блока */
             position: relative;
             left: 50%;
             transform: translate(-50%, 0%);
         }
-        .fonts{
+
+        .fonts {
             font-family: 'Montserrat', sans-serif;
             font-size: 30px;
         }
-        .calcelement{
+
+        .calcelement {
             width: 800px;
             margin: 30px auto;
             box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
             border-radius: 50px;
         }
-        .dayelement{
+
+        .dayelement {
             display: flex;
             width: 800px;
             border-radius: 50px;
         }
-        .font-20{
+
+        .font-20 {
             font-family: 'Montserrat', sans-serif;
             font-size: 20px;
         }
-        .font-30{
+
+        .font-30 {
             font-family: 'Montserrat', sans-serif;
             font-size: 30px;
         }
-        .font-80{
+
+        .font-80 {
             font-family: 'Montserrat', sans-serif;
             font-size: 80px;
         }
-        .leftmiddle{
+
+        .leftmiddle {
             line-height: 70px;
             position: relative;
             top: 20px;
             left: 30px;
         }
-        .vertbottom{
-            vertical-align:bottom;
+
+        .vertbottom {
+            vertical-align: bottom;
         }
-        .rightmiddle{
+
+        .rightmiddle {
             position: relative;
             left: 250px;
         }
-        .blockmain{
+
+        .blockmain {
             height: 80px;
             width: 180px;
             margin: 0px;
         }
-        .block{
+
+        .block {
             height: 50px;
             width: 220px;
             border-radius: 20px;
             margin: 0px;
         }
-        .smallmiddle{
+
+        .smallmiddle {
             position: relative;
             top: 15px;
         }
-        .green{
+
+        .green {
             color: white;
-            background-color:rgb(124, 196, 124);
+            background-color: rgb(124, 196, 124);
         }
-        .furple{
+
+        .furple {
             color: white;
-            background-color:rgb(157, 105, 182);
+            background-color: rgb(157, 105, 182);
         }
-        .midmiddle{
+
+        .midmiddle {
             text-align: center;
             line-height: 70px;
             position: relative;
             top: 20px;
             right: 300px;
         }
-        .smallfonts{
+
+        .smallfonts {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             font-size: 26px;
             color: gray;
         }
-        .columnreverse{
+
+        .columnreverse {
             display: flex;
             flex-direction: column-reverse;
         }
-        .calcmargin{
+
+        .calcmargin {
             margin-top: 20px;
             margin-left: 30px;
         }
-        .daymargin{
+
+        .daymargin {
             margin-top: 50px;
             margin-bottom: 25px;
         }
-        .summanddate{
+
+        .summanddate {
             display: flex;
             justify-content: space-between;
             text-align: center;
             color: rgb(110, 110, 110);
             font-weight: bold;
         }
-        .historybody{
+
+        .historybody {
             background: #f9f9f9;
             height: 100vw;
         }
-        .bodycalendar{
+
+        .bodycalendar {
             background-color: white;
         }
+
         li {
             list-style-type: none; /* Убираем маркеры */
         }
+
         ul {
             margin-left: 0; /* Отступ слева в браузере IE и Opera */
             padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
         }
-        
-        body{
+
+        body {
             margin: 0%;
         }
-        .fixedblock{
+
+        .fixedblock {
             display: block;
             background-color: #34363d;
             color: white;
             margin: 0;
             position: static;
         }
-        .header{
+
+        .header {
             text-align: center;
             margin: 0;
         }
@@ -166,22 +198,39 @@
     </style>
 </head>
 <body class="historybody">
-    <div class="fixedblock"><H3 class="font-80 header">История</H3></div>
-        <ul class="columnreverse">
-            <li class="fonts calcelement bodycalendar" th:each="current : ${summPosts}">
-                <ul class = summanddate>
-                    <li class="smallmiddle block calcmargin" th:text="${current.day}">
-                    <li class="smallmiddle block calcmargin" th:text="${current.summary}">
-                </ul>
-                <ul class="daymargin">
-                    <li class="dayelement" th:each="el : ${posts}" th:if="${el.day == current.day}">
-                        <h4 class="leftmiddle blockmain" th:if="${el.summary_type == 'Расход'}"><img src="https://img.icons8.com/cotton/64/000000/withdrawal--v1.png"/></h4>
-                        <h4 class="leftmiddle blockmain" th:if="${el.summary_type == 'Доход'}"><img src="https://img.icons8.com/cotton/64/000000/deposit--v1.png"/></h4>
-                        <p class="smallmiddle block" th:text="${el.procedures}"></p>
-                        <p class="rightmiddle" th:text="${el.summary}"></p><p class="rightmiddle">&nbsp ₽</p>
-                    </li>
-                </ul>
+
+<!--Loader-->
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
+
+<div class="fixedblock"><H3 class="font-80 header">История</H3></div>
+<ul class="columnreverse">
+    <li class="fonts calcelement bodycalendar" th:each="current : ${summPosts}">
+        <ul class=summanddate>
+            <li class="smallmiddle block calcmargin" th:text="${current.day}">
+            <li class="smallmiddle block calcmargin" th:text="${current.summary}">
+        </ul>
+        <ul class="daymargin">
+            <li class="dayelement" th:each="el : ${posts}" th:if="${el.day == current.day}">
+                <h4 class="leftmiddle blockmain" th:if="${el.summary_type == 'Расход'}"><img
+                        src="https://img.icons8.com/cotton/64/000000/withdrawal--v1.png"/></h4>
+                <h4 class="leftmiddle blockmain" th:if="${el.summary_type == 'Доход'}"><img
+                        src="https://img.icons8.com/cotton/64/000000/deposit--v1.png"/></h4>
+                <p class="smallmiddle block" th:text="${el.procedures}"></p>
+                <p class="rightmiddle" th:text="${el.summary}"></p>
+                <p class="rightmiddle">&nbsp ₽</p>
             </li>
         </ul>
+    </li>
+</ul>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="/loader/loader.js"></script>
+<script>
+    $(document).ready(function () {
+        getNotesOfCurrentDay();
+    });
+</script>
 </html>

@@ -8,12 +8,19 @@
     <link rel="stylesheet" type="text/css" href="/airdatepicker/air_datepicker.css">
     <link rel="stylesheet" href="/cosmoStyle.css">
     <link rel="stylesheet" href="/menu.css">
+    <link rel="stylesheet" href="/loader.css">
 </head>
 <body class="body">
+
+<!--Loader-->
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
+
 <div class="fixedblock widgetBetween">
-    <a style="color: white" href="/home"><H3 class="font-80 header">&nbsp &#8592</H3></a>
+    <a style="color: white" href="/home"><H3 class="font-80 header transition">&nbsp &#8592</H3></a>
     <H3 class="font-80 header">Все записи</H3>
-    <a style="color: white" href="/home"><H3 class="font-80 header">⌂ &nbsp</H3></a>
+    <a style="color: white" href="/home"><H3 class="font-80 header transition">⌂ &nbsp</H3></a>
 </div>
 <!--Поиск по клиентам-->
 <div class="homeInvertBlock" style="margin-top: 2vh;">
@@ -32,6 +39,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script type="text/javascript" src="/airdatepicker/air-datepicker.js"></script>
 <script type="text/javascript" src="/buttom/buttom.js"></script>
+<script type="text/javascript" src="/loader/loader.js"></script>
 <script>
     function getNotesOfCurrentDay() {
         $.ajax({
@@ -63,8 +71,8 @@
 
         var menu = document.createElement('ul');
         menu.innerHTML = '<ul class="submenu widgetRowEvently">\n' +
-            '                <li><button onclick="deleteOpeartion(' + info.id + ')" class="operationOptions"><img class="buttonSubMenu" src="https://cdn.icon-icons.com/icons2/1880/PNG/512/iconfinder-trash-4341321_120557.png"></button></li>\n' +
-            '                <li><button onclick="getClientRequest(' + info.clientId + ')" class="operationOptions"><img class="buttonSubMenu" src="https://cdn.icon-icons.com/icons2/2643/PNG/512/female_woman_person_people_avatar_icon_159366.png"></button></li>\n' +
+            '                <li><button onclick="deleteOpeartion(' + info.id + ')" class="operationOptions"><img class="buttonSubMenu" src="images/iconfinder-trash.png"></button></li>\n' +
+            '                <li><button onclick="getClientRequest(' + info.clientId + ')" class="operationOptions"><img class="buttonSubMenu" src="images/female.png"></button></li>\n' +
             '            </ul>'
 
         var header = document.createElement('div');
