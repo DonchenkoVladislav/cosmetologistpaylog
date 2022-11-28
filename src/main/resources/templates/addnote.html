@@ -125,6 +125,7 @@
                         }
                     },
                     onSelect({date}) {
+
                         hideNewNoteButton(date)
 
                         if (document.getElementById('timeFill')) {
@@ -153,15 +154,33 @@
     function hideNewNoteButton(date) {
         var today = new Date();
 
-        console.log(today - date)
-        if (today - date > 86400000) dateIsLast = true
-
-        if (dateIsLast) {
+        if (today - date > 86400000) {
             document.getElementById("nnb").style = "display: none"
-            if (today - date > 86400000) dateIsLast = true
-            else dateIsLast = false
         }
-        else document.getElementById("nnb").style = "display: flex"
+
+        if (isNaN(today - date)) {
+            document.getElementById("nnb").style = "display: none"
+        }
+
+        if (today - date <= 86400000) {
+            document.getElementById("nnb").style = "display: flex"
+        }
+
+
+
+        // if (dateIsLast) {
+        //     // if (today - date > 86400000) dateIsLast = true
+        //     if (isNaN(today - date)) dateIsLast = true
+        //     document.getElementById("nnb").style = "display: none"
+        //     if (today - date <= 86400000) {
+        //         dateIsLast = false
+        //     }
+        //
+        // }
+        // else {
+        //     if (isNaN(today - date)) dateIsLast = true
+        //     document.getElementById("nnb").style = "display: flex"
+        // }
     }
 
     $("a.transition").click(function (event) {
