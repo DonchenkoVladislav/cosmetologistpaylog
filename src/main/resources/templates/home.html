@@ -250,10 +250,18 @@
         });
         $.ajax({
             type: 'GET',
-            url: '/all_actual_operations',
+            url: '/newnote/currentday',
             dataType: 'json',
-            success: function (all_actual_operations) {
-                calendarData = all_actual_operations.flatMap(item => item.day)
+            success: function (currentday) {
+                responseBody = currentday;
+                // if (location.search.length != 0) {
+                //     param = location.search.split('?')[1]
+                // } else {
+                //     var d = new Date
+                //     var dToString = d.toISOString().split('-')
+                //     param = dToString[0] + '-' + dToString[1] + '-' + dToString[2].split('T')[0]
+                // }
+                // getAllNotesOfDay(responseBody, param)
 
                 new AirDatepicker('#calendar', {
                     inline: true,
@@ -262,56 +270,47 @@
                     // autoClose: true,
                     dateFormat: 'yyyy-MM-dd',
                     onRenderCell({date, cellType}) {
-                            if (cellType === 'day') {
-                                var dd = parseDate(date);
+                        if (cellType === 'day') {
+                            var dd = parseDate(date);
 
-                                if (calendarData.filter(item => item === dd).length > 0 && calendarData.filter(item => item === dd).length < 4) {
-                                    return {
-                                        html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length) + "</div>",
-                                        disabled: false,
-                                        classes: 'isNoteOne',
-                                        attrs: {
-                                            title: 'Cell is disabled'
-                                        }
-                                    }
-                                }
-                                if (calendarData.filter(item => item === dd).length > 3 && calendarData.filter(item => item === dd).length < 7) {
-                                    return {
-                                        html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div><div class='widgetRow'>" + getCircles(3) + "</div><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length - 3) + "</div></div>",
-                                        disabled: false,
-                                        classes: 'isNoteOne',
-                                        attrs: {
-                                            title: 'Cell is disabled'
-                                        }
-                                    }
-                                }
-                                if (calendarData.filter(item => item === dd).length > 6) {
-                                    return {
-                                        html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div><div class='bigCircle'><p class='textIntoCircle'>" + calendarData.filter(item => item === dd).length + "</p></div></div>",
-                                        disabled: false,
-                                        classes: 'isNoteOne',
-                                        attrs: {
-                                            title: 'Cell is disabled'
-                                        }
+                            if (responseBody.filter(function (item) {
+                                return item.date === dd;
+                            })[0] !== undefined) {
+
+                                var v = responseBody.filter(item => item.date === dd)[0]
+
+                                var progress = ""
+                                v.operationNotes.forEach(function () {
+                                    progress = progress + "."
+                                })
+                                var p
+                                if (dd.split("-")[2].length === 2) p = "<p style=\"margin: -2.5vmin\">" + dd.split("-")[2] + "</p>\n"
+                                if (dd.split("-")[2] < 10) p = "<p style=\"margin: -2.5vmin\">" + dd.split("-")[2].slice(1) + "</p>\n"
+
+                                return {
+                                    html: "<svg class='progressbar' viewBox=\"0 0 100 100\" width=\"100\" height=\"100\">\n" +
+                                        "  <defs>\n" +
+                                        "    <path id=\"circle\"\n" +
+                                        "      d=\"\n" +
+                                        "        M 50, 50\n" +
+                                        "        m -37, 0\n" +
+                                        "        a 37,37 0 1,1 74,0\n" +
+                                        "        a 37,37 0 1,1 -74,0\"/>\n" +
+                                        "  </defs>\n" +
+                                        "  <text font-size=\"130\">\n" +
+                                        "    <textPath xlink:href=\"#circle\">" + progress + "</textPath>\n" + p +
+                                        "  </text>\n" +
+                                        "</svg>",
+                                    disabled: false,
+                                    classes: 'isNoteOne',
+                                    attrs: {
+                                        title: 'Cell is disabled'
                                     }
                                 }
                             }
-                        // })
-
-                        // if (date.getDate() === 12) {
-                        //     console.log(date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate())
-                        //     console.log(calendarData)
-                        //     return {
-                        //         disabled: true,
-                        //         classes: 'disabled-class',
-                        //         attrs: {
-                        //             title: 'Cell is disabled'
-                        //         }
-                        //     }
-                        // }
+                        }
                     },
-                    onSelect({date}) {
-                        var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+                    onSelect({date}) {var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
                         massiveDate = String(myDate).split("-");
 
                         var mounth;
@@ -332,9 +331,95 @@
                         window.location.replace('/newnote?' + selectDate)
                     }
                 });
-
             }
         });
+        // $.ajax({
+        //     type: 'GET',
+        //     url: '/all_actual_operations',
+        //     dataType: 'json',
+        //     success: function (all_actual_operations) {
+        //         calendarData = all_actual_operations.flatMap(item => item.day)
+        //
+        //         new AirDatepicker('#calendar', {
+        //             inline: true,
+        //             classes: 'airdateclicker',
+        //             // isMobile: true,
+        //             // autoClose: true,
+        //             dateFormat: 'yyyy-MM-dd',
+        //             onRenderCell({date, cellType}) {
+        //                     if (cellType === 'day') {
+        //                         var dd = parseDate(date);
+        //
+        //                         if (calendarData.filter(item => item === dd).length > 0 && calendarData.filter(item => item === dd).length < 4) {
+        //                             return {
+        //                                 html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length) + "</div>",
+        //                                 disabled: false,
+        //                                 classes: 'isNoteOne',
+        //                                 attrs: {
+        //                                     title: 'Cell is disabled'
+        //                                 }
+        //                             }
+        //                         }
+        //                         if (calendarData.filter(item => item === dd).length > 3 && calendarData.filter(item => item === dd).length < 7) {
+        //                             return {
+        //                                 html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div><div class='widgetRow'>" + getCircles(3) + "</div><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length - 3) + "</div></div>",
+        //                                 disabled: false,
+        //                                 classes: 'isNoteOne',
+        //                                 attrs: {
+        //                                     title: 'Cell is disabled'
+        //                                 }
+        //                             }
+        //                         }
+        //                         if (calendarData.filter(item => item === dd).length > 6) {
+        //                             return {
+        //                                 html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div><div class='bigCircle'><p class='textIntoCircle'>" + calendarData.filter(item => item === dd).length + "</p></div></div>",
+        //                                 disabled: false,
+        //                                 classes: 'isNoteOne',
+        //                                 attrs: {
+        //                                     title: 'Cell is disabled'
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                 // })
+        //
+        //                 // if (date.getDate() === 12) {
+        //                 //     console.log(date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate())
+        //                 //     console.log(calendarData)
+        //                 //     return {
+        //                 //         disabled: true,
+        //                 //         classes: 'disabled-class',
+        //                 //         attrs: {
+        //                 //             title: 'Cell is disabled'
+        //                 //         }
+        //                 //     }
+        //                 // }
+        //             },
+        //             onSelect({date}) {
+        //                 var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        //                 massiveDate = String(myDate).split("-");
+        //
+        //                 var mounth;
+        //                 var dayNumber;
+        //
+        //                 if (massiveDate[1].length === 1) {
+        //                     mounth = "0" + massiveDate[1]
+        //                 } else {
+        //                     mounth = massiveDate[1]
+        //                 }
+        //
+        //                 if (massiveDate[2].length === 1) {
+        //                     dayNumber = "0" + massiveDate[2]
+        //                 } else {
+        //                     dayNumber = massiveDate[2]
+        //                 }
+        //                 selectDate = massiveDate[0] + "-" + mounth + "-" + dayNumber;
+        //                 window.location.replace('/newnote?' + selectDate)
+        //             }
+        //         });
+        //
+        //     }
+        // });
     });
 
     function getCircles(count) {
