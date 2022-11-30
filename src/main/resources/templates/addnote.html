@@ -86,6 +86,7 @@
                     param = dToString[0] + '-' + dToString[1] + '-' + dToString[2].split('T')[0]
                 }
                 getAllNotesOfDay(responseBody, param)
+                // hideNewNoteButton(date)
 
                 new AirDatepicker('#calendar', {
                     inline: true,
@@ -159,6 +160,8 @@
                             // }
                         }
                     },
+                    // selectedDates: [param],
+                    // startDate: param,
                     onSelect({date}) {
 
                         hideNewNoteButton(date)
@@ -175,9 +178,7 @@
 
                         // document.getElementById("fill").remove()
                         // getNotesOfCurrentDay(selectDate);
-                    },
-                    selectedDates: [param],
-                    startDate: param
+                    }
                 });
             }
         });
@@ -507,7 +508,7 @@
     }
 
     function selectDateAlertMessege() {
-        alert("Сначала выберете дату для записи")
+        alert("Сначала выберите дату записи")
     }
 
 </script>
