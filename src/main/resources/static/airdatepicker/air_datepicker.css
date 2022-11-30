@@ -34,7 +34,7 @@
 }
 
 .air-datepicker-cell {
-    border-radius: var(--adp-cell-border-radius);
+    /*border-radius: var(--adp-cell-border-radius);*/
     box-sizing: border-box;
     cursor: pointer;
     display: flex;
@@ -107,7 +107,7 @@
     border: none;
     background: #524f4e;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
-    border-radius: 15%;
+    /*border-radius: 15%;*/
 }
 
 .air-datepicker-cell.-selected-.-current- {
@@ -219,7 +219,7 @@
 .air-datepicker-nav--action path {
     fill: none;
     stroke: var(--adp-nav-arrow-color);
-    stroke-width: 2px
+    stroke-width: 4px
 }
 
 .air-datepicker-nav--title {
@@ -505,7 +505,7 @@
     --adp-color-secondary: #9c9c9c;
     --adp-accent-color: #4eb5e6;
     --adp-color-current-date: var(--adp-accent-color);
-    --adp-color-other-month: #dedede;
+    --adp-color-other-month: #c7c7c7;
     --adp-color-disabled: #aeaeae;
     --adp-color-disabled-in-range: #939393;
     --adp-color-other-month-hover: #c5c5c5;
@@ -520,7 +520,7 @@
     --adp-day-name-color: #ff9a19;
     --adp-day-name-color-hover: #8ad5f4;
     --adp-day-cell-width: 1fr;
-    --adp-day-cell-height: 52px;
+    --adp-day-cell-height: 85px;
     --adp-month-cell-height: 42px;
     --adp-year-cell-height: 56px;
     --adp-pointer-size: 10px;

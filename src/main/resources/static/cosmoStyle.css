@@ -86,6 +86,12 @@ a {
     display: inline-block;
 }
 
+.home {
+    height: 80px;
+    vertical-align: -12px;
+    margin-right: 20px;
+}
+
 .homeInpun {
     margin: 20px;
     background: #f9f9f9;
@@ -123,7 +129,7 @@ a {
     border-radius: 50px;
     padding: 5px 0;
     position: relative;
-    margin: 0 auto 5%;
+    margin: 5% auto 5%;
     background-color: #524f4e;
 }
 
@@ -232,7 +238,7 @@ a {
 }
 
 .isNoteOne{
-    background-color: #f6e6d2;
+    background-color: #e7eaeb;
 }
 
 /*a:hover {*/
@@ -518,7 +524,7 @@ a {
     z-index: 1;
     margin: 5% auto;
     width: 93vmin;
-    box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
+    box-shadow: 0 10px 25px rgb(0 0 0 / 10%);
     border-radius: 50px;
     padding: 5px 0px;
     background-color: white;
@@ -555,11 +561,10 @@ a {
 
 .airdateclicker {
     width: 93vmin;
-    height: 440px;
+    /*height: 29vh;*/
     margin: 30px auto;
     box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
     border-radius: 50px;
-    font-size: medium;
     font-size: xx-large;
 }
 
@@ -623,7 +628,7 @@ body {
 
 .newNoteButton {
     width: 100%;
-    height: 3vmax;
+    height: 4vmax;
     margin: 0;
     box-shadow: none;
     background: white;
@@ -694,6 +699,18 @@ body {
     text-align: center;
     font-size: smaller;
 }
+
+.progressbar {
+    margin: -2.8vmin;
+    fill: currentColor;
+    height: auto;
+    max-width: 7vmin;
+    transform-origin: center;
+    width: 66%;
+    rotate: 74deg;
+}
+
+
 
 .puff-in-center{-webkit-animation:puff-in-center .7s cubic-bezier(.47,0.000,.745,.715) both;animation:puff-in-center .7s cubic-bezier(.47,0.000,.745,.715) both}
 @-webkit-keyframes puff-in-center{0%{-webkit-transform:scale(2);transform:scale(2);-webkit-filter:blur(4px);filter:blur(4px);opacity:0}100%{-webkit-transform:scale(1);transform:scale(1);-webkit-filter:blur(0);filter:blur(0);opacity:1}}

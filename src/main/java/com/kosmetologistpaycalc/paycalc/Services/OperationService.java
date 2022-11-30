@@ -68,7 +68,7 @@ public class OperationService {
         return myCurrentNoteList;
     }
 
-    //Все operationsNotes principal
+    //Все актуальные operationsNotes principal
     public List<OperationNote> operationNoteList(Principal principal, long limit) {
         List<Client> AllMyClients = getAllMyClients(principal);
 
@@ -100,14 +100,47 @@ public class OperationService {
         }).limit(limit).collect(Collectors.toList());
     }
 
+    //Все operationsNotes principal
+    public List<OperationNote> allOperationNoteList(Principal principal, long limit) {
+        List<Client> AllMyClients = getAllMyClients(principal);
+
+        List<OperationNote> operationsNotes = new ArrayList<>();
+
+        getAllMyOperations(principal).stream().forEach(currentOperation -> {
+            operationsNotes.add(
+                    OperationNote.builder()
+                            .day(new SimpleDateFormat(PATTERN_DAY).format(currentOperation.getDate().getTime()))
+                            .time(new SimpleDateFormat(PATTERN_TIME).format(currentOperation.getDate().getTime()))
+                            .medicament(currentOperation.getMedicament())
+                            .summury(currentOperation.getSummury())
+                            .name(currentOperation.getName())
+                            .clientName(AllMyClients.stream()
+                                    .filter(client -> client.getId().equals(currentOperation.getClientId()))
+                                    .findFirst()
+                                    .orElseThrow(
+                                            () -> new NoSuchElementException("Не удалось найти клинета по id = "
+                                                    + currentOperation.getClientId()))
+                                    .getData())
+                            .clientId(currentOperation.getClientId())
+                            .id(currentOperation.getId())
+                            .build());
+        });
+        return operationsNotes.stream().sorted(new Comparator<OperationNote>() {
+            public int compare(OperationNote a1, OperationNote a2) {
+                return a1.getDay().compareTo(a2.getDay());
+            }
+        }).limit(limit).collect(Collectors.toList());
+    }
+
     public List<DayInfo> getDayInfo(Principal principal, Long limit) {
         List<DayInfo> dayInfoList = new ArrayList<>();
 
-        getAllDatesNotes(getAllMyActualOperations(principal), limit).forEach(date -> {
+        getAllDatesNotes(getAllMyOperations(principal), limit).forEach(date -> {
             dayInfoList.add(DayInfo.builder()
                 .date(date)
-                .countNotes(operationNoteList(principal, limit).stream().count() + " записей")
-                .operationNotes(operationNoteList(principal, limit).stream()
+                .countNotes(allOperationNoteList(principal, limit).stream()
+                        .filter(note -> note.getDay().equals(date)).count() + " записей")
+                .operationNotes(allOperationNoteList(principal, limit).stream()
                     .filter(note -> note.getDay().equals(date)).sorted(new Comparator<OperationNote>() {
                         public int compare(OperationNote a1, OperationNote a2) {
                             return a2.getTime().compareTo(a1.getTime());

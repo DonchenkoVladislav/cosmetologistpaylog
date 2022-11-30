@@ -22,7 +22,7 @@
 <div class="fixedblock widgetBetween">
     <a style="color: white" href="/home"><H3 class="font-80 header transition">&nbsp &#8592</H3></a>
     <H3 class="font-80 header">Записи</H3>
-    <a style="color: white" href="/home"><H3 class="font-80 header transition">⌂ &nbsp</H3></a>
+    <a style="color: white" href="/home"><H3 class="font-80 header transition"><img class="home" srcset="/images/home.svg"></H3></a>
 </div>
 
 <!--Аналитика-->
@@ -38,8 +38,9 @@
 
 <!--Кнопка Новая запись-->
 <div id="nnb" class="widgetRow calcelementul">
-    <button type="submit" class="buttonform fonts homeInvertButton newNoteButton" onclick="getTimeForNote()">Добавить
-        запись
+    <button type="submit" class="buttonform fonts homeInvertButton newNoteButton"
+            onclick="getTimeForNote()">
+        Добавить запись
     </button>
 </div>
 
@@ -64,23 +65,27 @@
     let timeList = ["07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30"];
 
     var responseBody;
-    var calendarData;
     var isDaySelected = false;
     var jsDay;
     var timeButtonProcessing = false;
     var selectDate = null;
-    let startDate;
     var param;
 
     $(document).ready(function () {
-        getNotesOfCurrentDay();
-        startDate = param;
         $.ajax({
             type: 'GET',
-            url: '/all_actual_operations',
+            url: '/newnote/currentday',
             dataType: 'json',
-            success: function (all_actual_operations) {
-                calendarData = all_actual_operations.flatMap(item => item.day)
+            success: function (currentday) {
+                responseBody = currentday;
+                if (location.search.length != 0) {
+                    param = location.search.split('?')[1]
+                } else {
+                    var d = new Date
+                    var dToString = d.toISOString().split('-')
+                    param = dToString[0] + '-' + dToString[1] + '-' + dToString[2].split('T')[0]
+                }
+                getAllNotesOfDay(responseBody, param)
 
                 new AirDatepicker('#calendar', {
                     inline: true,
@@ -92,9 +97,38 @@
                         if (cellType === 'day') {
                             var dd = parseDate(date);
 
-                            if (calendarData.filter(item => item === dd).length > 0 && calendarData.filter(item => item === dd).length < 4) {
+
+                            if (responseBody.filter(function (item) {
+                                return item.date === dd;
+                            })[0] !== undefined) {
+
+                                var v = responseBody.filter(item => item.date === dd)[0]
+                                console.log("Записи совпадают")
+                                console.log(v.date)
+                                console.log(dd)
+
+                                var progress = ""
+                                v.operationNotes.forEach(function () {
+                                    progress = progress + "."
+                                })
+                                var p
+                                if (dd.split("-")[2].length === 2) p = "<p style=\"margin: -2.5vmin\">" + dd.split("-")[2] + "</p>\n"
+                                if (dd.split("-")[2] < 10) p = "<p style=\"margin: -2.5vmin\">" + dd.split("-")[2].slice(1) + "</p>\n"
+
                                 return {
-                                    html: "<div class='widgetRow'><p style='margin-top: 0.7em;'>" + date.getDate() + "</p><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length) + "</div>",
+                                    html: "<svg class='progressbar' viewBox=\"0 0 100 100\" width=\"100\" height=\"100\">\n" +
+                                        "  <defs>\n" +
+                                        "    <path id=\"circle\"\n" +
+                                        "      d=\"\n" +
+                                        "        M 50, 50\n" +
+                                        "        m -37, 0\n" +
+                                        "        a 37,37 0 1,1 74,0\n" +
+                                        "        a 37,37 0 1,1 -74,0\"/>\n" +
+                                        "  </defs>\n" +
+                                        "  <text font-size=\"130\">\n" +
+                                        "    <textPath xlink:href=\"#circle\">" + progress + "</textPath>\n" + p +
+                                        "  </text>\n" +
+                                        "</svg>",
                                     disabled: false,
                                     classes: 'isNoteOne',
                                     attrs: {
@@ -102,26 +136,27 @@
                                     }
                                 }
                             }
-                            if (calendarData.filter(item => item === dd).length > 3 && calendarData.filter(item => item === dd).length < 7) {
-                                return {
-                                    html: "<div class='widgetRow'><p style='margin-top: 0.7em;'>" + date.getDate() + "</p><div><div class='widgetRow'>" + getCircles(3) + "</div><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length - 3) + "</div></div>",
-                                    disabled: false,
-                                    classes: 'isNoteOne',
-                                    attrs: {
-                                        title: 'Cell is disabled'
-                                    }
-                                }
-                            }
-                            if (calendarData.filter(item => item === dd).length > 6) {
-                                return {
-                                    html: "<div class='widgetRow'><p style='margin-top: 0.7em;'>" + date.getDate() + "</p><div><div class='bigCircle'><p class='textIntoCircle'>" + calendarData.filter(item => item === dd).length + "</p></div></div>",
-                                    disabled: false,
-                                    classes: 'isNoteOne',
-                                    attrs: {
-                                        title: 'Cell is disabled'
-                                    }
-                                }
-                            }
+
+                            // if (calendarData.filter(item => item === dd).length > 3 && calendarData.filter(item => item === dd).length < 7) {
+                            //     return {
+                            //         html: "<div class='widgetRow'><p style='margin-top: 0.7em;'>" + date.getDate() + "</p><div><div class='widgetRow'>" + getCircles(3) + "</div><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length - 3) + "</div></div>",
+                            //         disabled: false,
+                            //         classes: 'isNoteOne',
+                            //         attrs: {
+                            //             title: 'Cell is disabled'
+                            //         }
+                            //     }
+                            // }
+                            // if (calendarData.filter(item => item === dd).length > 6) {
+                            //     return {
+                            //         html: "<div class='widgetRow'><p style='margin-top: 0.7em;'>" + date.getDate() + "</p><div><div class='bigCircle'><p class='textIntoCircle'>" + calendarData.filter(item => item === dd).length + "</p></div></div>",
+                            //         disabled: false,
+                            //         classes: 'isNoteOne',
+                            //         attrs: {
+                            //             title: 'Cell is disabled'
+                            //         }
+                            //     }
+                            // }
                         }
                     },
                     onSelect({date}) {
@@ -141,46 +176,47 @@
                         // document.getElementById("fill").remove()
                         // getNotesOfCurrentDay(selectDate);
                     },
-                    selectedDates: [startDate],
-                    startDate: startDate
+                    selectedDates: [param],
+                    startDate: param
                 });
-
             }
         });
-    });
-
-    var dateIsLast = false
+    })
 
     function hideNewNoteButton(date) {
-        var today = new Date();
+        var button = document.getElementById("nnb")
+        var today = new Date()
+
 
         if (today - date > 86400000) {
             document.getElementById("nnb").style = "display: none"
+
+            // if (button.className !== "bounce-leave-active widgetRow calcelementul"){
+            //     button.className = "bounce-leave-active widgetRow calcelementul"
+            // }
+            // setTimeout(function () {
+            //     document.getElementById("nnb").style = "display: none"
+            // //     console.log("привет 1")
+            // }, 500)
         }
 
         if (isNaN(today - date)) {
             document.getElementById("nnb").style = "display: none"
+
+            // if (button.className !== "bounce-leave-active widgetRow calcelementul"){
+            //     button.className = "bounce-leave-active widgetRow calcelementul"
+            // }
+            // setTimeout(function () {
+            //     document.getElementById("nnb").style = "display: none"
+            // }, 500)
         }
 
         if (today - date <= 86400000) {
             document.getElementById("nnb").style = "display: flex"
+            // if (button.className === "bounce-leave-active widgetRow calcelementul"){
+            //     button.className = "bounce-enter-active widgetRow calcelementul"
+            // }
         }
-
-
-
-        // if (dateIsLast) {
-        //     // if (today - date > 86400000) dateIsLast = true
-        //     if (isNaN(today - date)) dateIsLast = true
-        //     document.getElementById("nnb").style = "display: none"
-        //     if (today - date <= 86400000) {
-        //         dateIsLast = false
-        //     }
-        //
-        // }
-        // else {
-        //     if (isNaN(today - date)) dateIsLast = true
-        //     document.getElementById("nnb").style = "display: flex"
-        // }
     }
 
     $("a.transition").click(function (event) {
@@ -228,7 +264,7 @@
         return massiveDate[0] + "-" + mounth + "-" + dayNumber;
     }
 
-    function getAllNotesOfDay(response, select){
+    function getAllNotesOfDay(response, select) {
         var myDate;
         var notesPlace = document.getElementById("notesPlace");
 
@@ -253,8 +289,7 @@
             notesPlace.prepend(filler);
 
             isDaySelected = false;
-        }
-        else {
+        } else {
             var filler = document.createElement('div');
             filler.id = "fill";
 
@@ -272,24 +307,6 @@
         }
     }
 
-    function getNotesOfCurrentDay() {
-        $.ajax({
-            type: 'GET',
-            url: '/newnote/currentday',
-            dataType: 'json',
-            success: function (currentday) {
-                responseBody = currentday;
-                if (location.search.length != 0) {
-                    param = location.search.split('?')[1]
-                } else {
-                    var d = new Date
-                    var dToString = d.toISOString().split('-')
-                    param = dToString[0] + '-' + dToString[1] + '-' + dToString[2].split('T')[0]
-                }
-                getAllNotesOfDay(responseBody, param)
-            }
-        });
-    }
 
     function createOneNote(info, prepear) {
 
@@ -422,7 +439,7 @@
             var backgroundColor;
             var textColor;
 
-            if(responseBody.filter(function (item) {
+            if (responseBody.filter(function (item) {
                 return item.date === jsDay;
             })[0] != null) {
                 responseBody.filter(function (item) {
@@ -468,7 +485,7 @@
 
         timeForm.className = "timeForm";
 
-        if(backgroundColor != "#f9f9f9") {
+        if (backgroundColor != "#f9f9f9") {
             timeButton.type = "submit";
             timeForm.action = "/newnote/create/select-client?date=" + selectDate + "&time=" + time;
             timeForm.method = "GET";
