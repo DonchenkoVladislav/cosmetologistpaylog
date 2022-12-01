@@ -3,6 +3,10 @@ a {
     text-decoration: none;
 }
 
+h1, h2, h4, h5 {
+    color: #514f4e;
+}
+
 .margin-0 {
     margin: 0%;
 }
@@ -87,9 +91,10 @@ a {
 }
 
 .home {
-    height: 80px;
-    vertical-align: -12px;
+    height: 65px;
+    vertical-align: -3px;
     margin-right: 20px;
+    margin-left: 20px;
 }
 
 .homeInpun {
@@ -531,6 +536,18 @@ a {
     position: relative;
 }
 
+.calcelementulBox {
+    z-index: 1;
+    margin: 2% 0 2% 4%;
+    height: 20vmin;
+    width: 30vmin;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 10%);
+    border-radius: 50px;
+    padding: 2vmin 3vmin;
+    background-color: white;
+    position: relative;
+}
+
 .calcelementulInvert {
     margin: 5% auto;
     width: 93vmin;
@@ -650,6 +667,14 @@ body {
     margin: 10px 30px;
 }
 
+.blockV3start {
+    color: #524f4e;
+    text-align: start;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin: 10px 30px;
+}
+
 .transparentButton {
     outline: none;
     border: 0;
@@ -661,6 +686,12 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+}
+
+.widgetRowStart {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
 }
 
 .circle {
@@ -710,6 +741,20 @@ body {
     rotate: 74deg;
 }
 
+.h_font_size {
+    font-size: 5vmin;
+}
+
+.h_font_size_haeder {
+    font-size: 4.5vmin;
+    margin-left: 4%;
+    margin-top: 6%;
+}
+
+.p_box_font_size {
+    font-size: 3vmin;
+    color: #6c6c6c;
+}
 
 
 .puff-in-center{-webkit-animation:puff-in-center .7s cubic-bezier(.47,0.000,.745,.715) both;animation:puff-in-center .7s cubic-bezier(.47,0.000,.745,.715) both}

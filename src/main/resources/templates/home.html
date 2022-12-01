@@ -69,13 +69,31 @@
 <!--Доходы и расходы-->
 <div class="widgetRowTogether" style="justify-content: space-evenly">
     <a href='/income' class="buttonform fonts transition" style="background-color: #f9f9f9; color: #514f4e">Доходы</a>
-    <a href='/expenses' class="buttonform fonts transition" style="background-color: #f9f9f9; color: #514f4e">Расходы</a>
+    <a href='/expenses' class="buttonform fonts transition"
+       style="background-color: #f9f9f9; color: #514f4e">Расходы</a>
     <a href="/all_operations" class="buttonform fonts transition" style="width: 340px;">Все записи</a>
 </div>
 
-<!--Место для записей-->
-<div id="notesPlace">
+<H2 class="h_font_size_haeder">В текущем месяце</H2>
+
+<!--Статистика-->
+<div class="widgetRowStart">
+
+    <div id="clientsCount" class="calcelementulBox"></div>
+
+    <div id="operationsCount" class="calcelementulBox"></div>
+    <!--    <div class="calcelementulBox">-->
+    <!--        <div class="dateBlock">-->
+    <!--            <H2 class="h_font_size">142</H2>-->
+    <!--            <p class="p_box_font_size">часа отработано</p>-->
+    <!--        </div>-->
+    <!--    </div>-->
 </div>
+
+<H2 class="h_font_size_haeder">Ближайшие записи</H2>
+
+<!--Место для записей-->
+<div id="notesPlace"></div>
 
 <!--История-->
 <ul class="calcelementul">
@@ -125,6 +143,29 @@
 <script type="text/javascript" src="/fastclick.js"></script>
 <script type="text/javascript" src="/loader/loader.js"></script>
 <script>
+    function newNoteIfnoNote() {
+        var date = new Date()
+        var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+        massiveDate = String(myDate).split("-");
+
+        var mounth;
+        var dayNumber;
+
+        if (massiveDate[1].length === 1) {
+            mounth = "0" + massiveDate[1]
+        } else {
+            mounth = massiveDate[1]
+        }
+
+        if (massiveDate[2].length === 1) {
+            dayNumber = "0" + massiveDate[2]
+        } else {
+            dayNumber = massiveDate[2]
+        }
+        selectDate = massiveDate[0] + "-" + mounth + "-" + dayNumber;
+        window.location.replace('/newnote?' + selectDate)
+    }
+
     function getNotesOfCurrentDay() {
         $.ajax({
             type: 'GET',
@@ -136,9 +177,23 @@
 
                 var filler = document.createElement('div');
                 filler.id = "fill";
-                all_actual_operations.slice().reverse().forEach((note) => {
-                    createOneNote(note, filler);
-                })
+
+                if (all_actual_operations.length === 0) {
+                    filler.innerHTML =
+                        "<ul class=\"calcelementul topmenu\">\n" +
+                        "    <li style=\"width: 100%;\">\n" +
+                        "        <button onclick=\"newNoteIfnoNote()\" class=\"operationOptions\" style=\"width: 100%;\">\n" +
+                        "            <h1 class=\"blockV3start\" style=\"text-align: start\">Пока здесь нет записей</h1>\n" +
+                        "        <p class=\"blockV3start p_box_font_size\">Давайте запишем кого-нибудь, выбрав дату в календаре, или тапнув сюда</p>\n" +
+                        "        </button>\n" +
+                        "    </li>\n" +
+                        "</ul>"
+                } else {
+                    all_actual_operations.slice().reverse().forEach((note) => {
+                        createOneNote(note, filler);
+                    })
+                }
+
                 notesPlace.prepend(filler);
             }
         });
@@ -228,6 +283,7 @@
 <script>
     var calendarData;
     var responseBody;
+    var responseBodyClients;
     var clientData;
     var clientId;
 
@@ -240,7 +296,7 @@
             url: '/newnote/create/select-client/all_my_clients',
             dataType: 'json',
             success: function (all_my_clients) {
-                responseBody = all_my_clients;
+                responseBodyClients = all_my_clients;
                 all_my_clients.forEach((item) => {
                     var option = document.createElement('option');
                     option.innerHTML = item.client.data;
@@ -254,15 +310,6 @@
             dataType: 'json',
             success: function (currentday) {
                 responseBody = currentday;
-                // if (location.search.length != 0) {
-                //     param = location.search.split('?')[1]
-                // } else {
-                //     var d = new Date
-                //     var dToString = d.toISOString().split('-')
-                //     param = dToString[0] + '-' + dToString[1] + '-' + dToString[2].split('T')[0]
-                // }
-                // getAllNotesOfDay(responseBody, param)
-
                 new AirDatepicker('#calendar', {
                     inline: true,
                     classes: 'airdateclicker',
@@ -310,7 +357,8 @@
                             }
                         }
                     },
-                    onSelect({date}) {var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+                    onSelect({date}) {
+                        var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
                         massiveDate = String(myDate).split("-");
 
                         var mounth;
@@ -331,106 +379,73 @@
                         window.location.replace('/newnote?' + selectDate)
                     }
                 });
+                getStatistic(responseBody);
             }
         });
-        // $.ajax({
-        //     type: 'GET',
-        //     url: '/all_actual_operations',
-        //     dataType: 'json',
-        //     success: function (all_actual_operations) {
-        //         calendarData = all_actual_operations.flatMap(item => item.day)
-        //
-        //         new AirDatepicker('#calendar', {
-        //             inline: true,
-        //             classes: 'airdateclicker',
-        //             // isMobile: true,
-        //             // autoClose: true,
-        //             dateFormat: 'yyyy-MM-dd',
-        //             onRenderCell({date, cellType}) {
-        //                     if (cellType === 'day') {
-        //                         var dd = parseDate(date);
-        //
-        //                         if (calendarData.filter(item => item === dd).length > 0 && calendarData.filter(item => item === dd).length < 4) {
-        //                             return {
-        //                                 html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length) + "</div>",
-        //                                 disabled: false,
-        //                                 classes: 'isNoteOne',
-        //                                 attrs: {
-        //                                     title: 'Cell is disabled'
-        //                                 }
-        //                             }
-        //                         }
-        //                         if (calendarData.filter(item => item === dd).length > 3 && calendarData.filter(item => item === dd).length < 7) {
-        //                             return {
-        //                                 html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div><div class='widgetRow'>" + getCircles(3) + "</div><div class='widgetRow'>" + getCircles(calendarData.filter(item => item === dd).length - 3) + "</div></div>",
-        //                                 disabled: false,
-        //                                 classes: 'isNoteOne',
-        //                                 attrs: {
-        //                                     title: 'Cell is disabled'
-        //                                 }
-        //                             }
-        //                         }
-        //                         if (calendarData.filter(item => item === dd).length > 6) {
-        //                             return {
-        //                                 html: "<div class='widgetRow'><p style='margin-top: 0.4em;'>" + date.getDate() + "</p><div><div class='bigCircle'><p class='textIntoCircle'>" + calendarData.filter(item => item === dd).length + "</p></div></div>",
-        //                                 disabled: false,
-        //                                 classes: 'isNoteOne',
-        //                                 attrs: {
-        //                                     title: 'Cell is disabled'
-        //                                 }
-        //                             }
-        //                         }
-        //                     }
-        //                 // })
-        //
-        //                 // if (date.getDate() === 12) {
-        //                 //     console.log(date.getFullYear() + "-" + date.getMonth() + "-" + date.getDate())
-        //                 //     console.log(calendarData)
-        //                 //     return {
-        //                 //         disabled: true,
-        //                 //         classes: 'disabled-class',
-        //                 //         attrs: {
-        //                 //             title: 'Cell is disabled'
-        //                 //         }
-        //                 //     }
-        //                 // }
-        //             },
-        //             onSelect({date}) {
-        //                 var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-        //                 massiveDate = String(myDate).split("-");
-        //
-        //                 var mounth;
-        //                 var dayNumber;
-        //
-        //                 if (massiveDate[1].length === 1) {
-        //                     mounth = "0" + massiveDate[1]
-        //                 } else {
-        //                     mounth = massiveDate[1]
-        //                 }
-        //
-        //                 if (massiveDate[2].length === 1) {
-        //                     dayNumber = "0" + massiveDate[2]
-        //                 } else {
-        //                     dayNumber = massiveDate[2]
-        //                 }
-        //                 selectDate = massiveDate[0] + "-" + mounth + "-" + dayNumber;
-        //                 window.location.replace('/newnote?' + selectDate)
-        //             }
-        //         });
-        //
-        //     }
-        // });
+
     });
 
-    function getCircles(count) {
-        var htmlText = ""
-        console.log("12")
+    function getStatistic(response) {
+        var clients = document.getElementById("clientsCount")
+        var operations = document.getElementById("operationsCount")
+        var mounth;
+        var date = new Date()
 
-        for (let i = 1; i < count + 1; i++) {
-            console.log("11")
-            htmlText = htmlText + "<div class='circle'></div>"
+        var myDate = date.getFullYear() + "-" + (date.getMonth() + 1)
+        let massiveDate = String(myDate).split("-");
+
+        if (massiveDate[1].length === 1) {
+            mounth = "0" + massiveDate[1]
+        } else {
+            mounth = massiveDate[1]
         }
-        return htmlText
+
+        var day = date.getDate();
+
+        var currentDate = massiveDate[0] + "-" + mounth
+
+        var operationsList = response.filter(item => item.date.split("-")[0] + "-" + item.date.split("-")[1] === currentDate && item.date.split("-")[2] <= day)
+            .flatMap(d => d.operationNotes)
+
+        var operationsCount = operationsList.length
+
+        var clientList = operationsList.flatMap(o => o.clientName)
+
+        var uniqueClientList = unique(clientList).length
+
+        clients.innerHTML = "<div class=\"dateBlock\">\n" +
+            "            <H2 class=\"h_font_size\">" + uniqueClientList + "</H2>\n" +
+            "            <p class=\"p_box_font_size\">" + getClientsDescriptionText2(uniqueClientList, "уникальны", "посетител") + "</p>\n" +
+            "        </div>"
+
+        operations.innerHTML = "<div class=\"dateBlock\">\n" +
+            "            <H2 class=\"h_font_size\">" + operationsCount + "</H2>\n" +
+            "            <p class=\"p_box_font_size\">" + getClientsDescriptionText(operationsCount, "прием", "проведен") + "</p>\n" +
+            "        </div>"
+    }
+
+    function unique(arr) {
+        let result = [];
+
+        for (let str of arr) {
+            if (!result.includes(str)) {
+                result.push(str);
+            }
+        }
+
+        return result;
+    }
+
+    function getClientsDescriptionText(count, world1, world2) {
+        if (count === 1 || count === 21 || count === 31 || count === 41 || count === 51 || count === 61) return world1 + " " + world2
+        if (count > 1 && count < 5) return world1 + "a" + " " + world2 + "о"
+        else return world1 + "ов" + " " + world2 + "о"
+    }
+
+    function getClientsDescriptionText2(count, world1, world2) {
+        if (count === 1 || count === 21 || count === 31 || count === 41 || count === 51 || count === 61) return world1 + "й" + " " + world2 + "ь"
+        if (count > 1 && count < 5) return world1 + "х" + " " + world2 + "я"
+        else return world1 + "х" + " " + world2 + "ей"
     }
 
     function parseDate(date) {
@@ -457,7 +472,13 @@
 
     function getClientInfo(elementId) {
         clientData = document.getElementById(elementId).value;
-        clientId = responseBody.filter(function (item) {
+
+        console.log(responseBodyClients)
+        console.log(responseBodyClients[0])
+        console.log(responseBodyClients[0].data)
+        console.log(clientData)
+
+        clientId = responseBodyClients.filter(function (item) {
             return item.client.data === clientData
         })[0].client.id
         getClientRequest(clientId)
