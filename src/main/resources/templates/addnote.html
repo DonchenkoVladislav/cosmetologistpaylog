@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/cosmoStyle.css">
     <link rel="stylesheet" href="/menu.css">
     <link rel="stylesheet" href="/loader.css">
+    <link rel="stylesheet" href="/animation.css">
 </head>
 
 <body class="body">
@@ -37,7 +38,7 @@
 </div>
 
 <!--Кнопка Новая запись-->
-<div id="nnb" class="widgetRow calcelementul">
+<div id="nnb" class="widgetRow calcelementul slide-in-bck-center">
     <button type="submit" class="buttonform fonts homeInvertButton newNoteButton"
             onclick="getTimeForNote()">
         Добавить запись
@@ -203,20 +204,10 @@
 
         if (isNaN(today - date)) {
             document.getElementById("nnb").style = "display: none"
-
-            // if (button.className !== "bounce-leave-active widgetRow calcelementul"){
-            //     button.className = "bounce-leave-active widgetRow calcelementul"
-            // }
-            // setTimeout(function () {
-            //     document.getElementById("nnb").style = "display: none"
-            // }, 500)
         }
 
         if (today - date <= 86400000) {
             document.getElementById("nnb").style = "display: flex"
-            // if (button.className === "bounce-leave-active widgetRow calcelementul"){
-            //     button.className = "bounce-enter-active widgetRow calcelementul"
-            // }
         }
     }
 
@@ -232,15 +223,6 @@
 
     function removeElementById(id) {
         document.getElementById(id).remove();
-    }
-
-    function getCircles(count) {
-        var htmlText = ""
-
-        for (let i = 1; i < count + 1; i++) {
-            htmlText = htmlText + "<div class='circle'></div>"
-        }
-        return htmlText
     }
 
     function parseDate(date) {
