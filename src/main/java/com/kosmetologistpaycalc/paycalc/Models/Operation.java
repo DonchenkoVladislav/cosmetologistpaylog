@@ -22,6 +22,7 @@ public class Operation {
     private Long clientId;
 
     private Calendar date;
+    private String duration;
     private String name;
     private String medicament;
     private Integer summury;
@@ -30,9 +31,10 @@ public class Operation {
 
     public Operation() {}
 
-    public Operation(Long clientId, Calendar date, String name, String medicament, Integer summury, String userName) {
+    public Operation(Long clientId, Calendar date, String name, String medicament, Integer summury, String userName, String duration) {
         this.clientId = clientId;
         this.date = date;
+        this.duration = duration;
         this.name = name;
         this.medicament = medicament;
         this.summury = summury;

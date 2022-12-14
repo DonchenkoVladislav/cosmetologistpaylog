@@ -1,3 +1,6 @@
+*{
+    /*font-family: 'Montserrat', sans-serif;*/
+}
 a {
     transition: .3s;
     text-decoration: none;
@@ -52,11 +55,11 @@ h1, h2, h4, h5 {
 }
 
 .buttonformResult {
-    padding-top: 2%;
+    padding-top: 1vh;
     text-decoration: none;
     display: inline-block;
     width: 290px;
-    height: 60px;
+    height: 4vh;
     line-height: 45px;
     border-radius: 45px;
     text-transform: uppercase;
@@ -67,6 +70,8 @@ h1, h2, h4, h5 {
     background: #524f4e;;
     box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
     transition: .3s;
+    margin: 2vh 1vw;
+    font-size: xx-large;
 }
 
 .timebuttonform {
@@ -85,6 +90,13 @@ h1, h2, h4, h5 {
     transition: .3s;
 }
 
+.alertBlockSubtitle {
+    color: gray;
+    text-align: center;
+    margin: 2vh 6vw;
+    font-size: 2em;
+}
+
 .timeForm {
     width: 25%;
     display: inline-block;
@@ -95,6 +107,19 @@ h1, h2, h4, h5 {
     vertical-align: -3px;
     margin-right: 20px;
     margin-left: 20px;
+}
+
+.icon {
+    height: 2.4vh;
+    margin-top: 1.6vh;
+    vertical-align: -3px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.iconHome {
+    height: 2vh;
+    margin-top: 0.7vh;
 }
 
 .homeInpun {
@@ -112,8 +137,34 @@ h1, h2, h4, h5 {
     color: #f9f9f9;
     border: 0;
     width: 100%;
-    height: 100%;
+    height: 4vh;
     margin: 0;
+    box-shadow: none;
+}
+
+.timeButton{
+    border-radius: 50px;
+    padding: 5px 0;
+    position: relative;
+    color: #524f4e;
+    border: 0;
+    width: 9vh;
+    height: 4vh;
+    margin: 2vh 0.5vh;
+    background-color: white;
+    box-shadow: 0 8px 15px rgb(0 0 0 / 30%);
+}
+
+.timeButtonClick{
+    border-radius: 50px;
+    padding: 5px 0;
+    position: relative;
+    color: #f9f9f9;
+    border: 0;
+    width: 9vh;
+    height: 4vh;
+    margin: 2vh 0.5vh;
+    background-color: #524f4e;
     box-shadow: none;
 }
 
@@ -218,9 +269,26 @@ h1, h2, h4, h5 {
 
 .dateTime {
     text-transform: uppercase;
+    text-align: start;
+    font-weight: 600;
+    font-size: xx-large;
+    letter-spacing: 1px;
+    color: #514f4e;
+    margin: 10px 10px 10px 0px;
+}
+
+.headerV2 {
+    text-transform: uppercase;
     text-align: center;
     font-weight: 600;
     font-size: xx-large;
+    letter-spacing: 1px;
+    color: #514f4e;
+    margin: 10px 10px 10px 0px;
+}
+
+.inputhead {
+    width: 30%;
     letter-spacing: 1px;
     color: #514f4e;
     margin: 10px 10px 10px 0px;
@@ -280,8 +348,22 @@ h1, h2, h4, h5 {
     resize: vertical;
     padding: 15px;
     border-radius: 40px;
-    border: 0;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border: solid;
+    /*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);*/
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 38px;
+    text-align: center;
+}
+
+.inputenumberlement80V2 {
+    width: 50%;
+    height: 60px;
+    resize: vertical;
+    padding: 15px;
+    border-top: white;
+    border-left: white;
+    border-right: white;
+    border-bottom: solid;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 38px;
     text-align: center;
@@ -341,7 +423,7 @@ h1, h2, h4, h5 {
 }
 
 .dateBlock {
-    margin-top: 2%;
+    /*margin-top: 4%;*/
     margin-left: 5%;
     width: 30%;
     height: 60%;
@@ -365,7 +447,7 @@ h1, h2, h4, h5 {
     border: none;
     background: none;
     height: 100%;
-    margin-right: 5%;
+    margin-right: 1%;
 }
 
 .smallmiddle {
@@ -413,6 +495,14 @@ h1, h2, h4, h5 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.widgetStart {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-left: 5vw;
+    margin-bottom: 1vh;
 }
 
 .widgetEvent {
@@ -640,7 +730,7 @@ body {
 }
 
 .newNoteFonts {
-    padding: 3.5% 0 0 3.5%;
+    padding-top: 3.5%;
 }
 
 .newNoteButton {
@@ -664,7 +754,17 @@ body {
     text-align: end;
     margin-block-start: 1.33em;
     margin-block-end: 1.33em;
-    margin: 10px 30px;
+    margin: 10px 20px;
+}
+
+.subtitle {
+    color: #524f4e;
+    text-align: end;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+    margin: 10px 20px;
+    font-size: 2.3em;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .blockV3start {

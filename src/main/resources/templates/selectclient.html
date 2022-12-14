@@ -1,115 +1,212 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Новая запись</title>
     <title>Title</title>
     <link rel="stylesheet" href="/cosmoStyle.css">
     <link rel="stylesheet" href="/menu.css">
+    <link rel="stylesheet" href="/loader.css">
+    <!--    <link rel="stylesheet" href="/inputRange.scss">-->
 </head>
 <body class="body">
 
+<!--Loader-->
+<div class="loader">
+    <div class="loader_inner"></div>
+</div>
+
 <div class="fixedblock widgetBetween">
-    <a style="color: white" href="/home"><H3 class="font-80 header"><img class="home" srcset="/images/return-arrow.svg"></H3></a>
+    <a style="color: white" href="/home"><H3 class="font-80 header"><img class="home" srcset="/images/return-arrow.svg">
+    </H3></a>
     <H3 class="font-80 header">Новая запись</H3>
-    <a style="color: white" href="/home"><H3 class="font-80 header"><img class="home" srcset="/images/home.svg"></H3></a>
+    <a style="color: white" href="/home"><H3 class="font-80 header"><img class="home" srcset="/images/home.svg"></H3>
+    </a>
 </div>
 
 <form id="form" action="/newnote" method="post">
+
+    <!--Форма записи клиента-->
     <div id="selectclient" style="display: block">
-        <div class="widgetCenter margin-top-5">
-            <img src="https://img.icons8.com/officexs/300/making-notes.png"/>
-        </div>
-        <input hidden name="date" th:value="${date}">
-        <input hidden name="time" th:value="${time}">
         <div class="calcelementul">
             <div class="noteInfo margin-bottom-3">
-                <p class="dateTime newNoteFonts fontXxxLarge fonts">
-                    Выберите клиента</p>
+                <p class="headerV2 newNoteFonts fontXxxLarge fonts">
+                    Карточка клиента</p>
             </div>
-            <div class="widgetCenter">
-                <input id="clientName" list="clientsList" type="text" name="data" placeholder="Данные"
-                       class="inputenumberlement80 margin-top-bottom-1-5">
-                <input hidden id="clientId" type="text" name="clientId" placeholder="Id"
-                       class="inputenumberlement80 margin-top-bottom-1-5">
-                <datalist id="clientsList"></datalist>
+            <div>
+                <div class="widgetStart">
+                    <img class="icon" srcset="/images/name_avatar.svg">
+                    <p id="clientNameText" class="inputhead newNoteFonts fontXxxLarge fonts">Имя*</p>
+                </div>
+
+                <div class="widgetCenter">
+                    <input required id="clientName" list="clientsList" type="text" name="data"
+                           class="inputenumberlement80 margin-top-bottom-1-5">
+                    <input hidden id="clientId" type="text" name="clientId" placeholder="Id"
+                           class="inputenumberlement80 margin-top-bottom-1-5">
+                    <datalist id="clientsList"></datalist>
+                </div>
             </div>
+
+            <div id="datt">
+                <div class="widgetStart">
+                    <img class="icon" srcset="/images/notebook.svg">
+                    <p class="inputhead newNoteFonts fontXxxLarge fonts">Данные</p>
+                </div>
+                <div class="widgetCenter">
+                    <input id="phone" type="tel" name="phone" min="0"
+                           class="inputenumberlement80 margin-top-bottom-1-5">
+                </div>
+            </div>
+
+            <div id="comm">
+                <div class="widgetStart">
+                    <img class="icon" srcset="/images/bubble.svg">
+                    <p class="inputhead newNoteFonts fontXxxLarge fonts">Комментарий</p>
+                </div>
+                <div class="widgetCenter">
+                    <textarea id="comment" type="text" name="comment" rows="2" maxlength="100"
+                              class="inputenumberlement80 margin-top-bottom-1-5 margin-bottom-3"></textarea>
+                </div>
+            </div>
+
             <div id="middlePlase" class="widgetCenter">
-                <input id="phone" type="tel" name="phone" placeholder="Телефон" min="0"
-                       class="inputenumberlement80 margin-top-bottom-1-5">
                 <p id="clientAlert" style="display: none"
-                   class="dateTime newNoteFonts fontXxLarge fonts margin-bottom-3">
+                   class="headerV2 newNoteFonts fontXxLarge fonts margin-bottom-3">
                     Выбран постоянный клиент
                 </p>
             </div>
-            <div class="widgetCenter">
-                <input id="comment" type="text" name="comment" placeholder="Комментарий"
-                       class="inputenumberlement80 margin-top-bottom-1-5 margin-bottom-3">
-            </div>
+
         </div>
-        <div class="widgetRow calcelementul">
+
+        <div id="procButton" class="widgetRow calcelementul">
             <button type="button" class="buttonform fonts homeInvertButton newNoteButton" onclick="selectOperation()">
                 Назначить процедуру
             </button>
         </div>
     </div>
+
+    <!--Форма создания поцедуры-->
     <div id="selectoperation" style="display: none">
-        <div class="widgetCenter margin-top-5">
-            <img srcset="https://img.icons8.com/cotton/344/syringe--v2.png"/>
-        </div>
-        <input id="date" hidden name="date" th:value="${date}">
-        <input id="time" hidden name="time" th:value="${time}">
         <div class="calcelementul">
             <div class="noteInfo margin-bottom-3">
-                <p class="dateTime newNoteFonts fontXxxLarge fonts">
-                    Назначьте процедуру</p>
+                <p class="headerV2 newNoteFonts fontXxxLarge fonts">
+                    Карточка записи</p>
             </div>
+
+            <div>
+                <div class="widgetStart">
+                    <img class="icon" srcset="/images/hand-holding-heart.svg">
+                    <p id="operationNameText" class="inputhead newNoteFonts fontXxxLarge fonts">Процедура*</p>
+                </div>
+                <div class="widgetEvent">
+                    <input required id="operationName" type="text" name="operation" requiredmin="0"
+                           max="100000" step="1"
+                           class="inputenumberlement80 margin-top-bottom-1-5">
+                </div>
+            </div>
+
+            <div>
+                <div class="widgetStart">
+                    <img class="icon" srcset="/images/preparat.svg">
+                    <p class="inputhead newNoteFonts fontXxxLarge fonts">Препарат</p>
+                </div>
+                <div class="widgetEvent">
+                    <input id="medicament" type="text" name="medicament" min="0" max="100000"
+                           step="1"
+                           class="inputenumberlement80 margin-top-bottom-1-5">
+                </div>
+            </div>
+
+            <!--Стоимость-->
+            <div>
+                <div class="widgetStart">
+                    <img class="icon" srcset="/images/wallet.svg">
+                    <p id="costText" class="inputhead newNoteFonts fontXxxLarge fonts">Стоимость*</p>
+                </div>
+                <div class="widgetEvent">
+                    <input required id="cost" type="tel" name="cost"
+                           class="inputenumberlement80 margin-top-bottom-1-5 margin-bottom-3">
+                </div>
+            </div>
+
+            <input id="duration" value="30" type="number" name="medicament" hidden>
+
+            <!--Часы-->
             <div class="widgetCenter">
-                <input id="operationName" type="text" name="operation" required placeholder="Процедура" min="0"
-                       max="100000" step="1"
-                       class="inputenumberlement80 margin-top-bottom-1-5">
+                <button id="tab_1" type="button" class="buttonform fonts timeButtonClick"
+                        onclick="setTime('tab_4', 'tab_2', 'tab_3', 'tab_1')">30 мин
+                </button>
+                <button id="tab_2" type="button" class="buttonform fonts timeButton"
+                        onclick="setTime('tab_4', 'tab_1', 'tab_3', 'tab_2')">60 мин
+                </button>
+                <button id="tab_3" type="button" class="buttonform fonts timeButton"
+                        onclick="setTime('tab_4', 'tab_2', 'tab_1', 'tab_3')">90 мин
+                </button>
+                <button id="tab_4" type="button" class="buttonform fonts timeButton"
+                        onclick="setTime('tab_1', 'tab_2', 'tab_3', 'tab_4')">120 мин
+                </button>
             </div>
-            <div class="widgetCenter">
-                <input id="medicament" type="text" name="medicament" placeholder="Препарат" min="0" max="100000"
-                       step="1"
-                       class="inputenumberlement80 margin-top-bottom-1-5">
-            </div>
-            <div class="widgetCenter">
-                <input id="cost" type="tel" name="cost" placeholder="Стоимость"
-                       class="inputenumberlement80 margin-top-bottom-1-5 margin-bottom-3">
-            </div>
+
+
         </div>
-        <div class="widgetRow calcelementulInvert">
+        <div id="appruve" class="widgetRow calcelementulInvert" style="height: 4vmax;">
             <button type="button" class="buttonform fonts homeButton" onclick="sendInfo()">Подтвердить
             </button>
         </div>
-    </div>
-    <div id="result" style="display: none">
-        <div class="calcelementul">
-            <div class="widgetCenter">
-                <p class="dateTime newNoteFonts fontXxxLarge fonts">Запись добавлена!</p>
-            </div>
-            <div class="widgetRowEvently">
-                <a href="/home" class="buttonformResult fonts margin-top-bottom-1-5">На главную</a>
-                <a href="/newnote" class="buttonformResult fonts margin-top-bottom-1-5">К записям</a>
-            </div>
-        </div>
-        <div id="appruve" class="widgetRow calcelementulInvert">
-            <button type="button" class="buttonform fonts homeButton" onclick="sendInfo()">Подтвердить
+        <div id="allertAppruve" class="widgetRow calcelementulInvert" style="height: 4vmax;">
+            <button type="button" class="buttonform fonts homeButton">Заполните все поля с символом *
             </button>
         </div>
     </div>
+
 </form>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="/loader/loader.js"></script>
+<script>
+    function setTime(b1, b2, b3, bb) {
+        var tab_1 = document.getElementById(b1)
+        var tab_2 = document.getElementById(b2)
+        var tab_3 = document.getElementById(b3)
+        var tab_4 = document.getElementById(bb)
+
+        let tabs = [tab_1, tab_2, tab_3]
+
+        var durationInput = document.getElementById("duration")
+
+        tabs.forEach(item => {
+            item.className = "buttonform fonts timeButton"
+        })
+
+        tab_4.className = "buttonform fonts timeButtonClick"
+
+        switch (bb) {
+            case 'tab_1':
+                durationInput.value = "30"
+                break;
+            case 'tab_2':
+                durationInput.value = "60"
+                break;
+            case 'tab_3':
+                durationInput.value = "90"
+                break;
+            case 'tab_4':
+                durationInput.value = "120"
+                break;
+            default:
+                durationInput.value = "60"
+                break;
+        }
+    }
+</script>
 <script>
     var client = document.getElementById('selectclient');
     var operation = document.getElementById('selectoperation');
-    var result = document.getElementById('result');
 
     function selectOperation() {
-        client.style = "display: none";
         operation.style = "display: block";
+
+        document.getElementById("procButton").style = "display: none"
     }
 
     var responseBody;
@@ -134,17 +231,41 @@
         });
     });
 
-    setInterval(addClientDataInDb, 1000);
+
+    var patientInput = document.getElementById('clientName')
+    var operationInput = document.getElementById('operationName')
+    var summaryInput = document.getElementById('cost')
+
+    setInterval(addClientDataFromDb, 1000);
+    setInterval(displaySubmit, 1000);
+
+    function displaySubmit() {
+        if (patientInput.value === "" || operationInput.value === "" || summaryInput.value === "") {
+            document.getElementById('appruve').style = "display: none"
+            document.getElementById('allertAppruve').style = "display: block"
+        } else {
+            document.getElementById('appruve').style = "display: block"
+            document.getElementById('allertAppruve').style = "display: none"
+        }
+    }
+
+    function extractGetAll() {
+        var vars = window.location.search.match(new RegExp('[^&?]+', 'gm'));
+        var result = {};
+        for (var i = 0; i < vars.length; i++) {
+            var r = vars[i].split('=');
+            result[r[0]] = r[1];
+        }
+        return result
+    }
 
     function sendInfo() {
-        operation.style = "display: none";
-        result.style = "display: block";
-        document.getElementById('appruve').remove();
+        console.log(extractGetAll());
 
         $.ajax({
             type: 'POST',
             url: '/add_note',
-            dataType: 'json',
+            dataType: 'xhr',
             processData: false,
             contentType: 'application/json; charset=utf-8',
             data: JSON.stringify({
@@ -154,14 +275,23 @@
                 "operationName": $('#operationName').val(),
                 "medicament": $('#medicament').val(),
                 "cost": $('#cost').val(),
-                "date": $('#date').val(),
-                "time": $('#time').val(),
+                "date": extractGetAll().date,
+                "time": extractGetAll().time.split('%3A')[0] + ':' + extractGetAll().time.split('%3A')[1],
+                "duration": $('#duration').val(),
                 "clientId": $('#clientId').val()
-            })
+            }),
+            error: function (request, status, error) {
+                if (request.status === 200) {
+                    window.location.href = "/addnoteresult"
+                } else {
+                    alert("Упс! Что-то пошло не так. Попробуйте еще раз")
+                    window.location.href = "/home"
+                }
+            }
         })
     }
 
-    function addClientDataInDb() {
+    function addClientDataFromDb() {
         var clientName = document.getElementById('clientName').value;
 
         responseBody.forEach((item) => {
@@ -172,16 +302,24 @@
         })
 
         if (clientFromBdIsSelected === true) {
-            document.getElementById('phone').style = "display: none";
-            document.getElementById('comment').style = "display: none";
+            // document.getElementById('phone').style = "display: none";
+            // document.getElementById('comment').style = "display: none";
             document.getElementById('clientAlert').style = "display: block";
+
+            document.getElementById('datt').style = "display: none";
+            document.getElementById('comm').style = "display: none";
+
             document.getElementById('clientId').value = clientId;
 
         }
         if (clientFromBdIsSelected === false) {
-            document.getElementById('phone').style = "display: block";
-            document.getElementById('comment').style = "display: block";
+            // document.getElementById('phone').style = "display: block";
+            // document.getElementById('comment').style = "display: block";
             document.getElementById('clientAlert').style = "display: none";
+
+            document.getElementById('datt').style = "display: block";
+            document.getElementById('comm').style = "display: block";
+
             document.getElementById('clientId').value = null;
         }
 

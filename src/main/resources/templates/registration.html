@@ -1,343 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Регистрация</title>
-  <meta http-equiv="Content-Type" content="text/html; application/x-www-form-urlencoded; charset=UTF-8" />
-  <title>Title</title>
-
-  <style>
-        .margin-top-30{
-            margin-top: 30vw;
-        }
-        .margin-top-reg{
-            margin-top: 400px;
-        }
-        .margin-side-20{
-            margin: 10px 20px;
-        }
-        .margin-top-20{
-            margin-top: 20px;
-        }
-        .margin-top-10{
-            margin-top: 10px;
-        }
-        .buttonform{
-            text-decoration: none;
-            display: inline-block;
-            width: 240px;
-            height: 60px;
-            line-height: 45px;
-            border-radius: 45px;
-            border: none;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #524f4e;
-            background: white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-            transition: .3s;
-        }
-        .a_buttonform{
-            text-decoration: none;
-            display: inline-block;
-            width: 240px;
-            height: 60px;
-            line-height: 60px;
-            border-radius: 45px;
-            border: none;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #524f4e;
-            background: white;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
-            transition: .3s;
-        }
-        .middle{
-            position: relative;
-            left: 50%;
-            transform: translate(-50%, 0%);
-        }
-        .pbtn{
-            text-align: center;
-            margin-top: 37%;
-        }
-        .Ops{
-            text-align:center;
-            width: 600px; /* Ширина блока */
-            position: relative;
-            left: 50%;
-            transform: translate(-50%, 0%);
-        }
-        .whitecolour{
-            color: white;
-        }
-        .middlefont{
-            font-size: 55px;
-            font-weight: bold;
-        }
-        .bigfont{
-            font-size: 100px;
-            font-weight: bold;
-        }
-        .fonts{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 30px;
-        }
-        .font-20{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            letter-spacing: 1px;
-        }
-        .padding-15{
-            padding-top: 15px;
-        }
-        a:hover{
-            color: #f885d2;
-            background-color: white;
-            box-shadow: 15px 15px 15px #f885d2(0, 0, 0, .6);
-        }
-        .calcelementhome{
-            display: flex;
-            width: 760px;
-            margin: 30px auto;
-            position: relative;
-            border-top: solid;
-            border-color: #f6f6f7;
-        }
-        .leftmiddle{
-            line-height: 70px;
-            position: relative;
-            top: 20px;
-            left: 30px;
-        }
-        .vertcenter{
-            vertical-align: middle;
-        }
-        .vertbottom{
-            vertical-align:bottom;
-        }
-        .rightmiddle{
-            position: relative;
-            left: 240px;
-        }
-        .blockmain{
-            height: 80px;
-            width: 180px;
-            border-radius: 20px;
-            margin: 0px;
-        }
-        .block{
-            height: 50px;
-            width: 220px;
-            border-radius: 20px;
-            margin: 0px;
-        }
-        .smallmiddle{
-            line-height: 70px;
-            position: relative;
-            top: 0px;
-            left: 30px;
-        }
-        .green{
-            color: white;
-            background-color:rgb(124, 196, 124);
-        }
-        .furple{
-            color: white;
-            background-color:rgb(157, 105, 182);
-        }
-        .midmiddle{
-            text-align: center;
-            line-height: 70px;
-            position: absolute;
-            top: 20px;
-            left: 215px;
-        }
-        .smallfonts{
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-size: 26px;
-            color: gray;
-        }
-        .flex{
-            display: flex;
-            margin-top: -270px;
-            position: sticky;
-            top: 0;
-            padding-top: 14em;
-            margin-bottom: -6em;
-            z-index: 2;
-        }
-        .bacgroundimagebox{
-            position: sticky;
-        }
-        .previeelement{
-            display: block;
-            width: 100%;
-            top: 0;
-            min-height: 2em;
-        }
-        .gorisontalcolumn{
-            display: flex;
-            flex-direction: row;
-            color: white;
-            justify-content: space-between;
-            margin: auto auto 20px auto;
-            position: relative;
-            top: 20%;
-        }
-        .gorisontalcolumnbanner{
-            display: flex;
-            flex-direction: row;
-            color: #FBFBFC;
-            justify-content: space-between;
-            width: 100%;
-            margin: auto auto 0px auto;
-            position: sticky;
-            top: 0%;
-            background-color: #514f4e;
-            /* height: 40px; */
-            padding-top: 80px;
-            padding-bottom: 100px;
-            z-index: 1;
-        }
-        .z-index-2{
-            z-index: 2;
-        }
-        .z-index-1{
-            z-index: 1;
-        }
-        .z-index-0{
-            z-index: 0;
-        }
-        .centertext{
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #514f4e;
-        }
-        .prevblock{
-            display: block;
-            width: 400px;
-        }
-        .columnreverse{
-            display: flex;
-            flex-direction: column-reverse;
-        }
-        .backmouth{
-            background-color: white;
-        }
-        .calcelementul{
-            margin: 130px auto 90px auto;
-            width: 800px;
-            box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
-            border-radius: 50px;
-            padding: 5px 0px;
-            background-color: white;
-            position: relative;
-        }
-        .calcelementCalendar{
-            width: 800px;
-            height: 400px;
-            margin: 30px auto;
-            box-shadow: 0 10px 25px rgb(0 0 0 / 40%);
-            border-radius: 50px;
-        }
-        .graybackground{
-            background: rgb(228, 228, 228);
-        }
-        .whitebackground{
-            background: #FBFBFC;
-        }
-        .blockmouth{
-            height: 100px;
-            width: 520px;
-            border-radius: 20px;
-            margin: 30px;
-            color: #6C6C78;
-        }
-        .gorisontalcolumn{
-            flex-direction: row;
-        }
-        .verticalcolumn{
-            flex-direction: column;
-        }
-        .body{
-            background-color: #f9f9f9;
-        }
-        ul.gorisontalcolumn li{
-            justify-content: space-between;
-            color: #FBFBFC;
-        }
-        li {
-            list-style-type: none; /* Убираем маркеры */
-        }
-        ul {
-            margin-left: 0; /* Отступ слева в браузере IE и Opera */
-            padding-left: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
-        }
-        body{
-            margin: 0%;
-        }
-        .verticalalign{
-            vertical-align: middle;
-        }
-        .pelement{
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            text-align: center;
-            text-transform: uppercase;
-            margin-top: 50px;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: #524f4e;
-        }
-        .inputreg{
-            width: 40%;
-            height: 10%;
-            resize: vertical;
-            padding:15px;
-            border-radius:25px;
-            border:0;
-            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            text-align: center;
-            opacity: 0.5;
-            margin-top: 10px;
-            margin-top: 20px;
-        }
-        .header-20{
-            display: block;
-            width: 100%;
-            height: 30%;
-        }
-    </style>
+    <title>Регистрация</title>
+    <meta http-equiv="Content-Type" content="text/html; application/x-www-form-urlencoded; charset=UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="/landing.css">
 
 </head>
 <body class="body">
 <div class="margin-top-reg">
-  <form action="/registration" method="post">
-    <ul class="pelement">
-        <li class="margin-side-20">
-            <input name="userName" class="inputreg font-20" type="text" placeholder="Придумайте имя пользователя">
-        </li>
-        <li class="margin-side-20">
-            <input name="password" class="inputreg font-20" type="password" placeholder="Придумайте пароль">
-        </li>
-    </ul>
-    <ul class="pelement">
-      <li>
-        <button type="submit" class="buttonform font-20 buttonsize nonborder margin-side-20">Готово</button>
-      </li>
-      <li>
-        <a href="/" class="a_buttonform font-20 nonborder margin-side-20">Назад</a>
-      </li>
-    </ul>
-  </form>
+    <form action="/registration" method="post">
+        <ul class="pelement">
+            <li class="margin-side-20">
+                <input name="userName" class="inputreg font-20" type="text" placeholder="Придумайте имя пользователя">
+            </li>
+            <li class="margin-side-20">
+                <input name="password" class="inputreg font-20" type="password" placeholder="Придумайте пароль">
+            </li>
+        </ul>
+        <ul class="pelement">
+            <li>
+                <button type="submit" class="buttonform font-30 nonborder margin-top-60">Готово</button>
+            </li>
+            <li>
+                <button type="button" class="buttonform font-30 nonborder margin-top-60" onclick="back()">Назад</button>
+            </li>
+        </ul>
+    </form>
 </div>
 
 </body>
+<script>
+    function back() {
+        window.location.href = "/"
+    }
+</script>
 </html>

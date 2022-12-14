@@ -14,4 +14,5 @@ public class NoteInfo {
     private String cost;
     private String date;
     private String time;
+    private String duration;
 }

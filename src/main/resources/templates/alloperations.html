@@ -40,6 +40,7 @@
 <script type="text/javascript" src="/airdatepicker/air-datepicker.js"></script>
 <script type="text/javascript" src="/buttom/buttom.js"></script>
 <script type="text/javascript" src="/loader/loader.js"></script>
+<script type="text/javascript" src="/myclasses/noteBlock.js"></script>
 <script>
     function getNotesOfCurrentDay() {
         $.ajax({
@@ -53,92 +54,11 @@
                 var filler = document.createElement('div');
                 filler.id = "fill";
                 all_actual_operations.slice().reverse().forEach((note) => {
-                    createOneNote(note, filler);
+                    createOneNote(note, filler, true, 2);
                 })
                 notesPlace.prepend(filler);
             }
         });
-    }
-
-    function createOneNote(info, prepear) {
-
-        var note = document.createElement('ul');
-        note.className = "calcelementul topmenu";
-
-        var li = document.createElement('li');
-        li.style = 'width: 100%'
-
-
-        var menu = document.createElement('ul');
-        menu.innerHTML = '<ul class="submenu widgetRowEvently">\n' +
-            '                <li><button onclick="deleteOpeartion(' + info.id + ')" class="operationOptions"><img class="buttonSubMenu" src="images/iconfinder-trash.png"></button></li>\n' +
-            '                <li><button onclick="getClientRequest(' + info.clientId + ')" class="operationOptions"><img class="buttonSubMenu" src="images/female.png"></button></li>\n' +
-            '            </ul>'
-
-        var header = document.createElement('div');
-        header.className = "widgetRow";
-
-        var datePlace = document.createElement('div');
-        datePlace.className = 'dateBlock'
-
-        var infoPlace = document.createElement('button');
-        infoPlace.style = 'width: 53%;'
-        infoPlace.className = 'operationOptions'
-
-        var time = document.createElement('p');
-        time.className = "dateTime newNoteFonts fontXxxLarge fonts";
-        time.innerHTML = info.time;
-
-        var date = document.createElement('p');
-        date.className = "dateTime newNoteFonts fontXxxLarge fonts";
-        date.style = 'color: #a9a9a9'
-        date.innerHTML = getParseDate(info.day);
-
-        var name = document.createElement('p');
-        name.className = "blockV3 fontXxxLarge fonts";
-        name.innerHTML = info.name;
-
-        var medicamentJs = document.createElement('p');
-        medicamentJs.className = "blockV3 niceFont fontXxLarge fonts";
-        medicamentJs.innerHTML = info.medicament;
-
-        var summuryJs = document.createElement('p');
-        summuryJs.className = "blockV3 niceFont fontXxLarge fonts";
-        summuryJs.innerHTML = info.summury + " ₽";
-
-        datePlace.prepend(date, time)
-        infoPlace.prepend(name, medicamentJs, summuryJs)
-        header.prepend(datePlace, infoPlace);
-
-        li.prepend(header, menu)
-        // secondText.prepend(clientNameJs, medicamentJs);
-        // thirdText.prepend(summuryJs);
-
-        note.prepend(li);
-        prepear.prepend(note);
-    }
-
-    function getParseDate(date) {
-        var arr=[
-            'Янв.',
-            'Фев.',
-            'Мар.',
-            'Апр.',
-            'Мая',
-            'Июн.',
-            'Июл.',
-            'Авг.',
-            'Сен.',
-            'Окт.',
-            'Ноя.',
-            'Дек.'
-        ];
-
-        var d = date.split('T')[0]
-        var day = d.split('-')[2]
-        var mouth = arr[d.split('-')[1] - 1]
-        console.log(date)
-        return day + ' ' + mouth
     }
 </script>
 <script>
@@ -170,31 +90,5 @@
         })[0].client.id
         getClientRequest(clientId)
     }
-
-    function getClientRequest(clientId) {
-        $.ajax({
-            type: 'GET',
-            url: '/client_info?id=' + clientId,
-            dataType: 'json',
-            data: clientId
-        });
-        window.location.href = "/client_info?id=" + clientId;
-    }
-
-    function deleteOpeartion(id) {
-        $.ajax({
-            type: 'POST',
-            url: '/delete_operation',
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({id}),
-            success: function (delete_operation) {
-                alert(delete_operation.request)
-            }
-        });
-
-        location.reload()
-    }
-
 </script>
 </html>

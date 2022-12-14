@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42">
+    <defs>
+        <style>
+            .a {
+            fill: gray;
+            }
+        </style>
+    </defs>
+    <title>11 Notebook</title>
+    <path class="a"
+          d="M37,0H10A5,5,0,0,0,5,5V7H3a3,3,0,0,0,0,6H5v5H3a3,3,0,0,0,0,6H5v5H3a3,3,0,0,0,0,6H5v2a5,5,0,0,0,5,5H37a5,5,0,0,0,5-5V5A5,5,0,0,0,37,0ZM25,27.5H17a2,2,0,0,1,0-4h8a2,2,0,0,1,0,4Zm5-9H17a2,2,0,0,1,0-4H30a2,2,0,0,1,0,4Z"/>
+</svg>

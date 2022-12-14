@@ -74,21 +74,21 @@
     <a href="/all_operations" class="buttonform fonts transition" style="width: 340px;">Все записи</a>
 </div>
 
-<H2 class="h_font_size_haeder">В текущем месяце</H2>
+<!--<H2 class="h_font_size_haeder">В текущем месяце</H2>-->
 
 <!--Статистика-->
-<div class="widgetRowStart">
+<!--<div class="widgetRowStart">-->
 
-    <div id="clientsCount" class="calcelementulBox"></div>
+<!--    <div id="clientsCount" class="calcelementulBox"></div>-->
 
-    <div id="operationsCount" class="calcelementulBox"></div>
-    <!--    <div class="calcelementulBox">-->
-    <!--        <div class="dateBlock">-->
-    <!--            <H2 class="h_font_size">142</H2>-->
-    <!--            <p class="p_box_font_size">часа отработано</p>-->
-    <!--        </div>-->
-    <!--    </div>-->
-</div>
+<!--    <div id="operationsCount" class="calcelementulBox"></div>-->
+<!--    &lt;!&ndash;    <div class="calcelementulBox">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <div class="dateBlock">&ndash;&gt;-->
+<!--    &lt;!&ndash;            <H2 class="h_font_size">142</H2>&ndash;&gt;-->
+<!--    &lt;!&ndash;            <p class="p_box_font_size">часа отработано</p>&ndash;&gt;-->
+<!--    &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--</div>-->
 
 <H2 class="h_font_size_haeder">Ближайшие записи</H2>
 
@@ -142,6 +142,7 @@
 <script type="text/javascript" src="/buttom/buttom.js"></script>
 <script type="text/javascript" src="/fastclick.js"></script>
 <script type="text/javascript" src="/loader/loader.js"></script>
+<script type="text/javascript" src="/myclasses/noteBlock.js"></script>
 <script>
     function newNoteIfnoNote() {
         var date = new Date()
@@ -190,7 +191,7 @@
                         "</ul>"
                 } else {
                     all_actual_operations.slice().reverse().forEach((note) => {
-                        createOneNote(note, filler);
+                        createOneNote(note, filler, true, 1);
                     })
                 }
 
@@ -199,89 +200,8 @@
         });
     }
 
-    function createOneNote(info, prepear) {
-
-        var note = document.createElement('ul');
-        note.className = "calcelementul topmenu";
-
-        var li = document.createElement('li');
-        li.style = 'width: 100%'
-
-
-        var menu = document.createElement('ul');
-        menu.innerHTML = '<ul class="submenu widgetRowEvently">\n' +
-            '                <li><button onclick="deleteOpeartion(' + info.id + ')" class="operationOptions"><img class="buttonSubMenu" src="images/iconfinder-trash.png"></button></li>\n' +
-            '                <li><button onclick="getClientRequest(' + info.clientId + ')" class="operationOptions"><img class="buttonSubMenu" src="images/female.png"></button></li>\n' +
-            '            </ul>'
-
-        var header = document.createElement('div');
-        header.className = "widgetRow";
-
-        var datePlace = document.createElement('div');
-        datePlace.className = 'dateBlock'
-
-        var infoPlace = document.createElement('button');
-        infoPlace.style = 'width: 53%;'
-        infoPlace.className = 'operationOptions'
-
-        var time = document.createElement('p');
-        time.className = "dateTime newNoteFonts fontXxxLarge fonts";
-        time.innerHTML = info.time;
-
-        var date = document.createElement('p');
-        date.className = "dateTime newNoteFonts fontXxxLarge fonts";
-        date.style = 'color: #a9a9a9'
-        date.innerHTML = getParseDate(info.day);
-
-        var name = document.createElement('p');
-        name.className = "blockV3 fontXxxLarge fonts";
-        name.innerHTML = info.name;
-
-        var medicamentJs = document.createElement('p');
-        medicamentJs.className = "blockV3 niceFont fontXxLarge fonts";
-        medicamentJs.innerHTML = info.medicament;
-
-        var summuryJs = document.createElement('p');
-        summuryJs.className = "blockV3 niceFont fontXxLarge fonts";
-        summuryJs.innerHTML = info.summury + " ₽";
-
-        datePlace.prepend(date, time)
-        infoPlace.prepend(name, medicamentJs, summuryJs)
-        header.prepend(datePlace, infoPlace);
-
-        li.prepend(header, menu)
-        // secondText.prepend(clientNameJs, medicamentJs);
-        // thirdText.prepend(summuryJs);
-
-        note.prepend(li);
-        prepear.prepend(note);
-    }
-
-    function getParseDate(date) {
-        var arr = [
-            'Янв.',
-            'Фев.',
-            'Мар.',
-            'Апр.',
-            'Мая',
-            'Июн.',
-            'Июл.',
-            'Авг.',
-            'Сен.',
-            'Окт.',
-            'Ноя.',
-            'Дек.'
-        ];
-
-        var d = date.split('T')[0]
-        var day = d.split('-')[2]
-        var mouth = arr[d.split('-')[1] - 1]
-        return day + ' ' + mouth
-    }
-
 </script>
 <script>
-    var calendarData;
     var responseBody;
     var responseBodyClients;
     var clientData;
@@ -385,68 +305,68 @@
 
     });
 
-    function getStatistic(response) {
-        var clients = document.getElementById("clientsCount")
-        var operations = document.getElementById("operationsCount")
-        var mounth;
-        var date = new Date()
-
-        var myDate = date.getFullYear() + "-" + (date.getMonth() + 1)
-        let massiveDate = String(myDate).split("-");
-
-        if (massiveDate[1].length === 1) {
-            mounth = "0" + massiveDate[1]
-        } else {
-            mounth = massiveDate[1]
-        }
-
-        var day = date.getDate();
-
-        var currentDate = massiveDate[0] + "-" + mounth
-
-        var operationsList = response.filter(item => item.date.split("-")[0] + "-" + item.date.split("-")[1] === currentDate && item.date.split("-")[2] <= day)
-            .flatMap(d => d.operationNotes)
-
-        var operationsCount = operationsList.length
-
-        var clientList = operationsList.flatMap(o => o.clientName)
-
-        var uniqueClientList = unique(clientList).length
-
-        clients.innerHTML = "<div class=\"dateBlock\">\n" +
-            "            <H2 class=\"h_font_size\">" + uniqueClientList + "</H2>\n" +
-            "            <p class=\"p_box_font_size\">" + getClientsDescriptionText2(uniqueClientList, "уникальны", "посетител") + "</p>\n" +
-            "        </div>"
-
-        operations.innerHTML = "<div class=\"dateBlock\">\n" +
-            "            <H2 class=\"h_font_size\">" + operationsCount + "</H2>\n" +
-            "            <p class=\"p_box_font_size\">" + getClientsDescriptionText(operationsCount, "прием", "проведен") + "</p>\n" +
-            "        </div>"
-    }
-
-    function unique(arr) {
-        let result = [];
-
-        for (let str of arr) {
-            if (!result.includes(str)) {
-                result.push(str);
-            }
-        }
-
-        return result;
-    }
-
-    function getClientsDescriptionText(count, world1, world2) {
-        if (count === 1 || count === 21 || count === 31 || count === 41 || count === 51 || count === 61) return world1 + " " + world2
-        if (count > 1 && count < 5) return world1 + "a" + " " + world2 + "о"
-        else return world1 + "ов" + " " + world2 + "о"
-    }
-
-    function getClientsDescriptionText2(count, world1, world2) {
-        if (count === 1 || count === 21 || count === 31 || count === 41 || count === 51 || count === 61) return world1 + "й" + " " + world2 + "ь"
-        if (count > 1 && count < 5) return world1 + "х" + " " + world2 + "я"
-        else return world1 + "х" + " " + world2 + "ей"
-    }
+    // function getStatistic(response) {
+    //     var clients = document.getElementById("clientsCount")
+    //     var operations = document.getElementById("operationsCount")
+    //     var mounth;
+    //     var date = new Date()
+    //
+    //     var myDate = date.getFullYear() + "-" + (date.getMonth() + 1)
+    //     let massiveDate = String(myDate).split("-");
+    //
+    //     if (massiveDate[1].length === 1) {
+    //         mounth = "0" + massiveDate[1]
+    //     } else {
+    //         mounth = massiveDate[1]
+    //     }
+    //
+    //     var day = date.getDate();
+    //
+    //     var currentDate = massiveDate[0] + "-" + mounth
+    //
+    //     var operationsList = response.filter(item => item.date.split("-")[0] + "-" + item.date.split("-")[1] === currentDate && item.date.split("-")[2] <= day)
+    //         .flatMap(d => d.operationNotes)
+    //
+    //     var operationsCount = operationsList.length
+    //
+    //     var clientList = operationsList.flatMap(o => o.clientName)
+    //
+    //     var uniqueClientList = unique(clientList).length
+    //
+    //     clients.innerHTML = "<div class=\"dateBlock\">\n" +
+    //         "            <H2 class=\"h_font_size\">" + uniqueClientList + "</H2>\n" +
+    //         "            <p class=\"p_box_font_size\">" + getClientsDescriptionText2(uniqueClientList, "уникальны", "посетител") + "</p>\n" +
+    //         "        </div>"
+    //
+    //     operations.innerHTML = "<div class=\"dateBlock\">\n" +
+    //         "            <H2 class=\"h_font_size\">" + operationsCount + "</H2>\n" +
+    //         "            <p class=\"p_box_font_size\">" + getClientsDescriptionText(operationsCount, "прием", "проведен") + "</p>\n" +
+    //         "        </div>"
+    // }
+    //
+    // function unique(arr) {
+    //     let result = [];
+    //
+    //     for (let str of arr) {
+    //         if (!result.includes(str)) {
+    //             result.push(str);
+    //         }
+    //     }
+    //
+    //     return result;
+    // }
+    //
+    // function getClientsDescriptionText(count, world1, world2) {
+    //     if (count === 1 || count === 21 || count === 31 || count === 41 || count === 51 || count === 61) return world1 + " " + world2
+    //     if (count > 1 && count < 5) return world1 + "a" + " " + world2 + "о"
+    //     else return world1 + "ов" + " " + world2 + "о"
+    // }
+    //
+    // function getClientsDescriptionText2(count, world1, world2) {
+    //     if (count === 1 || count === 21 || count === 31 || count === 41 || count === 51 || count === 61) return world1 + "й" + " " + world2 + "ь"
+    //     if (count > 1 && count < 5) return world1 + "х" + " " + world2 + "я"
+    //     else return world1 + "х" + " " + world2 + "ей"
+    // }
 
     function parseDate(date) {
         var myDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
@@ -493,24 +413,5 @@
         });
         window.location.href = "/client_info?id=" + clientId;
     }
-
-    function deleteOpeartion(id) {
-        if (confirm('Удалить запись?')) {
-            $.ajax({
-                type: 'POST',
-                url: '/delete_operation',
-                dataType: 'json',
-                contentType: 'application/json; charset=utf-8',
-                data: JSON.stringify({id}),
-                success: function (delete_operation) {
-                    alert(delete_operation.request)
-                }
-            });
-            location.reload()
-        } else {
-            // Do nothing!
-        }
-    }
-
 </script>
 </html>
