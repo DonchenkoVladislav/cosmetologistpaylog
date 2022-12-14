@@ -125,15 +125,18 @@
     </div>
 </ul>
 
+<!--История месяцев-->
+<div id="monthPlace"></div>
+
 <!--Месяцы-->
-<ul class="columnreverse">
-    <li class="calcelementul" th:each="current : ${mouthCalendar}">
-        <ul class=summanddate>
-            <li class="smallmiddle blockmouth calcmargin middlefont" th:text="${current.mounthYear}">
-            <li class="smallmiddle blockmouth calcmargin bigfont" th:text="${current.summary}">
-        </ul>
-    </li>
-</ul>
+<!--<ul class="columnreverse">-->
+<!--    <li class="calcelementul" th:each="current : ${mouthCalendar}">-->
+<!--        <ul class=summanddate>-->
+<!--            <li class="smallmiddle blockmouth calcmargin middlefont" th:text="${current.mounthYear}">-->
+<!--            <li class="smallmiddle blockmouth calcmargin bigfont" th:text="${current.summary}">-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--</ul>-->
 
 </body>
 
@@ -143,6 +146,7 @@
 <script type="text/javascript" src="/fastclick.js"></script>
 <script type="text/javascript" src="/loader/loader.js"></script>
 <script type="text/javascript" src="/myclasses/noteBlock.js"></script>
+<script type="text/javascript" src="/myclasses/historyBlock.js"></script>
 <script>
     function newNoteIfnoNote() {
         var date = new Date()
@@ -302,7 +306,17 @@
                 getStatistic(responseBody);
             }
         });
-
+        $.ajax({
+            type: 'GET',
+            url: '/my_income',
+            dataType: 'json',
+            success: function (my_income) {
+                var filler = document.getElementById('monthPlace')
+                my_income.forEach((item) => {
+                    createHistoryBlock(item, filler)
+                })
+            }
+        });
     });
 
     // function getStatistic(response) {
