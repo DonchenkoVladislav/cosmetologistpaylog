@@ -18,6 +18,7 @@ public class OperationNote {
     private String medicament;
     private Integer summury;
     private String clientName;
+    private String comment;
     private Long clientId;
     private Long id;
 }

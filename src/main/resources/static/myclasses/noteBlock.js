@@ -107,6 +107,117 @@ function createOneNote(info, prepear, redirectToClient, goToHome) {
     prepear.prepend(note);
 }
 
+function createOneNoteV2(info, prepear, redirectToClient, goToHome) {
+
+    var operationIcon = document.createElement('img')
+    operationIcon.className = 'iconHome'
+    operationIcon.srcset = '/images/hand-holding-heart.svg'
+
+    var medicamentIcon = document.createElement('img')
+    medicamentIcon.className = 'iconHome'
+    medicamentIcon.srcset = '/images/preparat.svg'
+
+    var walletIcon = document.createElement('img')
+    walletIcon.className = 'iconHome'
+    walletIcon.srcset = '/images/wallet.svg'
+
+    var clockIcon = document.createElement('img')
+    clockIcon.className = 'iconHome'
+    clockIcon.srcset = '/images/clock.svg'
+
+    var note = document.createElement('ul');
+    note.className = "calcelementul topmenu";
+
+    var li = document.createElement('li');
+    li.style = 'width: 100%'
+
+    var menu = document.createElement('ul');
+
+    if (redirectToClient === true) {
+        menu.innerHTML = '<ul class="submenu widgetRowEvently">\n' +
+            '                <li><button onclick="deleteOpeartion(' + info.id + ', ' + goToHome + ')" class="operationOptions"><img class="buttonSubMenu" src="/images/iconfinder-trash.png"></button></li>\n' +
+            '                <li><button onclick="getClientRequest(' + info.clientId + ')" class="operationOptions"><img class="buttonSubMenu" src="/images/female.png"></button></li>\n' +
+            '            </ul>'
+    } else {
+        menu.innerHTML = '<ul class="submenu widgetRowEvently">\n' +
+            '                <li><button onclick="deleteOpeartion(' + info.id + ', ' + goToHome + ')" class="operationOptions"><img class="buttonSubMenu" src="/images/iconfinder-trash.png"></button></li>\n' +
+            '            </ul>'
+    }
+
+
+    var header = document.createElement('div');
+    header.className = "widgetRow";
+
+    var datePlace = document.createElement('div');
+    datePlace.className = 'dateBlock'
+
+    var infoPlace = document.createElement('button');
+    infoPlace.style = 'width: 53%;'
+    infoPlace.className = 'operationOptions'
+
+    var time = document.createElement('p');
+    time.className = "dateTime fontXxxLarge fonts";
+    time.innerHTML = info.time;
+
+    var date = document.createElement('p');
+    date.className = "dateTime newNoteFonts fontXxxLarge fonts";
+    date.style = 'color: #a9a9a9'
+    date.innerHTML = getParseDate(info.day);
+
+    var name = document.createElement('p');
+    name.className = "blockV3 fontXxxLarge fonts";
+    name.innerHTML = info.name;
+
+    var medicamentJs = document.createElement('p');
+    medicamentJs.className = "subtitle";
+    medicamentJs.innerHTML = info.medicament;
+
+    var comment = document.createElement('p');
+    comment.className = "blockV3 niceFont fontXxxLarge fonts";
+    comment.innerHTML = info.comment;
+
+    var duration = document.createElement('p');
+    duration.className = "blockV3 niceFont fontXxxLarge fonts";
+    if (info.duration !== null) duration.innerHTML = info.duration + ' мин.'
+    else duration.innerHTML = '30 мин.'
+
+    var numbersDataDiv = document.createElement('div');
+    numbersDataDiv.className = "widgetRowStart";
+
+    var operationDiv = document.createElement('div');
+    operationDiv.className = "widgetRowEnd";
+
+    var clientName = document.createElement('div');
+    clientName.className = "blockV3 niceFont fontXxxLarge fonts";
+    clientName.innerHTML = info.clientName;
+
+    // var summDiv = document.createElement('div');
+    // summDiv.className = "widgetRowEnd";
+
+    var durationDiv = document.createElement('div');
+    durationDiv.className = "widgetRowStart";
+
+
+    // operationDiv.prepend(name, operationIcon)
+    // medicamentDiv.prepend(medicamentJs, medicamentIcon)
+
+    // summDiv.prepend(summuryJs, walletIcon)
+    durationDiv.prepend(clockIcon, duration)
+
+    // numbersDataDiv.prepend(clockIcon, duration)
+
+    datePlace.prepend(time)
+
+    infoPlace.prepend(name, clientName, comment)
+    header.prepend(datePlace, infoPlace);
+
+    li.prepend(header, menu)
+
+    note.prepend(li);
+    prepear.prepend(note);
+}
+
+
 function getParseDate(date) {
     var arr = [
         'Янв.',

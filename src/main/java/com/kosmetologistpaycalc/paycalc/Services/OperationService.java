@@ -108,6 +108,13 @@ public class OperationService {
     private List<OperationNote> createOperationsNote(List<OperationNote> operationNotes, Operation operation, List<Client> clients) {
         String time = new SimpleDateFormat(PATTERN_TIME).format(operation.getDate().getTime());
 
+        Client currentClient = clients.stream()
+                .filter(client -> client.getId().equals(operation.getClientId()))
+                .findFirst()
+                .orElseThrow(
+                        () -> new NoSuchElementException("Не удалось найти клинета по id = "
+                                + operation.getClientId()));
+
         operationNotes.add(
                 OperationNote.builder()
                         .day(new SimpleDateFormat(PATTERN_DAY).format(operation.getDate().getTime()))
@@ -117,13 +124,8 @@ public class OperationService {
                         .medicament(operation.getMedicament())
                         .summury(operation.getSummury())
                         .name(operation.getName())
-                        .clientName(clients.stream()
-                                .filter(client -> client.getId().equals(operation.getClientId()))
-                                .findFirst()
-                                .orElseThrow(
-                                        () -> new NoSuchElementException("Не удалось найти клинета по id = "
-                                                + operation.getClientId()))
-                                .getData())
+                        .clientName(currentClient.getData())
+                        .comment(currentClient.getComment())
                         .clientId(operation.getClientId())
                         .id(operation.getId())
                         .build());

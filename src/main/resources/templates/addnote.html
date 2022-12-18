@@ -249,7 +249,7 @@
             response.filter(function (item) {
                 return item.date === myDate;
             })[0].operationNotes.forEach((note) => {
-                createOneNote(note, filler, true, 0);
+                createOneNoteV2(note, filler, true, 0);
             })
 
             notesPlace.prepend(filler);
